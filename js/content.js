@@ -29,8 +29,7 @@ const CONFIG = {
   // ── GOOGLE MAPS ───────────────────────────────────────────
   // Replace this URL with your actual Google Maps embed URL.
   // Go to Google Maps → share → Embed a map → copy the src URL.
-  GOOGLE_MAPS_EMBED_URL: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.9!2d-8.6!3d41.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRua+de+Carlos+Malheiro+Dias+350%2C+Porto!5e0!3m2!1sen!2spt!4v1600000000000",
-
+  GOOGLE_MAPS_EMBED_URL: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4372411398394!2d-8.600159323286485!3d41.16112127132952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24645f6e0bdeb3%3A0xd656f3de0205154a!2sR.%20Carlos%20Malheiro%20Dias%20350%2C%204200-154%20Porto%2C%20Portugal!5e1!3m2!1sen!2sil!4v1774199559208!5m2!1sen!2sil",
   // ── TEAM ──────────────────────────────────────────────────
   // Replace photo paths with real photos in assets/images/
   TEAM_MEMBERS: [
