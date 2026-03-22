@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ── PAGE TITLE & META ── -->
+  <title>DIAS 350 — A New Residential Vision in Porto</title>
+  <meta name="description" content="DIAS 350 Residence — A boutique urban redevelopment project in Porto's Bonfim district. 6 premium residential units in one of Porto's most authentic and desirable locations." />
+  <meta name="keywords" content="Porto real estate, apartment Porto, Bonfim Porto, residential development Porto, investment Porto" />
+  <meta name="author" content="ALBE TOP BONFIM LDA" />
+
+  <!-- ── OPEN GRAPH ── -->
+  <meta property="og:title" content="DIAS 350 — A New Residential Vision in Porto" />
+  <meta property="og:description" content="A boutique redevelopment project in one of Porto's most authentic and desirable urban locations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourusername.github.io/dias350/" />
+  <!-- Replace og:image with a real project image for social sharing -->
+  <meta property="og:image" content="assets/images/hero.jpg" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DIAS 350 Residence — Porto" />
+  <meta name="twitter:description" content="A boutique urban redevelopment project in Porto, Portugal." />
+
+  <!-- ── FAVICON ── -->
+  <!-- Replace favicon.ico in the root folder with your actual favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+
+  <!-- ── FONTS & STYLES ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="#home" class="logo" aria-label="DIAS 350 — go to homepage">
+        DIAS <span>350</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <!-- Populated by JS -->
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher" role="navigation" aria-label="Language selector">
+          <button data-lang-btn="en" aria-label="Switch to English">EN</button>
+          <span aria-hidden="true">/</span>
+          <button data-lang-btn="pt" aria-label="Mudar para Português">PT</button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    <nav id="mobile-nav-links" aria-label="Mobile navigation links">
+      <!-- Populated by JS -->
+    </nav>
+    <div class="mobile-lang" role="navigation" aria-label="Language selector">
+      <button data-lang-btn="en">EN</button>
+      <button data-lang-btn="pt">PT</button>
+    </div>
+  </div>
+
+
+  <main>
+
+    <!-- ════════════════════════════════════════════════
+         1. HERO
+    ════════════════════════════════════════════════ -->
+    <section id="home" aria-labelledby="hero-headline">
+
+      <!-- Background image / placeholder -->
+      <div class="hero-bg" aria-hidden="true">
+        <!--
+          REPLACE HERO IMAGE:
+          Option A — use an <img> tag:
+            <img class="hero-bg-image" src="assets/images/hero.jpg" alt="" />
+          Option B — set as CSS background-image in styles.css
+          For now, a styled gradient placeholder is shown.
+        -->
+        <div class="hero-bg-placeholder">
+          <div class="hero-bg-placeholder-text">
+            DIAS 350 · PORTO<br>
+            <small style="font-size:11px; opacity:0.5; letter-spacing:0.1em;">Replace with hero image in assets/images/hero.jpg</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">Porto, Portugal</div>
+        <h1 class="hero-headline" id="hero-headline">A new residential vision in Porto</h1>
+        <p class="hero-subtitle" id="hero-subtitle"></p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary" id="hero-cta-primary">Request details</a>
+          <a href="#location" class="btn-secondary" id="hero-cta-secondary">View location</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="hero-scroll-line"></div>
+      </div>
+
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════
+         2. ABOUT THE PROJECT
+    ════════════════════════════════════════════════ -->
+    <section id="project" aria-labelledby="about-title">
+      <div class="container">
+
+        <div class="about-grid">
+          <!-- Text side -->
+          <div class="about-text">
+            <span class="section-label" id="about-section-label"></span>
+            <h2 class="section-title" id="about-title"></h2>
+            <div class="divider" aria-hidden="true"></div>
+            <p id="about-description"></p>
+          </div>
+
+          <!-- Stats side -->
+          <div class="about-stats" role="list" aria-label="Project specifications">
+            <div class="stat-item" role="listitem">
+              <div class="stat-label" id="stat-label-type"></div>
+              <div class="stat-value" id="stat-value-type"></div>
+            </div>
+            <div class="stat-item" role="listitem">
+              <div class="stat-label" id="stat-label-units"></div>
+              <div class="stat-value" id="stat-value-units"></div>
+            </div>
+            <div class="stat-item" role="listitem">
+              <div class="stat-label" id="stat-label-floors"></div>
+              <div class="stat-value" id="stat-value-floors"></div>
+            </div>
+            <div class="stat-item" role="listitem">
+              <div class="stat-label" id="stat-label-mix"></div>
+              <div class="stat-value" id="stat-value-mix"></div>
+            </div>
+            <div class="stat-item" role="listitem">
+              <div class="stat-label" id="stat-label-delivery"></div>
+              <div class="stat-value" id="stat-value-delivery"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="feature-cards" id="feature-cards" role="list">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════
+         3. LOCATION
+    ════════════════════════════════════════════════ -->
+    <section id="location" aria-labelledby="location-title">
+      <div class="container">
+
+        <div class="location-grid">
+          <!-- Text side -->
+          <div class="location-text">
+            <span class="section-label" id="location-section-label"></span>
+            <h2 class="section-title" id="location-title"></h2>
+            <div class="divider" aria-hidden="true"></div>
+            <p id="location-description"></p>
+
+            <!-- Address -->
+            <div class="location-address">
+              <span class="addr-icon">📍</span>
+              <div>
+                <div class="addr-label">Address</div>
+                <div class="addr-text" id="location-address-text"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Highlights side -->
+          <div class="location-highlights" id="location-highlights" role="list" aria-label="Location highlights">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-container" id="map-container" role="region" aria-label="Location map">
+          <!-- Populated by JS (embed or placeholder) -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════
+         4. GALLERY — EXISTING BUILDING
+    ════════════════════════════════════════════════ -->
+    <section id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+
+        <div class="gallery-header">
+          <span class="section-label" id="gallery-section-label"></span>
+          <h2 class="section-title" id="gallery-title"></h2>
+          <p class="section-subtitle" id="gallery-subtitle"></p>
+        </div>
+
+        <!--
+          GALLERY IMAGES:
+          Add your photos to assets/images/ with these names:
+            facade.jpg, entrance.jpg, interior-1.jpg, street-view.jpg,
+            interior-2.jpg, neighborhood.jpg, existing-building-1.jpg, existing-building-2.jpg
+          Or update the GALLERY_IMAGES array in js/content.js
+        -->
+        <div class="gallery-grid" id="gallery-grid" role="list" aria-label="Building gallery">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════
+         5. PROJECT HIGHLIGHTS
+    ════════════════════════════════════════════════ -->
+    <section id="highlights" aria-labelledby="highlights-title">
+      <div class="container">
+
+        <div class="highlights-header">
+          <span class="section-label" id="highlights-section-label"></span>
+          <h2 class="section-title" id="highlights-title"></h2>
+        </div>
+
+        <div class="highlights-grid" id="highlights-grid" role="list">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════
+         6. TEAM
+    ════════════════════════════════════════════════ -->
+    <section id="team" aria-labelledby="team-title">
+      <div class="container">
+
+        <div class="team-header">
+          <span class="section-label" id="team-section-label"></span>
+          <h2 class="section-title" id="team-title"></h2>
+        </div>
+
+        <!--
+          TEAM PHOTOS:
+          Add team photos to assets/images/ with these names:
+            team-developer.jpg, team-architect.jpg, team-pm.jpg, team-commercial.jpg
+          Or update TEAM_MEMBERS in js/content.js
+        -->
+        <div class="team-grid" id="team-grid" role="list" aria-label="Project team">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════
+         7. CONTACT
+    ════════════════════════════════════════════════ -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+
+        <div class="contact-grid">
+          <!-- Info side -->
+          <div class="contact-info-block">
+            <span class="section-label" id="contact-section-label"></span>
+            <h2 class="section-title" id="contact-title"></h2>
+            <div class="divider" aria-hidden="true"></div>
+            <p class="contact-description" id="contact-description"></p>
+
+            <!-- Contact details -->
+            <div class="contact-detail">
+              <span class="cd-icon">✉</span>
+              <a id="contact-email" href="mailto:"></a>
+            </div>
+            <div class="contact-detail">
+              <span class="cd-icon">📞</span>
+              <a id="contact-phone" href="tel:"></a>
+            </div>
+            <div class="contact-detail">
+              <span class="cd-icon">💬</span>
+              <a id="contact-whatsapp" href="https://wa.me/" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="contact-disclaimer" role="note">
+              <p id="contact-disclaimer"></p>
+            </div>
+          </div>
+
+          <!-- Form side -->
+          <div class="contact-form-block">
+            <!--
+              FORM SETUP:
+              Currently uses mock submission.
+              To connect to a real email service:
+              1. Sign up at https://formspree.io (free)
+              2. Create a form and get your endpoint URL
+              3. Update the fetch() call in js/main.js — look for "HOW TO CONNECT TO FORMSPREE"
+            -->
+            <form
+              id="contact-form"
+              class="contact-form"
+              novalidate
+              aria-label="Contact form"
+            >
+              <div class="form-group">
+                <label for="form-name" id="label-name">Full name</label>
+                <input
+                  type="text"
+                  id="form-name"
+                  name="name"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label for="form-email" id="label-email">Email</label>
+                <input
+                  type="email"
+                  id="form-email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label for="form-phone" id="label-phone">Phone</label>
+                <input
+                  type="tel"
+                  id="form-phone"
+                  name="phone"
+                  autocomplete="tel"
+                />
+              </div>
+              <div class="form-group">
+                <label for="form-message" id="label-message">Message</label>
+                <textarea
+                  id="form-message"
+                  name="message"
+                  required
+                  aria-required="true"
+                ></textarea>
+              </div>
+
+              <div id="form-message" class="form-message" role="alert" aria-live="polite"></div>
+
+              <button type="submit" id="form-submit" class="btn-primary">
+                Send message
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <!-- Brand -->
+        <div>
+          <div class="footer-logo">DIAS <span>350</span></div>
+          <div class="footer-tagline" id="footer-tagline">Porto, Portugal</div>
+        </div>
+
+        <!-- Nav -->
+        <nav class="footer-nav" id="footer-nav" aria-label="Footer navigation">
+          <!-- Populated by JS -->
+        </nav>
+
+        <!-- Lang -->
+        <div class="footer-lang">
+          <span>Language</span>
+          <div class="lang-btns">
+            <button data-lang-btn="en">EN</button>
+            <button data-lang-btn="pt">PT</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright" id="footer-copyright"></div>
+        <div class="footer-disclaimer-text" id="footer-disclaimer"></div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ── SCRIPTS ── -->
+  <!-- Load content config first, then main app -->
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
