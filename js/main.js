@@ -17,7 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initLangButtons();
   setActiveLangButtons(currentLang);
+  initHeroSlider();
 });
+
+// ── HERO SLIDER ──────────────────────────────────────────────
+function initHeroSlider() {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 4000);
+}
 
 // ── LANGUAGE SWITCH ──────────────────────────────────────────
 function switchLang(lang) {
@@ -178,7 +191,11 @@ function renderGallery(gallery, lang) {
   const grid = document.getElementById('gallery-grid');
   if (!grid) return;
 
-  grid.innerHTML = CONFIG.GALLERY_IMAGES.map((img, i) => {
+  // Exclude images used in the hero slider
+  const sliderFiles = ['assets/images/hero.jpg', 'assets/images/existing-building-1.jpg', 'assets/images/neighborhood.jpg'];
+  const galleryImages = CONFIG.GALLERY_IMAGES.filter(img => !sliderFiles.includes(img.file));
+
+  grid.innerHTML = galleryImages.map((img) => {
     const caption = lang === 'en' ? img.caption_en : img.caption_pt;
     const filename = img.file.split('/').pop();
     return `
