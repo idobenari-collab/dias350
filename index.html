@@ -80,10 +80,12 @@
          HERO
     ══════════════════════════════════════════════ -->
     <section class="hero" id="hero">
-      <!-- Parallax background -->
-      <div class="hero__bg parallax-layer" data-parallax-speed="0.4"
-           style="background-image: url('images/hero.jpg');"
-           aria-hidden="true"></div>
+      <!-- Slideshow — add images/hero-1.jpg, hero-2.jpg, hero-3.jpg etc. -->
+      <div class="hero__slideshow" id="heroSlideshow" aria-hidden="true">
+        <div class="hero__slide active" style="background-image: url('images/hero-1.jpg');"></div>
+        <div class="hero__slide"        style="background-image: url('images/hero-2.jpg');"></div>
+        <div class="hero__slide"        style="background-image: url('images/hero-3.jpg');"></div>
+      </div>
 
       <!-- Overlay -->
       <div class="hero__overlay" aria-hidden="true"></div>
@@ -155,7 +157,7 @@
         <!-- Image column -->
         <div class="about__image-wrap parallax-section">
           <div class="about__image parallax-layer" data-parallax-speed="0.25"
-               style="background-image: url('images/about.jpg');"
+               style="background-image: url('images/gallery-1.jpg');"
                aria-hidden="true"></div>
         </div>
 
@@ -167,7 +169,7 @@
           </h2>
           <div class="about__body">
             <p data-i18n="about.body">
-              350DIAS is the new residential landmark at Rua de Dias 350, Porto.
+              350DIAS is the new residential landmark at R. Carlos Malheiro Dias 350, Porto.
               A project where contemporary architecture reflects the essence of city life,
               offering residences designed for those who value sophistication, comfort, and a
               privileged connection to Porto's cultural heart.
