@@ -127,15 +127,15 @@
         <div class="stats__grid" id="statsGrid">
           <!-- Populated by main.js -->
           <div class="stat">
-            <span class="stat__value">4</span>
+            <span class="stat__value">3</span>
             <span class="stat__label" data-i18n="stats.floors">Floors</span>
           </div>
           <div class="stat">
-            <span class="stat__value">14</span>
+            <span class="stat__value">6</span>
             <span class="stat__label" data-i18n="stats.apartments">Apartments</span>
           </div>
           <div class="stat">
-            <span class="stat__value">T2–T4</span>
+            <span class="stat__value">T1–T3</span>
             <span class="stat__label" data-i18n="stats.typologies">Typologies</span>
           </div>
           <div class="stat">
@@ -197,21 +197,14 @@
           </h2>
         </div>
 
-        <!-- Tab buttons -->
-        <div class="apt-tabs" role="tablist" aria-label="Apartment types" id="aptTabs">
-          <!-- Populated by main.js from content.js apartments array -->
-          <button class="apt-tab active" role="tab" data-apt="apt-1"
-                  aria-selected="true" aria-controls="aptPanel">
-            Type T2
-          </button>
-          <button class="apt-tab" role="tab" data-apt="apt-2"
-                  aria-selected="false" aria-controls="aptPanel">
-            Type T3
-          </button>
-          <button class="apt-tab" role="tab" data-apt="apt-3"
-                  aria-selected="false" aria-controls="aptPanel">
-            Type T4
-          </button>
+        <!-- Tab buttons — 6 units, populated/updated by main.js -->
+        <div class="apt-tabs" role="tablist" aria-label="Apartment units" id="aptTabs">
+          <button class="apt-tab active" role="tab" data-apt="unit-a" aria-selected="true"  aria-controls="aptPanel">Unit A</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-b" aria-selected="false" aria-controls="aptPanel">Unit B</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-c" aria-selected="false" aria-controls="aptPanel">Unit C</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-d" aria-selected="false" aria-controls="aptPanel">Unit D</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-e" aria-selected="false" aria-controls="aptPanel">Unit E</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-f" aria-selected="false" aria-controls="aptPanel">Unit F</button>
         </div>
 
         <!-- Tab panel -->
@@ -220,10 +213,9 @@
           <!-- Floor plan -->
           <div class="apt-plan">
             <img id="aptFloorPlan"
-                 src="images/floorplan-t2.jpg"
+                 src="images/floorplan-unit-a.jpg"
                  alt="Floor plan"
                  loading="lazy" />
-            <!-- Placeholder shown when image is missing -->
             <div class="apt-plan__placeholder" aria-hidden="true">
               <i data-lucide="layout-dashboard"></i>
               <span>Floor plan</span>
@@ -232,31 +224,31 @@
 
           <!-- Details -->
           <div class="apt-details" id="aptDetails">
-            <h3 class="apt-details__name" id="aptName">T2 Apartment</h3>
+            <h3 class="apt-details__name" id="aptName">Unit A</h3>
             <dl class="apt-details__list">
               <div class="apt-detail">
+                <dt><i data-lucide="layout-grid"></i> Typology</dt>
+                <dd id="aptTypology">T1</dd>
+              </div>
+              <div class="apt-detail">
                 <dt><i data-lucide="maximize-2"></i> Area</dt>
-                <dd id="aptArea">95 m²</dd>
-              </div>
-              <div class="apt-detail">
-                <dt><i data-lucide="bed-double"></i> Bedrooms</dt>
-                <dd id="aptBedrooms">2 bedrooms</dd>
-              </div>
-              <div class="apt-detail">
-                <dt><i data-lucide="bath"></i> Bathrooms</dt>
-                <dd id="aptBathrooms">2 bathrooms</dd>
+                <dd id="aptArea">50.0 m²</dd>
               </div>
               <div class="apt-detail">
                 <dt><i data-lucide="sun"></i> Balcony</dt>
-                <dd id="aptBalcony">22 m²</dd>
+                <dd id="aptBalcony">—</dd>
               </div>
               <div class="apt-detail">
-                <dt><i data-lucide="car"></i> Garage</dt>
-                <dd id="aptGarage">1 parking space</dd>
+                <dt><i data-lucide="square"></i> Terrace</dt>
+                <dd id="aptTerrace">—</dd>
               </div>
-              <div class="apt-detail apt-detail--price">
-                <dt><i data-lucide="tag"></i> Price</dt>
-                <dd id="aptPrice">From €420,000</dd>
+              <div class="apt-detail">
+                <dt><i data-lucide="archive"></i> Storage</dt>
+                <dd id="aptStorage">—</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="trees"></i> Garden</dt>
+                <dd id="aptGarden">—</dd>
               </div>
             </dl>
             <a href="#contact" class="btn btn--primary" data-i18n="cta.requestInfo">
@@ -350,7 +342,7 @@
         <div class="location__map">
           <iframe
             title="350DIAS location map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.0!2d-8.6291!3d41.1579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA5JzI4LjQiTiA4wrAzNyc0NC44Ilc!5e0!3m2!1sen!2spt!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5!2d-8.6163!3d41.1621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464a09f6c40f1%3A0x1!2sR.+Carlos+Malheiro+Dias+350%2C+4200-154+Porto!5e0!3m2!1spt!2spt!4v1"
             width="100%" height="100%"
             style="border:0;" allowfullscreen loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
@@ -361,7 +353,7 @@
         <div class="location__highlights">
           <p class="location__address">
             <i data-lucide="map-pin"></i>
-            <span data-i18n="location.address">Rua de Dias 350, Porto, Portugal</span>
+            <span data-i18n="location.address">R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal</span>
           </p>
 
           <ul class="location__list" id="locationList">
@@ -408,9 +400,9 @@
 
           <ul class="contact__channels">
             <li>
-              <a href="mailto:info@350dias.pt">
+              <a href="/cdn-cgi/l/email-protection#d6bfb8b0b996e5e3e6b2bfb7a5f8a6a2">
                 <i data-lucide="mail"></i>
-                <span>info@350dias.pt</span>
+                <span><span class="__cf_email__" data-cfemail="234a4d454c63101613474a42500d5357">[email&#160;protected]</span></span>
               </a>
             </li>
             <li>
@@ -486,10 +478,4 @@
     </div>
   </footer>
 
-  <!-- Content data -->
-  <script src="content.js"></script>
-  <!-- Main logic -->
-  <script src="main.js"></script>
-
-</body>
-</html>
+  <!-- 
