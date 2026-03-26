@@ -4,425 +4,492 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ── PAGE TITLE & META ── -->
-  <title>DIAS 350 — A New Residential Vision in Porto</title>
-  <meta name="description" content="DIAS 350 Residence — A boutique urban redevelopment project in Porto's Bonfim district. 6 premium residential units in one of Porto's most authentic and desirable locations." />
-  <meta name="keywords" content="Porto real estate, apartment Porto, Bonfim Porto, residential development Porto, investment Porto" />
-  <meta name="author" content="ALBE TOP BONFIM LDA" />
+  <!-- Title & Meta (populated by main.js from content.js) -->
+  <title>350DIAS — A New Residential Vision in Porto</title>
+  <meta name="description" content="350DIAS is an exclusive residential development in Porto. Premium apartments designed for those who seek comfort, elegance, and the soul of the city." />
+  <meta name="keywords" content="350DIAS, Porto real estate, luxury apartments, residential Porto" />
 
-  <!-- ── OPEN GRAPH ── -->
-  <meta property="og:title" content="DIAS 350 — A New Residential Vision in Porto" />
-  <meta property="og:description" content="A boutique redevelopment project in one of Porto's most authentic and desirable urban locations." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="350DIAS — A New Residential Vision in Porto" />
+  <meta property="og:description" content="Exclusive residential development in Porto." />
+  <meta property="og:image" content="images/og-image.jpg" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourusername.github.io/dias350/" />
-  <!-- Replace og:image with a real project image for social sharing -->
-  <meta property="og:image" content="assets/images/hero.jpg" />
-  <meta property="og:locale" content="en_GB" />
-  <meta property="og:locale:alternate" content="pt_PT" />
 
-  <!-- ── TWITTER CARD ── -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DIAS 350 Residence — Porto" />
-  <meta name="twitter:description" content="A boutique urban redevelopment project in Porto, Portugal." />
-
-  <!-- ── FAVICON ── -->
-  <!-- Replace favicon.ico in the root folder with your actual favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
-
-  <!-- ── FONTS & STYLES ── -->
+  <!-- Fonts: Cormorant Garamond (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
 
-  <!-- ════════════════════════════════════════════════
-       HEADER
-  ════════════════════════════════════════════════ -->
-  <header class="site-header" id="site-header" role="banner">
-    <div class="header-inner">
+  <!-- ══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
 
       <!-- Logo -->
-      <a href="#home" class="logo" aria-label="DIAS 350 — go to homepage">
-        DIAS <span>350</span>
+      <a class="nav__logo" href="#home" aria-label="350DIAS home">
+        350DIAS
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-        <!-- Populated by JS -->
+      <!-- Desktop links -->
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="#about"      data-i18n="nav.about">About</a>
+        <a href="#apartments" data-i18n="nav.apartments">Apartments</a>
+        <a href="#gallery"    data-i18n="nav.gallery">Gallery</a>
+        <a href="#location"   data-i18n="nav.location">Location</a>
+        <a href="#contact"    data-i18n="nav.contact">Contact</a>
       </nav>
 
-      <!-- Header Actions -->
-      <div class="header-actions">
-        <!-- Language Switcher -->
-        <div class="lang-switcher" role="navigation" aria-label="Language selector">
-          <button data-lang-btn="en" aria-label="Switch to English">EN</button>
-          <span aria-hidden="true">/</span>
-          <button data-lang-btn="pt" aria-label="Mudar para Português">PT</button>
+      <!-- Right controls -->
+      <div class="nav__controls">
+        <!-- Language toggle -->
+        <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn" data-lang="pt">PT</button>
         </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+        <!-- Hamburger (mobile) -->
+        <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <i data-lucide="menu"></i>
         </button>
       </div>
+    </div>
 
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+      <a href="#about"      data-i18n="nav.about"      class="drawer-link">About</a>
+      <a href="#apartments" data-i18n="nav.apartments" class="drawer-link">Apartments</a>
+      <a href="#gallery"    data-i18n="nav.gallery"    class="drawer-link">Gallery</a>
+      <a href="#location"   data-i18n="nav.location"   class="drawer-link">Location</a>
+      <a href="#contact"    data-i18n="nav.contact"    class="drawer-link">Contact</a>
     </div>
   </header>
 
-  <!-- Mobile Nav Overlay -->
-  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
-    <nav id="mobile-nav-links" aria-label="Mobile navigation links">
-      <!-- Populated by JS -->
-    </nav>
-    <div class="mobile-lang" role="navigation" aria-label="Language selector">
-      <button data-lang-btn="en">EN</button>
-      <button data-lang-btn="pt">PT</button>
-    </div>
-  </div>
+  <main id="home">
 
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+      <!-- Parallax background -->
+      <div class="hero__bg parallax-layer" data-parallax-speed="0.4"
+           style="background-image: url('images/hero.jpg');"
+           aria-hidden="true"></div>
 
-  <main>
+      <!-- Overlay -->
+      <div class="hero__overlay" aria-hidden="true"></div>
 
-    <!-- ════════════════════════════════════════════════
-         1. HERO
-    ════════════════════════════════════════════════ -->
-    <section id="home" aria-labelledby="hero-headline">
+      <!-- Content -->
+      <div class="hero__content">
+        <span class="hero__location">
+          <i data-lucide="map-pin"></i>
+          Porto, Portugal
+        </span>
 
-      <!-- Hero Slideshow (3 images, auto-rotate every 4s) -->
-      <div class="hero-slider" aria-hidden="true">
-        <div class="hero-slide active" style="background-image: url('assets/images/hero.jpg')"></div>
-        <div class="hero-slide" style="background-image: url('assets/images/existing-building-1.jpg')"></div>
-        <div class="hero-slide" style="background-image: url('assets/images/neighborhood.jpg')"></div>
-        <div class="hero-slider-overlay"></div>
-      </div>
+        <h1 class="hero__heading" data-i18n="hero.heading">
+          A new residential<br>vision in Porto
+        </h1>
 
-      <div class="hero-content">
-        <div class="hero-eyebrow">Porto, Portugal</div>
-        <h1 class="hero-headline" id="hero-headline">A new residential vision in Porto</h1>
-        <p class="hero-subtitle" id="hero-subtitle"></p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn-primary" id="hero-cta-primary">Request details</a>
-          <a href="#location" class="btn-secondary" id="hero-cta-secondary">View location</a>
+        <p class="hero__sub" data-i18n="hero.subheading">
+          Where architecture meets the rhythm of the city.
+        </p>
+
+        <div class="hero__ctas">
+          <a href="#contact" class="btn btn--primary" data-i18n="hero.cta.primary">
+            Request Details
+          </a>
+          <a href="#location" class="btn btn--ghost" data-i18n="hero.cta.secondary">
+            View Location
+          </a>
         </div>
       </div>
 
-      <div class="hero-scroll" aria-hidden="true">
-        <div class="hero-scroll-line"></div>
-      </div>
-
-    </section>
-
-
-    <!-- ════════════════════════════════════════════════
-         2. ABOUT THE PROJECT
-    ════════════════════════════════════════════════ -->
-    <section id="project" aria-labelledby="about-title">
-      <div class="container">
-
-        <div class="about-grid">
-          <!-- Text side -->
-          <div class="about-text">
-            <span class="section-label" id="about-section-label"></span>
-            <h2 class="section-title" id="about-title"></h2>
-            <div class="divider" aria-hidden="true"></div>
-            <p id="about-description"></p>
-          </div>
-
-          <!-- Stats side -->
-          <div class="about-stats" role="list" aria-label="Project specifications">
-            <div class="stat-item" role="listitem">
-              <div class="stat-label" id="stat-label-type"></div>
-              <div class="stat-value" id="stat-value-type"></div>
-            </div>
-            <div class="stat-item" role="listitem">
-              <div class="stat-label" id="stat-label-units"></div>
-              <div class="stat-value" id="stat-value-units"></div>
-            </div>
-            <div class="stat-item" role="listitem">
-              <div class="stat-label" id="stat-label-floors"></div>
-              <div class="stat-value" id="stat-value-floors"></div>
-            </div>
-            <div class="stat-item" role="listitem">
-              <div class="stat-label" id="stat-label-mix"></div>
-              <div class="stat-value" id="stat-value-mix"></div>
-            </div>
-            <div class="stat-item" role="listitem">
-              <div class="stat-label" id="stat-label-delivery"></div>
-              <div class="stat-value" id="stat-value-delivery"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature Cards -->
-        <div class="feature-cards" id="feature-cards" role="list">
-          <!-- Populated by JS -->
-        </div>
-
+      <!-- Scroll cue -->
+      <div class="hero__scroll" aria-hidden="true">
+        <i data-lucide="chevron-down"></i>
       </div>
     </section>
 
-
-    <!-- ════════════════════════════════════════════════
-         3. LOCATION
-    ════════════════════════════════════════════════ -->
-    <section id="location" aria-labelledby="location-title">
+    <!-- ══════════════════════════════════════════════
+         STATS BAND
+    ══════════════════════════════════════════════ -->
+    <section class="stats" aria-label="Key figures">
       <div class="container">
+        <div class="stats__grid" id="statsGrid">
+          <!-- Populated by main.js -->
+          <div class="stat">
+            <span class="stat__value">4</span>
+            <span class="stat__label" data-i18n="stats.floors">Floors</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">14</span>
+            <span class="stat__label" data-i18n="stats.apartments">Apartments</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">T2–T4</span>
+            <span class="stat__label" data-i18n="stats.typologies">Typologies</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">2025</span>
+            <span class="stat__label" data-i18n="stats.completion">Completion</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="location-grid">
-          <!-- Text side -->
-          <div class="location-text">
-            <span class="section-label" id="location-section-label"></span>
-            <h2 class="section-title" id="location-title"></h2>
-            <div class="divider" aria-hidden="true"></div>
-            <p id="location-description"></p>
+    <!-- ══════════════════════════════════════════════
+         ABOUT — with parallax image
+    ══════════════════════════════════════════════ -->
+    <section class="about section" id="about">
+      <div class="container about__grid">
 
-            <!-- Address -->
-            <div class="location-address">
-              <span class="addr-icon">📍</span>
-              <div>
-                <div class="addr-label">Address</div>
-                <div class="addr-text" id="location-address-text"></div>
+        <!-- Image column -->
+        <div class="about__image-wrap parallax-section">
+          <div class="about__image parallax-layer" data-parallax-speed="0.25"
+               style="background-image: url('images/about.jpg');"
+               aria-hidden="true"></div>
+        </div>
+
+        <!-- Text column -->
+        <div class="about__text">
+          <span class="section-label">350DIAS</span>
+          <h2 class="section-heading" data-i18n="about.heading">
+            Living in harmony with the beauty of details
+          </h2>
+          <div class="about__body">
+            <p data-i18n="about.body">
+              350DIAS is the new residential landmark at Rua de Dias 350, Porto.
+              A project where contemporary architecture reflects the essence of city life,
+              offering residences designed for those who value sophistication, comfort, and a
+              privileged connection to Porto's cultural heart.
+            </p>
+            <p>
+              Every detail has been conceived with exclusivity in mind —
+              elegant spaces, noble materials, and natural light that transforms each home
+              into a timeless living experience.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--outline" data-i18n="cta.moreInfo">
+            More information
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         APARTMENTS — interactive tabs
+    ══════════════════════════════════════════════ -->
+    <section class="apartments section section--alt" id="apartments">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Typologies</span>
+          <h2 class="section-heading" data-i18n="apartments.heading">
+            Find your ideal apartment
+          </h2>
+        </div>
+
+        <!-- Tab buttons -->
+        <div class="apt-tabs" role="tablist" aria-label="Apartment types" id="aptTabs">
+          <!-- Populated by main.js from content.js apartments array -->
+          <button class="apt-tab active" role="tab" data-apt="apt-1"
+                  aria-selected="true" aria-controls="aptPanel">
+            Type T2
+          </button>
+          <button class="apt-tab" role="tab" data-apt="apt-2"
+                  aria-selected="false" aria-controls="aptPanel">
+            Type T3
+          </button>
+          <button class="apt-tab" role="tab" data-apt="apt-3"
+                  aria-selected="false" aria-controls="aptPanel">
+            Type T4
+          </button>
+        </div>
+
+        <!-- Tab panel -->
+        <div class="apt-panel" id="aptPanel" role="tabpanel">
+
+          <!-- Floor plan -->
+          <div class="apt-plan">
+            <img id="aptFloorPlan"
+                 src="images/floorplan-t2.jpg"
+                 alt="Floor plan"
+                 loading="lazy" />
+            <!-- Placeholder shown when image is missing -->
+            <div class="apt-plan__placeholder" aria-hidden="true">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Floor plan</span>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="apt-details" id="aptDetails">
+            <h3 class="apt-details__name" id="aptName">T2 Apartment</h3>
+            <dl class="apt-details__list">
+              <div class="apt-detail">
+                <dt><i data-lucide="maximize-2"></i> Area</dt>
+                <dd id="aptArea">95 m²</dd>
               </div>
-            </div>
-          </div>
-
-          <!-- Highlights side -->
-          <div class="location-highlights" id="location-highlights" role="list" aria-label="Location highlights">
-            <!-- Populated by JS -->
+              <div class="apt-detail">
+                <dt><i data-lucide="bed-double"></i> Bedrooms</dt>
+                <dd id="aptBedrooms">2 bedrooms</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="bath"></i> Bathrooms</dt>
+                <dd id="aptBathrooms">2 bathrooms</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="sun"></i> Balcony</dt>
+                <dd id="aptBalcony">22 m²</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="car"></i> Garage</dt>
+                <dd id="aptGarage">1 parking space</dd>
+              </div>
+              <div class="apt-detail apt-detail--price">
+                <dt><i data-lucide="tag"></i> Price</dt>
+                <dd id="aptPrice">From €420,000</dd>
+              </div>
+            </dl>
+            <a href="#contact" class="btn btn--primary" data-i18n="cta.requestInfo">
+              Request information
+            </a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         GALLERY — horizontal scroll
+    ══════════════════════════════════════════════ -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label" data-i18n="gallery.label">Gallery</span>
+          <h2 class="section-heading" data-i18n="gallery.heading">
+            The perfect balance between comfort and privacy
+          </h2>
+        </div>
+      </div>
+
+      <!-- Full-width horizontal scroller -->
+      <div class="gallery__wrapper">
+        <!-- Prev arrow -->
+        <button class="gallery__arrow gallery__arrow--prev" id="galleryPrev"
+                aria-label="Previous images">
+          <i data-lucide="arrow-left"></i>
+        </button>
+
+        <!-- Scroll track -->
+        <div class="gallery__track" id="galleryTrack">
+          <!-- Images populated by main.js — or hardcode here -->
+          <div class="gallery__item">
+            <img src="images/gallery-1.jpg" alt="Living area" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-2.jpg" alt="Kitchen" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-3.jpg" alt="Master bedroom" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-4.jpg" alt="Bathroom" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-5.jpg" alt="Balcony view" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-6.jpg" alt="Building facade" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-7.jpg" alt="Common area" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-8.jpg" alt="Rooftop terrace" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Next arrow -->
+        <button class="gallery__arrow gallery__arrow--next" id="galleryNext"
+                aria-label="Next images">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Drag hint -->
+      <div class="gallery__hint" aria-hidden="true">
+        <i data-lucide="move-horizontal"></i>
+        <span data-i18n="gallery.drag">Drag to explore</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         LOCATION
+    ══════════════════════════════════════════════ -->
+    <section class="location section section--alt" id="location">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Location</span>
+          <h2 class="section-heading" data-i18n="location.heading">
+            At the heart of Porto
+          </h2>
+        </div>
+      </div>
+
+      <div class="location__grid container">
 
         <!-- Map -->
-        <div class="map-container" id="map-container" role="region" aria-label="Location map">
-          <!-- Populated by JS (embed or placeholder) -->
+        <div class="location__map">
+          <iframe
+            title="350DIAS location map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.0!2d-8.6291!3d41.1579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA5JzI4LjQiTiA4wrAzNyc0NC44Ilc!5e0!3m2!1sen!2spt!4v1"
+            width="100%" height="100%"
+            style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
 
+        <!-- Highlights -->
+        <div class="location__highlights">
+          <p class="location__address">
+            <i data-lucide="map-pin"></i>
+            <span data-i18n="location.address">Rua de Dias 350, Porto, Portugal</span>
+          </p>
+
+          <ul class="location__list" id="locationList">
+            <li>
+              <i data-lucide="building-2"></i>
+              <span data-i18n="location.highlight1">City centre 5 min</span>
+            </li>
+            <li>
+              <i data-lucide="tree-pine"></i>
+              <span data-i18n="location.highlight2">Parks nearby</span>
+            </li>
+            <li>
+              <i data-lucide="train-front"></i>
+              <span data-i18n="location.highlight3">Metro access</span>
+            </li>
+            <li>
+              <i data-lucide="utensils"></i>
+              <span data-i18n="location.highlight4">Restaurants & culture</span>
+            </li>
+          </ul>
+
+          <a href="#contact" class="btn btn--outline" data-i18n="cta.requestInfo">
+            Request information
+          </a>
+        </div>
       </div>
     </section>
 
+    <!-- ══════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════ -->
+    <section class="contact section" id="contact">
+      <div class="container contact__grid">
 
-    <!-- ════════════════════════════════════════════════
-         4. GALLERY — EXISTING BUILDING
-    ════════════════════════════════════════════════ -->
-    <section id="gallery" aria-labelledby="gallery-title">
-      <div class="container">
+        <!-- Left: heading + contact links -->
+        <div class="contact__info">
+          <span class="section-label">Contact</span>
+          <h2 class="section-heading" data-i18n="contact.heading">
+            Request more information
+          </h2>
+          <p class="contact__sub" data-i18n="contact.subheading">
+            Our team will get back to you shortly.
+          </p>
 
-        <div class="gallery-header">
-          <span class="section-label" id="gallery-section-label"></span>
-          <h2 class="section-title" id="gallery-title"></h2>
-          <p class="section-subtitle" id="gallery-subtitle"></p>
+          <ul class="contact__channels">
+            <li>
+              <a href="mailto:info@350dias.pt">
+                <i data-lucide="mail"></i>
+                <span>info@350dias.pt</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+351220000000">
+                <i data-lucide="phone"></i>
+                <span>+351 22 000 0000</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/351910000000" target="_blank" rel="noopener">
+                <i data-lucide="message-circle"></i>
+                <span>WhatsApp</span>
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <!--
-          GALLERY IMAGES:
-          Add your photos to assets/images/ with these names:
-            facade.jpg, entrance.jpg, interior-1.jpg, street-view.jpg,
-            interior-2.jpg, neighborhood.jpg, existing-building-1.jpg, existing-building-2.jpg
-          Or update the GALLERY_IMAGES array in js/content.js
-        -->
-        <div class="gallery-grid-uniform" id="gallery-grid" role="list" aria-label="Building gallery">
-          <!-- Populated by JS -->
-        </div>
+        <!-- Right: form -->
+        <div class="contact__form-wrap">
+          <form class="contact__form" id="contactForm" novalidate>
 
-      </div>
-    </section>
-
-
-    <!-- ════════════════════════════════════════════════
-         5. PROJECT HIGHLIGHTS
-    ════════════════════════════════════════════════ -->
-    <section id="highlights" aria-labelledby="highlights-title">
-      <div class="container">
-
-        <div class="highlights-header">
-          <span class="section-label" id="highlights-section-label"></span>
-          <h2 class="section-title" id="highlights-title"></h2>
-        </div>
-
-        <div class="highlights-grid" id="highlights-grid" role="list">
-          <!-- Populated by JS -->
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ════════════════════════════════════════════════
-         6. TEAM
-    ════════════════════════════════════════════════ -->
-    <section id="team" aria-labelledby="team-title">
-      <div class="container">
-
-        <div class="team-header">
-          <span class="section-label" id="team-section-label"></span>
-          <h2 class="section-title" id="team-title"></h2>
-        </div>
-
-        <!--
-          TEAM PHOTOS:
-          Add team photos to assets/images/ with these names:
-            team-developer.jpg, team-architect.jpg, team-pm.jpg, team-commercial.jpg
-          Or update TEAM_MEMBERS in js/content.js
-        -->
-        <div class="team-grid" id="team-grid" role="list" aria-label="Project team">
-          <!-- Populated by JS -->
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ════════════════════════════════════════════════
-         7. CONTACT
-    ════════════════════════════════════════════════ -->
-    <section id="contact" aria-labelledby="contact-title">
-      <div class="container">
-
-        <div class="contact-grid">
-          <!-- Info side -->
-          <div class="contact-info-block">
-            <span class="section-label" id="contact-section-label"></span>
-            <h2 class="section-title" id="contact-title"></h2>
-            <div class="divider" aria-hidden="true"></div>
-            <p class="contact-description" id="contact-description"></p>
-
-            <!-- Contact details -->
-            <div class="contact-detail">
-              <span class="cd-icon">✉</span>
-              <a id="contact-email" href="/cdn-cgi/l/email-protection#9d"></a>
-            </div>
-            <div class="contact-detail">
-              <span class="cd-icon">📞</span>
-              <a id="contact-phone" href="tel:"></a>
-            </div>
-            <div class="contact-detail">
-              <span class="cd-icon">💬</span>
-              <a id="contact-whatsapp" href="https://wa.me/" target="_blank" rel="noopener noreferrer"></a>
-            </div>
-
-            <!-- Disclaimer -->
-            <div class="contact-disclaimer" role="note">
-              <p id="contact-disclaimer"></p>
-            </div>
-          </div>
-
-          <!-- Form side -->
-          <div class="contact-form-block">
-            <!--
-              FORM SETUP:
-              Currently uses mock submission.
-              To connect to a real email service:
-              1. Sign up at https://formspree.io (free)
-              2. Create a form and get your endpoint URL
-              3. Update the fetch() call in js/main.js — look for "HOW TO CONNECT TO FORMSPREE"
-            -->
-            <form
-              id="contact-form"
-              class="contact-form"
-              novalidate
-              aria-label="Contact form"
-            >
+            <div class="form-row">
               <div class="form-group">
-                <label for="form-name" id="label-name">Full name</label>
-                <input
-                  type="text"
-                  id="form-name"
-                  name="name"
-                  autocomplete="name"
-                  required
-                  aria-required="true"
-                />
+                <label for="fieldName" data-i18n="form.name">Full name</label>
+                <input type="text" id="fieldName" name="name"
+                       placeholder="Your name" required />
               </div>
               <div class="form-group">
-                <label for="form-email" id="label-email">Email</label>
-                <input
-                  type="email"
-                  id="form-email"
-                  name="email"
-                  autocomplete="email"
-                  required
-                  aria-required="true"
-                />
+                <label for="fieldEmail" data-i18n="form.email">Email</label>
+                <input type="email" id="fieldEmail" name="email"
+                       placeholder="your@email.com" required />
               </div>
-              <div class="form-group">
-                <label for="form-phone" id="label-phone">Phone</label>
-                <input
-                  type="tel"
-                  id="form-phone"
-                  name="phone"
-                  autocomplete="tel"
-                />
-              </div>
-              <div class="form-group">
-                <label for="form-message" id="label-message">Message</label>
-                <textarea
-                  id="form-message"
-                  name="message"
-                  required
-                  aria-required="true"
-                ></textarea>
-              </div>
+            </div>
 
-              <div id="form-message" class="form-message" role="alert" aria-live="polite"></div>
+            <div class="form-group">
+              <label for="fieldPhone" data-i18n="form.phone">Phone</label>
+              <input type="tel" id="fieldPhone" name="phone"
+                     placeholder="+351 900 000 000" />
+            </div>
 
-              <button type="submit" id="form-submit" class="btn-primary">
-                Send message
-              </button>
-            </form>
-          </div>
+            <div class="form-group">
+              <label for="fieldMessage" data-i18n="form.message">Message</label>
+              <textarea id="fieldMessage" name="message" rows="4"
+                        placeholder="Tell us how we can help…"></textarea>
+            </div>
 
+            <button type="submit" class="btn btn--primary btn--full"
+                    data-i18n="form.submit">
+              Send message
+              <i data-lucide="send"></i>
+            </button>
+
+            <p class="form__note" data-i18n="form.privacy">
+              By submitting you agree to our privacy policy.
+            </p>
+          </form>
         </div>
       </div>
     </section>
 
-  </main>
+  </main><!-- /main -->
 
-
-  <!-- ════════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════
        FOOTER
-  ════════════════════════════════════════════════ -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-
-      <div class="footer-top">
-        <!-- Brand -->
-        <div>
-          <div class="footer-logo">DIAS <span>350</span></div>
-          <div class="footer-tagline" id="footer-tagline">Porto, Portugal</div>
-        </div>
-
-        <!-- Nav -->
-        <nav class="footer-nav" id="footer-nav" aria-label="Footer navigation">
-          <!-- Populated by JS -->
-        </nav>
-
-        <!-- Lang -->
-        <div class="footer-lang">
-          <span>Language</span>
-          <div class="lang-btns">
-            <button data-lang-btn="en">EN</button>
-            <button data-lang-btn="pt">PT</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-copyright" id="footer-copyright"></div>
-        <div class="footer-disclaimer-text" id="footer-disclaimer"></div>
-      </div>
-
+  ══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__logo">350DIAS</span>
+      <p class="footer__copy" data-i18n="footer.copy">
+        © 2025 350DIAS. All rights reserved.
+      </p>
+      <a href="#" class="footer__privacy" data-i18n="footer.privacy">Privacy Policy</a>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="js/content.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Content data -->
+  <script src="content.js"></script>
+  <!-- Main logic -->
+  <script src="main.js"></script>
 
 </body>
 </html>
