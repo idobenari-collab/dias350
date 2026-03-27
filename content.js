@@ -57,7 +57,7 @@ const CONTENT = {
     { value: "4",       label: { en: "Floors",       pt: "Pisos" } },
     { value: "14",      label: { en: "Apartments",   pt: "Apartamentos" } },
     { value: "T2–T4",   label: { en: "Typologies",   pt: "Tipologias" } },
-    { value: "2025",    label: { en: "Completion",   pt: "Conclusão" } },
+    { value: "03.2027",    label: { en: "Completion",   pt: "Conclusão" } },
   ],
 
   /* ─── ABOUT ─────────────────────────────────────────────────── */
