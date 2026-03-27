@@ -295,27 +295,6 @@ ul { list-style: none; }
 }
 .drawer-link:last-child { border-bottom: none; }
 
-/* ─── HERO SLIDESHOW ─────────────────────────────────────────── */
-.hero__slideshow {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__slide {
-  position: absolute;
-  inset: -20% 0;          /* extra height for parallax room */
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1.4s ease-in-out;
-  will-change: opacity, transform;
-}
-
-.hero__slide.active {
-  opacity: 1;
-}
-
 /* ─── HERO ───────────────────────────────────────────────────── */
 .hero {
   position: relative;

@@ -14,25 +14,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ═══════════════════════════════════════════════
-     HERO SLIDESHOW
-     Images: images/hero-1.jpg, hero-2.jpg, hero-3.jpg ...
-     Add more slides in index.html hero__slideshow div
-     and rename your files accordingly.
-  ═══════════════════════════════════════════════ */
-  const slides     = document.querySelectorAll('.hero__slide');
-  let   slideIndex = 0;
-
-  function nextSlide() {
-    slides[slideIndex].classList.remove('active');
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add('active');
-  }
-
-  if (slides.length > 1) {
-    setInterval(nextSlide, 5000); // change every 5 seconds
-  }
-
   /* ── Lucide icons ────────────────────────────────────────── */
   if (typeof lucide !== 'undefined') lucide.createIcons();
 
@@ -212,14 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const d = apt.details[lang] || apt.details['en'];
 
-    // Alternate floor plan images: odd units → interior-1, even → interior-2
-    // (until real per-unit images are available)
-    const unitIndex = CONTENT.apartments.findIndex(a => a.id === aptId);
-    const imgSrc    = apt.floorPlan; // already set per-unit in content.js
-
-    if (aptFloorPlan) {
-      aptFloorPlan.src = imgSrc;
-      aptFloorPlan.alt = d.name;
+    if (aptFloorPlan && apt.floorPlan) {
+      aptFloorPlan.onload = () => lucide.createIcons();
+      aptFloorPlan.src    = apt.floorPlan;
+      aptFloorPlan.alt    = d.name;
     }
 
     if (aptName)     aptName.textContent     = d.name      || '';
