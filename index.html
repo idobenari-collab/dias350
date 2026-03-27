@@ -1,183 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>350DIAS — A New Residential Vision in Porto</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Title & Meta (populated by main.js from content.js) -->
+  <title>350DIAS — A New Residential Vision in Porto</title>
+  <meta name="description" content="350DIAS is an exclusive residential development in Porto. Premium apartments designed for those who seek comfort, elegance, and the soul of the city." />
+  <meta name="keywords" content="350DIAS, Porto real estate, luxury apartments, residential Porto" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="350DIAS — A New Residential Vision in Porto" />
+  <meta property="og:description" content="Exclusive residential development in Porto." />
+  <meta property="og:image" content="images/og-image.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: Cormorant Garamond (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="nav" id="nav">
-<div class="nav__inner">
-<a class="nav__logo" href="#home">350DIAS</a>
-<nav class="nav__links">
-<a href="#about">About</a><a href="#apartments">Apartments</a><a href="#gallery">Gallery</a><a href="#location">Location</a><a href="#contact">Contact</a>
-</nav>
-<div class="nav__controls">
-<div class="lang-toggle" id="langToggle">
-<button class="lang-btn active" data-lang="en">EN</button>
-<span class="lang-sep">/</span>
-<button class="lang-btn" data-lang="pt">PT</button>
-</div>
-<button class="nav__burger" id="navBurger" aria-label="Menu"><i data-lucide="menu"></i></button>
-</div>
-</div>
-<div class="nav__drawer" id="navDrawer">
-<a href="#about" class="drawer-link">About</a>
-<a href="#apartments" class="drawer-link">Apartments</a>
-<a href="#gallery" class="drawer-link">Gallery</a>
-<a href="#location" class="drawer-link">Location</a>
-<a href="#contact" class="drawer-link">Contact</a>
-</div>
-</header>
-<main id="home">
-<section class="hero" id="hero">
-<div class="hero__slideshow" id="heroSlideshow">
-<div class="hero__slide active" style="background-image:url('images/hero-1.jpg')"></div>
-<div class="hero__slide" style="background-image:url('images/hero-2.jpg')"></div>
-<div class="hero__slide" style="background-image:url('images/hero-3.jpg')"></div>
-</div>
-<div class="hero__overlay"></div>
-<div class="hero__content">
-<span class="hero__location"><i data-lucide="map-pin"></i> Porto, Portugal</span>
-<h1 class="hero__heading">A new residential<br>vision in Porto</h1>
-<p class="hero__sub">Where architecture meets the rhythm of the city.</p>
-<div class="hero__ctas">
-<a href="#contact" class="btn btn--primary">Request Details</a>
-<a href="#location" class="btn btn--ghost">View Location</a>
-</div>
-</div>
-<div class="hero__scroll"><i data-lucide="chevron-down"></i></div>
-</section>
-<section class="stats">
-<div class="container"><div class="stats__grid">
-<div class="stat"><span class="stat__value">3</span><span class="stat__label">Floors</span></div>
-<div class="stat"><span class="stat__value">6</span><span class="stat__label">Apartments</span></div>
-<div class="stat"><span class="stat__value">T1–T3</span><span class="stat__label">Typologies</span></div>
-<div class="stat"><span class="stat__value">03.2027</span><span class="stat__label">Completion</span></div>
-</div></div>
-</section>
-<section class="about section" id="about">
-<div class="container about__grid">
-<div class="about__image-wrap parallax-section">
-<div class="about__image parallax-layer" data-parallax-speed="0.25" style="background-image:url('images/gallery-1.jpg')"></div>
-</div>
-<div class="about__text">
-<span class="section-label">350DIAS</span>
-<h2 class="section-heading">Living in harmony with the beauty of details</h2>
-<div class="about__body">
-<p>350DIAS is the new residential landmark at R. Carlos Malheiro Dias 350, Porto. A project where contemporary architecture reflects the essence of city life, offering residences designed for sophistication, comfort, and a privileged connection to Porto's cultural heart.</p>
-<p>Every detail has been conceived with exclusivity in mind — elegant spaces, noble materials, and natural light that transforms each home into a timeless living experience.</p>
-</div>
-<a href="#contact" class="btn btn--outline">More information</a>
-</div>
-</div>
-</section>
-<section class="apartments section section--alt" id="apartments">
-<div class="container">
-<div class="section-header">
-<span class="section-label">Typologies</span>
-<h2 class="section-heading">Find your ideal apartment</h2>
-</div>
-<div class="apt-tabs" id="aptTabs" role="tablist"></div>
-<div class="apt-panel" id="aptPanel">
-<div class="apt-image-wrap"><img id="aptImage" src="" alt="Unit" loading="lazy"/></div>
-<div class="apt-details">
-<div class="apt-details__header">
-<h3 id="aptName" class="apt-details__name"></h3>
-<span id="aptStatus" class="apt-status"></span>
-</div>
-<dl class="apt-details__list">
-<div class="apt-detail"><dt><i data-lucide="layout-grid"></i> Typology</dt><dd id="aptTypology"></dd></div>
-<div class="apt-detail"><dt><i data-lucide="maximize-2"></i> Area</dt><dd id="aptArea"></dd></div>
-<div class="apt-detail"><dt><i data-lucide="sun"></i> Balcony</dt><dd id="aptBalcony"></dd></div>
-<div class="apt-detail"><dt><i data-lucide="square"></i> Terrace</dt><dd id="aptTerrace"></dd></div>
-<div class="apt-detail"><dt><i data-lucide="archive"></i> Storage</dt><dd id="aptStorage"></dd></div>
-<div class="apt-detail"><dt><i data-lucide="trees"></i> Garden</dt><dd id="aptGarden"></dd></div>
-</dl>
-<a href="#contact" class="btn btn--primary">Request information</a>
-</div>
-</div>
-</div>
-</section>
-<section class="gallery section" id="gallery">
-<div class="container"><div class="section-header">
-<span class="section-label">Gallery</span>
-<h2 class="section-heading">The perfect balance between comfort and privacy</h2>
-</div></div>
-<div class="gallery__wrapper">
-<button class="gallery__arrow gallery__arrow--prev" id="galleryPrev"><i data-lucide="arrow-left"></i></button>
-<div class="gallery__track" id="galleryTrack">
-<div class="gallery__item"><img src="images/gallery-1.jpg" alt="Facade" loading="lazy"/></div>
-<div class="gallery__item"><img src="images/gallery-2.jpg" alt="Entrance" loading="lazy"/></div>
-<div class="gallery__item"><img src="images/gallery-3.jpg" alt="Building" loading="lazy"/></div>
-<div class="gallery__item"><img src="images/gallery-4.jpg" alt="Building 2" loading="lazy"/></div>
-<div class="gallery__item"><img src="images/gallery-5.jpg" alt="Neighborhood" loading="lazy"/></div>
-</div>
-<button class="gallery__arrow gallery__arrow--next" id="galleryNext"><i data-lucide="arrow-right"></i></button>
-</div>
-<div class="gallery__hint"><i data-lucide="move-horizontal"></i><span>Drag to explore</span></div>
-</section>
-<section class="location section section--alt" id="location">
-<div class="container"><div class="section-header">
-<span class="section-label">Location</span>
-<h2 class="section-heading">At the heart of Porto</h2>
-</div></div>
-<div class="location__grid container">
-<div class="location__map">
-<iframe title="350DIAS map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5!2d-8.6163!3d41.1621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464a09f6c40f1%3A0x1!2sR.+Carlos+Malheiro+Dias+350%2C+4200-154+Porto!5e0!3m2!1spt!2spt!4v1" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy"></iframe>
-</div>
-<div class="location__highlights">
-<p class="location__address"><i data-lucide="map-pin"></i> R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal</p>
-<ul class="location__list">
-<li><i data-lucide="building-2"></i> City centre 5 min</li>
-<li><i data-lucide="tree-pine"></i> Parks nearby</li>
-<li><i data-lucide="train-front"></i> Metro access</li>
-<li><i data-lucide="utensils"></i> Restaurants & culture</li>
-</ul>
-<a href="#contact" class="btn btn--outline">Request information</a>
-</div>
-</div>
-</section>
-<section class="contact section" id="contact">
-<div class="container contact__grid">
-<div class="contact__info">
-<span class="section-label">Contact</span>
-<h2 class="section-heading">Request more information</h2>
-<p class="contact__sub">Our team will get back to you shortly.</p>
-<ul class="contact__channels">
-<li><a href="mailto:info@350dias.pt"><i data-lucide="mail"></i> info@350dias.pt</a></li>
-<li><a href="tel:+351220000000"><i data-lucide="phone"></i> +351 22 000 0000</a></li>
-<li><a href="https://wa.me/351910000000" target="_blank" rel="noopener"><i data-lucide="message-circle"></i> WhatsApp</a></li>
-</ul>
-</div>
-<div class="contact__form-wrap">
-<form class="contact__form" id="contactForm" novalidate>
-<div class="form-row">
-<div class="form-group"><label for="fieldName">Full name</label><input type="text" id="fieldName" name="name" placeholder="Your name" required/></div>
-<div class="form-group"><label for="fieldEmail">Email</label><input type="email" id="fieldEmail" name="email" placeholder="your@email.com" required/></div>
-</div>
-<div class="form-group"><label for="fieldPhone">Phone</label><input type="tel" id="fieldPhone" name="phone" placeholder="+351 900 000 000"/></div>
-<div class="form-group"><label for="fieldMessage">Message</label><textarea id="fieldMessage" name="message" rows="4" placeholder="Tell us how we can help…"></textarea></div>
-<button type="submit" class="btn btn--primary btn--full">Send message <i data-lucide="send"></i></button>
-<p class="form__note">By submitting you agree to our privacy policy.</p>
-</form>
-</div>
-</div>
-</section>
-</main>
-<footer class="footer">
-<div class="container footer__inner">
-<span class="footer__logo">350DIAS</span>
-<p class="footer__copy">© 2025 350DIAS. All rights reserved.</p>
-<a href="#" class="footer__privacy">Privacy Policy</a>
-</div>
-</footer>
-<script src="content.js"></script>
-<script src="main.js"></script>
-</body>
-</html>
+
+  <!-- ══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+
+      <!-- Logo -->
+      <a class="nav__logo" href="#home" aria-label="350DIAS home">
+        350DIAS
+      </a>
+
+      <!-- Desktop links -->
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="#about"      data-i18n="nav.about">About</a>
+        <a href="#apartments" data-i18n="nav.apartments">Apartments</a>
+        <a href="#gallery"    data-i18n="nav.gallery">Gallery</a>
+        <a href="#location"   data-i18n="nav.location">Location</a>
+        <a href="#contact"    data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <!-- Right controls -->
+      <div class="nav__controls">
+        <!-- Language toggle -->
+        <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn" data-lang="pt">PT</button>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+      <a href="#about"      data-i18n="nav.about"      class="drawer-link">About</a>
+      <a href="#apartments" data-i18n="nav.apartments" class="drawer-link">Apartments</a>
+      <a href="#gallery"    data-i18n="nav.gallery"    class="drawer-link">Gallery</a>
+      <a href="#location"   data-i18n="nav.location"   class="drawer-link">Location</a>
+      <a href="#contact"    data-i18n="nav.contact"    class="drawer-link">Contact</a>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+      <!-- Slideshow — add images/hero-1.jpg, hero-2.jpg, hero-3.jpg etc. -->
+      <div class="hero__slideshow" id="heroSlideshow" aria-hidden="true">
+        <div class="hero__slide active" style="background-image: url('images/hero-1.jpg');"></div>
+        <div class="hero__slide"        style="background-image: url('images/hero-2.jpg');"></div>
+        <div class="hero__slide"        style="background-image: url('images/hero-3.jpg');"></div>
+      </div>
+
+      <!-- Overlay -->
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <!-- Content -->
+      <div class="hero__content">
+        <span class="hero__location">
+          <i data-lucide="map-pin"></i>
+          Porto, Portugal
+        </span>
+
+        <h1 class="hero__heading" data-i18n="hero.heading">
+          A new residential<br>vision in Porto
+        </h1>
+
+        <p class="hero__sub" data-i18n="hero.subheading">
+          Where architecture meets the rhythm of the city.
+        </p>
+
+        <div class="hero__ctas">
+          <a href="#contact" class="btn btn--primary" data-i18n="hero.cta.primary">
+            Request Details
+          </a>
+          <a href="#location" class="btn btn--ghost" data-i18n="hero.cta.secondary">
+            View Location
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="hero__scroll" aria-hidden="true">
+        <i data-lucide="chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         STATS BAND
+    ══════════════════════════════════════════════ -->
+    <section class="stats" aria-label="Key figures">
+      <div class="container">
+        <div class="stats__grid" id="statsGrid">
+          <!-- Populated by main.js -->
+          <div class="stat">
+            <span class="stat__value">3</span>
+            <span class="stat__label" data-i18n="stats.floors">Floors</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">6</span>
+            <span class="stat__label" data-i18n="stats.apartments">Apartments</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">T1–T3</span>
+            <span class="stat__label" data-i18n="stats.typologies">Typologies</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">2025</span>
+            <span class="stat__label" data-i18n="stats.completion">Completion</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         ABOUT — with parallax image
+    ══════════════════════════════════════════════ -->
+    <section class="about section" id="about">
+      <div class="container about__grid">
+
+        <!-- Image column -->
+        <div class="about__image-wrap parallax-section">
+          <div class="about__image parallax-layer" data-parallax-speed="0.25"
+               style="background-image: url('images/gallery-1.jpg');"
+               aria-hidden="true"></div>
+        </div>
+
+        <!-- Text column -->
+        <div class="about__text">
+          <span class="section-label">350DIAS</span>
+          <h2 class="section-heading" data-i18n="about.heading">
+            Living in harmony with the beauty of details
+          </h2>
+          <div class="about__body">
+            <p data-i18n="about.body">
+              350DIAS is the new residential landmark at R. Carlos Malheiro Dias 350, Porto.
+              A project where contemporary architecture reflects the essence of city life,
+              offering residences designed for those who value sophistication, comfort, and a
+              privileged connection to Porto's cultural heart.
+            </p>
+            <p>
+              Every detail has been conceived with exclusivity in mind —
+              elegant spaces, noble materials, and natural light that transforms each home
+              into a timeless living experience.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--outline" data-i18n="cta.moreInfo">
+            More information
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         APARTMENTS — interactive tabs
+    ══════════════════════════════════════════════ -->
+    <section class="apartments section section--alt" id="apartments">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Typologies</span>
+          <h2 class="section-heading" data-i18n="apartments.heading">
+            Find your ideal apartment
+          </h2>
+        </div>
+
+        <!-- Tab buttons — 6 units, populated/updated by main.js -->
+        <div class="apt-tabs" role="tablist" aria-label="Apartment units" id="aptTabs">
+          <button class="apt-tab active" role="tab" data-apt="unit-a" aria-selected="true"  aria-controls="aptPanel">Unit A</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-b" aria-selected="false" aria-controls="aptPanel">Unit B</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-c" aria-selected="false" aria-controls="aptPanel">Unit C</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-d" aria-selected="false" aria-controls="aptPanel">Unit D</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-e" aria-selected="false" aria-controls="aptPanel">Unit E</button>
+          <button class="apt-tab"        role="tab" data-apt="unit-f" aria-selected="false" aria-controls="aptPanel">Unit F</button>
+        </div>
+
+        <!-- Tab panel -->
+        <div class="apt-panel" id="aptPanel" role="tabpanel">
+
+          <!-- Floor plan -->
+          <div class="apt-plan">
+            <img id="aptFloorPlan"
+                 src="images/floorplan-unit-a.jpg"
+                 alt="Floor plan"
+                 loading="lazy" />
+            <div class="apt-plan__placeholder" aria-hidden="true">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Floor plan</span>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="apt-details" id="aptDetails">
+            <h3 class="apt-details__name" id="aptName">Unit A</h3>
+            <dl class="apt-details__list">
+              <div class="apt-detail">
+                <dt><i data-lucide="layout-grid"></i> Typology</dt>
+                <dd id="aptTypology">T1</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="maximize-2"></i> Area</dt>
+                <dd id="aptArea">50.0 m²</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="sun"></i> Balcony</dt>
+                <dd id="aptBalcony">—</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="square"></i> Terrace</dt>
+                <dd id="aptTerrace">—</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="archive"></i> Storage</dt>
+                <dd id="aptStorage">—</dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="trees"></i> Garden</dt>
+                <dd id="aptGarden">—</dd>
+              </div>
+            </dl>
+            <a href="#contact" class="btn btn--primary" data-i18n="cta.requestInfo">
+              Request information
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         GALLERY — horizontal scroll
+    ══════════════════════════════════════════════ -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label" data-i18n="gallery.label">Gallery</span>
+          <h2 class="section-heading" data-i18n="gallery.heading">
+            The perfect balance between comfort and privacy
+          </h2>
+        </div>
+      </div>
+
+      <!-- Full-width horizontal scroller -->
+      <div class="gallery__wrapper">
+        <!-- Prev arrow -->
+        <button class="gallery__arrow gallery__arrow--prev" id="galleryPrev"
+                aria-label="Previous images">
+          <i data-lucide="arrow-left"></i>
+        </button>
+
+        <!-- Scroll track -->
+        <div class="gallery__track" id="galleryTrack">
+          <!-- Images populated by main.js — or hardcode here -->
+          <div class="gallery__item">
+            <img src="images/gallery-1.jpg" alt="Living area" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-2.jpg" alt="Kitchen" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-3.jpg" alt="Master bedroom" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-4.jpg" alt="Bathroom" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-5.jpg" alt="Balcony view" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-6.jpg" alt="Building facade" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-7.jpg" alt="Common area" loading="lazy" />
+          </div>
+          <div class="gallery__item">
+            <img src="images/gallery-8.jpg" alt="Rooftop terrace" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Next arrow -->
+        <button class="gallery__arrow gallery__arrow--next" id="galleryNext"
+                aria-label="Next images">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Drag hint -->
+      <div class="gallery__hint" aria-hidden="true">
+        <i data-lucide="move-horizontal"></i>
+        <span data-i18n="gallery.drag">Drag to explore</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         LOCATION
+    ══════════════════════════════════════════════ -->
+    <section class="location section section--alt" id="location">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Location</span>
+          <h2 class="section-heading" data-i18n="location.heading">
+            At the heart of Porto
+          </h2>
+        </div>
+      </div>
+
+      <div class="location__grid container">
+
+        <!-- Map -->
+        <div class="location__map">
+          <iframe
+            title="350DIAS location map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5!2d-8.6163!3d41.1621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464a09f6c40f1%3A0x1!2sR.+Carlos+Malheiro+Dias+350%2C+4200-154+Porto!5e0!3m2!1spt!2spt!4v1"
+            width="100%" height="100%"
+            style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Highlights -->
+        <div class="location__highlights">
+          <p class="location__address">
+            <i data-lucide="map-pin"></i>
+            <span data-i18n="location.address">R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal</span>
+          </p>
+
+          <ul class="location__list" id="locationList">
+            <li>
+              <i data-lucide="building-2"></i>
+              <span data-i18n="location.highlight1">City centre 5 min</span>
+            </li>
+            <li>
+              <i data-lucide="tree-pine"></i>
+              <span data-i18n="location.highlight2">Parks nearby</span>
+            </li>
+            <li>
+              <i data-lucide="train-front"></i>
+              <span data-i18n="location.highlight3">Metro access</span>
+            </li>
+            <li>
+              <i data-lucide="utensils"></i>
+              <span data-i18n="location.highlight4">Restaurants & culture</span>
+            </li>
+          </ul>
+
+          <a href="#contact" class="btn btn--outline" data-i18n="cta.requestInfo">
+            Request information
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════ -->
+    <section class="contact section" id="contact">
+      <div class="container contact__grid">
+
+        <!-- Left: heading + contact links -->
+        <div class="contact__info">
+          <span class="section-label">Contact</span>
+          <h2 class="section-heading" data-i18n="contact.heading">
+            Request more information
+          </h2>
+          <p class="contact__sub" data-i18n="contact.subheading">
+            Our team will get back to you shortly.
+          </p>
+
+          <ul class="contact__channels">
+            <li>
+              <a href="/cdn-cgi/l/email-protection#d6bfb8b0b996e5e3e6b2bfb7a5f8a6a2">
+                <i data-lucide="mail"></i>
+                <span><span class="__cf_email__" data-cfemail="234a4d454c63101613474a42500d5357">[email&#160;protected]</span></span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+351220000000">
+                <i data-lucide="phone"></i>
+                <span>+351 22 000 0000</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/351910000000" target="_blank" rel="noopener">
+                <i data-lucide="message-circle"></i>
+                <span>WhatsApp</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: form -->
+        <div class="contact__form-wrap">
+          <form class="contact__form" id="contactForm" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fieldName" data-i18n="form.name">Full name</label>
+                <input type="text" id="fieldName" name="name"
+                       placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="fieldEmail" data-i18n="form.email">Email</label>
+                <input type="email" id="fieldEmail" name="email"
+                       placeholder="your@email.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fieldPhone" data-i18n="form.phone">Phone</label>
+              <input type="tel" id="fieldPhone" name="phone"
+                     placeholder="+351 900 000 000" />
+            </div>
+
+            <div class="form-group">
+              <label for="fieldMessage" data-i18n="form.message">Message</label>
+              <textarea id="fieldMessage" name="message" rows="4"
+                        placeholder="Tell us how we can help…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full"
+                    data-i18n="form.submit">
+              Send message
+              <i data-lucide="send"></i>
+            </button>
+
+            <p class="form__note" data-i18n="form.privacy">
+              By submitting you agree to our privacy policy.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__logo">350DIAS</span>
+      <p class="footer__copy" data-i18n="footer.copy">
+        © 2025 350DIAS. All rights reserved.
+      </p>
+      <a href="#" class="footer__privacy" data-i18n="footer.privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <!-- 

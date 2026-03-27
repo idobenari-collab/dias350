@@ -1,226 +1,340 @@
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof lucide !== 'undefined') lucide.createIcons();
+/**
+ * main.js — 350DIAS
+ *
+ * Handles:
+ *  1. Navigation — scroll state + mobile drawer
+ *  2. Language toggle (EN / PT)
+ *  3. Parallax scroll effect on hero & about image
+ *  4. Apartments tabs section (6 units)
+ *  5. Gallery horizontal scroll — arrows + drag/touch
+ *  6. Scroll reveal animations
+ *  7. Contact form (client-side only)
+ *  8. Lucide icon hydration
+ */
 
-  var currentLang = 'en';
-  var activeUnitId = null;
+document.addEventListener('DOMContentLoaded', () => {
 
-  // NAV
-  var nav = document.getElementById('nav');
-  var burger = document.getElementById('navBurger');
-  var drawer = document.getElementById('navDrawer');
-  var menuOpen = false;
+  /* ═══════════════════════════════════════════════
+     HERO SLIDESHOW
+     Images: images/hero-1.jpg, hero-2.jpg, hero-3.jpg ...
+     Add more slides in index.html hero__slideshow div
+     and rename your files accordingly.
+  ═══════════════════════════════════════════════ */
+  const slides     = document.querySelectorAll('.hero__slide');
+  let   slideIndex = 0;
 
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  function nextSlide() {
+    slides[slideIndex].classList.remove('active');
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].classList.add('active');
+  }
 
-  burger.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    drawer.classList.toggle('open', menuOpen);
-    burger.innerHTML = menuOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
-    lucide.createIcons();
-  });
-
-  document.querySelectorAll('.drawer-link').forEach(function(l) {
-    l.addEventListener('click', function() {
-      menuOpen = false;
-      drawer.classList.remove('open');
-      burger.innerHTML = '<i data-lucide="menu"></i>';
-      lucide.createIcons();
-    });
-  });
-
-  // LANGUAGE
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      currentLang = btn.dataset.lang;
-      document.querySelectorAl
-cat > ~/Projects/dias350/main.js << 'EOF'
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof lucide !== 'undefined') lucide.createIcons();
-
-  var currentLang = 'en';
-  var activeUnitId = null;
-
-  // NAV
-  var nav = document.getElementById('nav');
-  var burger = document.getElementById('navBurger');
-  var drawer = document.getElementById('navDrawer');
-  var menuOpen = false;
-
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-
-  burger.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    drawer.classList.toggle('open', menuOpen);
-    burger.innerHTML = menuOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
-    lucide.createIcons();
-  });
-
-  document.querySelectorAll('.drawer-link').forEach(function(l) {
-    l.addEventListener('click', function() {
-      menuOpen = false;
-      drawer.classList.remove('open');
-      burger.innerHTML = '<i data-lucide="menu"></i>';
-      lucide.createIcons();
-    });
-  });
-
-  // LANGUAGE
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      currentLang = btn.dataset.lang;
-      document.querySelectorAll('.lang-btn').forEach(function(b) {
-        b.classList.toggle('active', b.dataset.lang === currentLang);
-      });
-      buildTabs();
-      if (activeUnitId) renderUnit(activeUnitId);
-    });
-  });
-
-  // HERO SLIDESHOW
-  var slides = document.querySelectorAll('.hero__slide');
-  var slideIndex = 0;
   if (slides.length > 1) {
-    setInterval(function() {
-      slides[slideIndex].classList.remove('active');
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].classList.add('active');
-    }, 5000);
+    setInterval(nextSlide, 5000); // change every 5 seconds
   }
 
-  // PARALLAX
-  var layers = document.querySelectorAll('.parallax-layer');
-  var raf = false;
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    window.addEventListener('scroll', function() {
-      if (!raf) {
-        raf = true;
-        requestAnimationFrame(function() {
-          var sy = window.scrollY;
-          layers.forEach(function(layer) {
-            var speed = parseFloat(layer.dataset.parallaxSpeed || 0.25);
-            var parent = layer.closest('.parallax-section');
-            if (!parent) return;
-            var rect = parent.getBoundingClientRect();
-            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-            layer.style.transform = 'translateY(' + ((sy - (rect.top + sy)) * speed) + 'px)';
-          });
-          raf = false;
-        });
-      }
-    }, { passive: true });
+  /* ── Lucide icons ────────────────────────────────────────── */
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+
+  let currentLang = 'en';
+
+  /* ═══════════════════════════════════════════════
+     1. NAVIGATION
+  ═══════════════════════════════════════════════ */
+  const nav      = document.getElementById('nav');
+  const burger   = document.getElementById('navBurger');
+  const drawer   = document.getElementById('navDrawer');
+  let drawerOpen = false;
+
+  function onNavScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
   }
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+  onNavScroll();
 
-  // UNIT TABS
-  var aptTabsEl  = document.getElementById('aptTabs');
-  var aptImage   = document.getElementById('aptImage');
-  var aptName    = document.getElementById('aptName');
-  var aptStatus  = document.getElementById('aptStatus');
-  var aptTypo    = document.getElementById('aptTypology');
-  var aptArea    = document.getElementById('aptArea');
-  var aptBalcony = document.getElementById('aptBalcony');
-  var aptTerrace = document.getElementById('aptTerrace');
-  var aptStorage = document.getElementById('aptStorage');
-  var aptGarden  = document.getElementById('aptGarden');
-  var aptPanel   = document.getElementById('aptPanel');
+  burger.addEventListener('click', () => {
+    drawerOpen = !drawerOpen;
+    drawer.classList.toggle('open', drawerOpen);
+    burger.setAttribute('aria-expanded', drawerOpen);
+    drawer.setAttribute('aria-hidden', !drawerOpen);
+    burger.querySelector('svg')?.remove();
+    const icon = document.createElement('i');
+    icon.setAttribute('data-lucide', drawerOpen ? 'x' : 'menu');
+    burger.appendChild(icon);
+    lucide.createIcons();
+  });
 
-  function buildTabs() {
-    if (!aptTabsEl || typeof CONTENT === 'undefined') return;
-    aptTabsEl.innerHTML = '';
-    CONTENT.units.forEach(function(unit) {
-      var btn = document.createElement('button');
-      btn.className = 'apt-tab' + (unit.id === activeUnitId ? ' active' : '');
-      btn.dataset.id = unit.id;
-      btn.setAttribute('role', 'tab');
-      btn.textContent = unit.label[currentLang] || unit.label['en'];
-      btn.addEventListener('click', function() {
-        activeUnitId = unit.id;
-        document.querySelectorAll('.apt-tab').forEach(function(t) {
-          t.classList.toggle('active', t.dataset.id === activeUnitId);
-        });
-        renderUnit(activeUnitId);
-      });
-      aptTabsEl.appendChild(btn);
+  drawer.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      drawerOpen = false;
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
     });
-    lucide.createIcons();
+  });
+
+  /* ═══════════════════════════════════════════════
+     2. LANGUAGE TOGGLE
+  ═══════════════════════════════════════════════ */
+  const langBtns = document.querySelectorAll('.lang-btn');
+
+  const I18N_MAP = {
+    'nav.about':         { en: 'About',            pt: 'Sobre' },
+    'nav.apartments':    { en: 'Apartments',        pt: 'Frações' },
+    'nav.gallery':       { en: 'Gallery',           pt: 'Galeria' },
+    'nav.location':      { en: 'Location',          pt: 'Localização' },
+    'nav.contact':       { en: 'Contact',           pt: 'Contacto' },
+    'hero.heading':      { en: 'A new residential\nvision in Porto',
+                           pt: 'Uma nova visão\nresidencial no Porto' },
+    'hero.subheading':   { en: 'Where architecture meets the rhythm of the city.',
+                           pt: 'Onde a arquitetura encontra o ritmo da cidade.' },
+    'hero.cta.primary':  { en: 'Request Details',   pt: 'Solicitar Informações' },
+    'hero.cta.secondary':{ en: 'View Location',     pt: 'Ver Localização' },
+    'about.heading':     { en: 'Living in harmony with the beauty of details',
+                           pt: 'Viver em harmonia com a beleza dos detalhes' },
+    'apartments.heading':{ en: 'Find your ideal apartment', pt: 'Encontre o seu apartamento ideal' },
+    'gallery.label':     { en: 'Gallery',           pt: 'Galeria' },
+    'gallery.heading':   { en: 'The perfect balance between comfort and privacy',
+                           pt: 'O equilíbrio perfeito entre conforto e privacidade' },
+    'gallery.drag':      { en: 'Drag to explore',   pt: 'Arraste para explorar' },
+    'location.heading':  { en: 'At the heart of Porto', pt: 'No coração do Porto' },
+    'location.address':  { en: 'R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal',
+                           pt: 'R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal' },
+    'location.highlight1': { en: 'City centre 5 min',    pt: 'Centro 5 min' },
+    'location.highlight2': { en: 'Parks nearby',          pt: 'Parques próximos' },
+    'location.highlight3': { en: 'Metro access',          pt: 'Acesso ao Metro' },
+    'location.highlight4': { en: 'Restaurants & culture', pt: 'Restaurantes & cultura' },
+    'contact.heading':   { en: 'Request more information', pt: 'Solicitar mais informações' },
+    'contact.subheading':{ en: 'Our team will get back to you shortly.',
+                           pt: 'A nossa equipa entrará em contacto brevemente.' },
+    'cta.moreInfo':      { en: 'More information',  pt: 'Mais informações' },
+    'cta.requestInfo':   { en: 'Request information', pt: 'Solicitar informações' },
+    'form.name':         { en: 'Full name',         pt: 'Nome completo' },
+    'form.email':        { en: 'Email',             pt: 'Email' },
+    'form.phone':        { en: 'Phone',             pt: 'Telefone' },
+    'form.message':      { en: 'Message',           pt: 'Mensagem' },
+    'form.submit':       { en: 'Send message',      pt: 'Enviar mensagem' },
+    'form.privacy':      { en: 'By submitting you agree to our privacy policy.',
+                           pt: 'Ao enviar concorda com a nossa política de privacidade.' },
+    'footer.copy':       { en: '© 2025 350DIAS. All rights reserved.',
+                           pt: '© 2025 350DIAS. Todos os direitos reservados.' },
+    'footer.privacy':    { en: 'Privacy Policy',    pt: 'Política de Privacidade' },
+    'stats.floors':      { en: 'Floors',            pt: 'Pisos' },
+    'stats.apartments':  { en: 'Apartments',        pt: 'Apartamentos' },
+    'stats.typologies':  { en: 'Typologies',        pt: 'Tipologias' },
+    'stats.completion':  { en: 'Completion',        pt: 'Conclusão' },
+  };
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key  = el.getAttribute('data-i18n');
+      const map  = I18N_MAP[key];
+      if (!map) return;
+      const text = map[lang] || map['en'];
+
+      if (el.querySelector('i, svg')) {
+        const nodes = [...el.childNodes].filter(n => n.nodeType === 3);
+        if (nodes.length) nodes[nodes.length - 1].textContent = text;
+        else el.appendChild(document.createTextNode(text));
+      } else {
+        el.textContent = text;
+      }
+    });
+
+    updateApartmentTabs(lang);
+    document.documentElement.lang = lang;
+    langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   }
 
-  function renderUnit(unitId) {
-    if (typeof CONTENT === 'undefined' || !unitId) return;
-    var unit = CONTENT.units.find(function(u) { return u.id === unitId; });
-    if (!unit) return;
-    var d = unit.details[currentLang] || unit.details['en'];
-    if (aptImage)   { aptImage.src = unit.image; aptImage.alt = d.name; }
-    if (aptName)    aptName.textContent = d.name;
-    if (aptStatus)  {
-      var sold = unit.status === 'sold';
-      aptStatus.textContent = sold ? 'Sold' : 'Available';
-      aptStatus.className = 'apt-status apt-status--' + (sold ? 'sold' : 'available');
+  langBtns.forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
+
+  /* ═══════════════════════════════════════════════
+     3. PARALLAX
+  ═══════════════════════════════════════════════ */
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    parallaxLayers.forEach(layer => {
+      const speed   = parseFloat(layer.dataset.parallaxSpeed ?? 0.4);
+      const parent  = layer.closest('.parallax-section, .hero');
+      const rect    = (parent ?? layer).getBoundingClientRect();
+      const vh      = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > vh) return;
+      const sectionTop   = rect.top + scrollY;
+      const scrollOffset = scrollY - sectionTop;
+      layer.style.transform = `translateY(${scrollOffset * speed}px)`;
+    });
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { updateParallax(); ticking = false; });
+      ticking = true;
     }
-    if (aptTypo)    aptTypo.textContent    = d.typology || '-';
-    if (aptArea)    aptArea.textContent    = d.area     || '-';
-    if (aptBalcony) aptBalcony.textContent = d.balcony  || '-';
-    if (aptTerrace) aptTerrace.textContent = d.terrace  || '-';
-    if (aptStorage) aptStorage.textContent = d.storage  || '-';
-    if (aptGarden)  aptGarden.textContent  = d.garden   || '-';
-    if (aptPanel)   {
-      aptPanel.style.animation = 'none';
-      void aptPanel.offsetWidth;
-      aptPanel.style.animation = '';
+  }, { passive: true });
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) updateParallax();
+
+  /* ═══════════════════════════════════════════════
+     4. APARTMENT TABS
+  ═══════════════════════════════════════════════ */
+  const aptTabs      = document.querySelectorAll('.apt-tab');
+  const aptFloorPlan = document.getElementById('aptFloorPlan');
+  const aptName      = document.getElementById('aptName');
+  const aptTypology  = document.getElementById('aptTypology');
+  const aptArea      = document.getElementById('aptArea');
+  const aptBalcony   = document.getElementById('aptBalcony');
+  const aptTerrace   = document.getElementById('aptTerrace');
+  const aptStorage   = document.getElementById('aptStorage');
+  const aptGarden    = document.getElementById('aptGarden');
+  const aptPanel     = document.getElementById('aptPanel');
+
+  function updateApartmentTabs(lang) {
+    if (typeof CONTENT === 'undefined') return;
+
+    aptTabs.forEach(tab => {
+      const apt = CONTENT.apartments.find(a => a.id === tab.dataset.apt);
+      if (apt) tab.textContent = apt.label[lang] || apt.label['en'];
+    });
+
+    const activeTab = document.querySelector('.apt-tab.active');
+    if (activeTab) renderApartment(activeTab.dataset.apt, lang);
+  }
+
+  function renderApartment(aptId, lang) {
+    if (typeof CONTENT === 'undefined') return;
+    const apt = CONTENT.apartments.find(a => a.id === aptId);
+    if (!apt) return;
+
+    const d = apt.details[lang] || apt.details['en'];
+
+    // Alternate floor plan images: odd units → interior-1, even → interior-2
+    // (until real per-unit images are available)
+    const unitIndex = CONTENT.apartments.findIndex(a => a.id === aptId);
+    const imgSrc    = apt.floorPlan; // already set per-unit in content.js
+
+    if (aptFloorPlan) {
+      aptFloorPlan.src = imgSrc;
+      aptFloorPlan.alt = d.name;
     }
-    lucide.createIcons();
+
+    if (aptName)     aptName.textContent     = d.name      || '';
+    if (aptTypology) aptTypology.textContent = d.typology  || '';
+    if (aptArea)     aptArea.textContent     = d.area      || '';
+    if (aptBalcony)  aptBalcony.textContent  = d.balcony   || '—';
+    if (aptTerrace)  aptTerrace.textContent  = d.terrace   || '—';
+    if (aptStorage)  aptStorage.textContent  = d.storage   || '—';
+    if (aptGarden)   aptGarden.textContent   = d.garden    || '—';
+
+    // Re-trigger panel animation
+    aptPanel.style.animation = 'none';
+    void aptPanel.offsetWidth;
+    aptPanel.style.animation = '';
   }
 
-  if (typeof CONTENT !== 'undefined' && CONTENT.units.length) {
-    activeUnitId = CONTENT.units[0].id;
-    buildTabs();
-    renderUnit(activeUnitId);
+  aptTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      aptTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      renderApartment(tab.dataset.apt, currentLang);
+    });
+  });
+
+  updateApartmentTabs(currentLang);
+
+  /* ═══════════════════════════════════════════════
+     5. GALLERY — horizontal scroll + drag + arrows
+  ═══════════════════════════════════════════════ */
+  const galleryTrack = document.getElementById('galleryTrack');
+  const galleryPrev  = document.getElementById('galleryPrev');
+  const galleryNext  = document.getElementById('galleryNext');
+
+  if (galleryTrack) {
+    const scrollAmount = () =>
+      (galleryTrack.querySelector('.gallery__item')?.offsetWidth || 320) + 20;
+
+    galleryNext?.addEventListener('click', () => galleryTrack.scrollBy({ left:  scrollAmount(), behavior: 'smooth' }));
+    galleryPrev?.addEventListener('click', () => galleryTrack.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+
+    /* Drag-to-scroll */
+    let isDragging = false, startX = 0, scrollLeft = 0;
+
+    galleryTrack.addEventListener('mousedown', e => {
+      isDragging = false;
+      startX     = e.pageX - galleryTrack.offsetLeft;
+      scrollLeft = galleryTrack.scrollLeft;
+      galleryTrack.style.scrollSnapType = 'none';
+    });
+
+    galleryTrack.addEventListener('mousemove', e => {
+      if (!(e.buttons & 1)) return;
+      const walk = (e.pageX - galleryTrack.offsetLeft) - startX;
+      if (Math.abs(walk) > 5) {
+        isDragging = true;
+        galleryTrack.scrollLeft = scrollLeft - walk;
+        e.preventDefault();
+      }
+    });
+
+    galleryTrack.addEventListener('mouseup',    () => { galleryTrack.style.scrollSnapType = ''; });
+    galleryTrack.addEventListener('click',      e  => { if (isDragging) e.stopPropagation(); isDragging = false; });
+
+    /* Touch */
+    let touchStartX = 0, touchScrollLeft = 0;
+    galleryTrack.addEventListener('touchstart', e => { touchStartX = e.touches[0].pageX; touchScrollLeft = galleryTrack.scrollLeft; }, { passive: true });
+    galleryTrack.addEventListener('touchmove',  e => { galleryTrack.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX); }, { passive: true });
   }
 
-  // GALLERY
-  var track = document.getElementById('galleryTrack');
-  var prev  = document.getElementById('galleryPrev');
-  var next  = document.getElementById('galleryNext');
-  if (track) {
-    function step() { return (track.querySelector('.gallery__item') ? track.querySelector('.gallery__item').offsetWidth : 320) + 16; }
-    if (prev) prev.addEventListener('click', function() { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function() { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
-    var dragging = false, startX = 0, startScroll = 0;
-    track.addEventListener('mousedown', function(e) { dragging = false; startX = e.pageX; startScroll = track.scrollLeft; track.style.scrollSnapType = 'none'; });
-    track.addEventListener('mousemove', function(e) { if (!(e.buttons & 1)) return; var d = e.pageX - startX; if (Math.abs(d) > 4) { dragging = true; track.scrollLeft = startScroll - d; } });
-    track.addEventListener('mouseup', function() { track.style.scrollSnapType = ''; });
-    track.addEventListener('click', function(e) { if (dragging) e.stopPropagation(); dragging = false; });
-    var tx = 0, ts = 0;
-    track.addEventListener('touchstart', function(e) { tx = e.touches[0].pageX; ts = track.scrollLeft; }, { passive: true });
-    track.addEventListener('touchmove',  function(e) { track.scrollLeft = ts - (e.touches[0].pageX - tx); }, { passive: true });
-  }
+  /* ═══════════════════════════════════════════════
+     6. SCROLL REVEAL
+  ═══════════════════════════════════════════════ */
+  const revealSelectors = [
+    '.stats__grid .stat', '.about__text', '.about__image-wrap',
+    '.section-header', '.apt-tabs', '.apt-panel',
+    '.location__map', '.location__highlights',
+    '.contact__info', '.contact__form-wrap',
+  ];
 
-  // SCROLL REVEAL
-  var revealEls = document.querySelectorAll('.section-header, .about__text, .about__image-wrap, .apt-panel, .location__map, .location__highlights, .contact__info, .contact__form-wrap');
-  revealEls.forEach(function(el) { el.classList.add('reveal'); });
-  var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+  revealSelectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      el.classList.add('reveal');
+      if (i === 1) el.classList.add('reveal-delay-1');
+      if (i === 2) el.classList.add('reveal-delay-2');
+    });
+  });
 
-  // FORM
-  var form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function(e) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ═══════════════════════════════════════════════
+     7. CONTACT FORM
+  ═══════════════════════════════════════════════ */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', e => {
       e.preventDefault();
-      var btn = form.querySelector('[type="submit"]');
-      var orig = btn.innerHTML;
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-      setTimeout(function() {
-        btn.textContent = 'Sent!';
-        setTimeout(function() { btn.innerHTML = orig; btn.disabled = false; form.reset(); lucide.createIcons(); }, 3000);
+      const btn  = contactForm.querySelector('[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.innerHTML = currentLang === 'pt' ? 'A enviar… <i data-lucide="loader"></i>' : 'Sending… <i data-lucide="loader"></i>';
+      btn.disabled  = true;
+      lucide.createIcons();
+      setTimeout(() => {
+        btn.innerHTML = currentLang === 'pt' ? 'Enviado! <i data-lucide="check"></i>' : 'Sent! <i data-lucide="check"></i>';
+        lucide.createIcons();
+        setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; contactForm.reset(); lucide.createIcons(); }, 3000);
       }, 1400);
     });
   }
+
+  /* ── Initial render ──────────────────────────────────────── */
+  applyLanguage('en');
+
 });
