@@ -1,385 +1,226 @@
-/**
- * ============================================================
- *  DIAS 350 — Main Application Script
- *  Handles: language switching, rendering all sections,
- *           header scroll behavior, contact form, mobile nav.
- * ============================================================
- */
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 
-// Current language state
-let currentLang = localStorage.getItem('dias350_lang') || 'en';
+  var currentLang = 'en';
+  var activeUnitId = null;
 
-// ── INIT ─────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  renderAll(currentLang);
-  initHeader();
-  initMobileNav();
-  initContactForm();
-  initLangButtons();
-  setActiveLangButtons(currentLang);
-  initHeroSlider();
-});
+  // NAV
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('navBurger');
+  var drawer = document.getElementById('navDrawer');
+  var menuOpen = false;
 
-// ── HERO SLIDER ──────────────────────────────────────────────
-function initHeroSlider() {
-  const slides = document.querySelectorAll('.hero-slide');
-  if (slides.length < 2) return;
-  let current = 0;
-  setInterval(() => {
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
-  }, 4000);
-}
-
-// ── LANGUAGE SWITCH ──────────────────────────────────────────
-function switchLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('dias350_lang', lang);
-  renderAll(lang);
-  setActiveLangButtons(lang);
-}
-
-function setActiveLangButtons(lang) {
-  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.langBtn === lang);
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
   });
-}
+  nav.classList.toggle('scrolled', window.scrollY > 60);
 
-function initLangButtons() {
-  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
-    btn.addEventListener('click', () => switchLang(btn.dataset.langBtn));
+  burger.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    drawer.classList.toggle('open', menuOpen);
+    burger.innerHTML = menuOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+    lucide.createIcons();
   });
-}
 
-// ── RENDER ALL SECTIONS ───────────────────────────────────────
-function renderAll(lang) {
-  const c = CONTENT[lang];
-  renderNav(c.nav);
-  renderHero(c.hero);
-  renderAbout(c.about, lang);
-  renderLocation(c.location);
-  renderGallery(c.gallery, lang);
-  renderHighlights(c.highlights);
-  renderTeam(c.team, lang);
-  renderContact(c.contact);
-  renderFooter(c.footer, c.nav);
-}
+  document.querySelectorAll('.drawer-link').forEach(function(l) {
+    l.addEventListener('click', function() {
+      menuOpen = false;
+      drawer.classList.remove('open');
+      burger.innerHTML = '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+  });
 
-// ── NAV ───────────────────────────────────────────────────────
-function renderNav(nav) {
-  const links = [
-    ['#home',       nav.home],
-    ['#project',    nav.project],
-    ['#location',   nav.location],
-    ['#gallery',    nav.gallery],
-    ['#team',       nav.team],
-    ['#contact',    nav.contact],
-  ];
+  // LANGUAGE
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentLang = btn.dataset.lang;
+      document.querySelectorAl
+cat > ~/Projects/dias350/main.js << 'EOF'
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 
-  // Desktop nav
-  const desktopNav = document.getElementById('main-nav');
-  if (desktopNav) {
-    desktopNav.innerHTML = links
-      .map(([href, label]) => `<a href="${href}">${label}</a>`)
-      .join('');
+  var currentLang = 'en';
+  var activeUnitId = null;
+
+  // NAV
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('navBurger');
+  var drawer = document.getElementById('navDrawer');
+  var menuOpen = false;
+
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+
+  burger.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    drawer.classList.toggle('open', menuOpen);
+    burger.innerHTML = menuOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+    lucide.createIcons();
+  });
+
+  document.querySelectorAll('.drawer-link').forEach(function(l) {
+    l.addEventListener('click', function() {
+      menuOpen = false;
+      drawer.classList.remove('open');
+      burger.innerHTML = '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+  });
+
+  // LANGUAGE
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentLang = btn.dataset.lang;
+      document.querySelectorAll('.lang-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.lang === currentLang);
+      });
+      buildTabs();
+      if (activeUnitId) renderUnit(activeUnitId);
+    });
+  });
+
+  // HERO SLIDESHOW
+  var slides = document.querySelectorAll('.hero__slide');
+  var slideIndex = 0;
+  if (slides.length > 1) {
+    setInterval(function() {
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }, 5000);
   }
 
-  // Mobile nav links
-  const mobileNavLinks = document.getElementById('mobile-nav-links');
-  if (mobileNavLinks) {
-    mobileNavLinks.innerHTML = links
-      .map(([href, label]) => `<a href="${href}" class="mobile-close-trigger">${label}</a>`)
-      .join('');
+  // PARALLAX
+  var layers = document.querySelectorAll('.parallax-layer');
+  var raf = false;
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', function() {
+      if (!raf) {
+        raf = true;
+        requestAnimationFrame(function() {
+          var sy = window.scrollY;
+          layers.forEach(function(layer) {
+            var speed = parseFloat(layer.dataset.parallaxSpeed || 0.25);
+            var parent = layer.closest('.parallax-section');
+            if (!parent) return;
+            var rect = parent.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+            layer.style.transform = 'translateY(' + ((sy - (rect.top + sy)) * speed) + 'px)';
+          });
+          raf = false;
+        });
+      }
+    }, { passive: true });
+  }
 
-    // Reattach close on link click
-    mobileNavLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', closeMobileNav);
+  // UNIT TABS
+  var aptTabsEl  = document.getElementById('aptTabs');
+  var aptImage   = document.getElementById('aptImage');
+  var aptName    = document.getElementById('aptName');
+  var aptStatus  = document.getElementById('aptStatus');
+  var aptTypo    = document.getElementById('aptTypology');
+  var aptArea    = document.getElementById('aptArea');
+  var aptBalcony = document.getElementById('aptBalcony');
+  var aptTerrace = document.getElementById('aptTerrace');
+  var aptStorage = document.getElementById('aptStorage');
+  var aptGarden  = document.getElementById('aptGarden');
+  var aptPanel   = document.getElementById('aptPanel');
+
+  function buildTabs() {
+    if (!aptTabsEl || typeof CONTENT === 'undefined') return;
+    aptTabsEl.innerHTML = '';
+    CONTENT.units.forEach(function(unit) {
+      var btn = document.createElement('button');
+      btn.className = 'apt-tab' + (unit.id === activeUnitId ? ' active' : '');
+      btn.dataset.id = unit.id;
+      btn.setAttribute('role', 'tab');
+      btn.textContent = unit.label[currentLang] || unit.label['en'];
+      btn.addEventListener('click', function() {
+        activeUnitId = unit.id;
+        document.querySelectorAll('.apt-tab').forEach(function(t) {
+          t.classList.toggle('active', t.dataset.id === activeUnitId);
+        });
+        renderUnit(activeUnitId);
+      });
+      aptTabsEl.appendChild(btn);
+    });
+    lucide.createIcons();
+  }
+
+  function renderUnit(unitId) {
+    if (typeof CONTENT === 'undefined' || !unitId) return;
+    var unit = CONTENT.units.find(function(u) { return u.id === unitId; });
+    if (!unit) return;
+    var d = unit.details[currentLang] || unit.details['en'];
+    if (aptImage)   { aptImage.src = unit.image; aptImage.alt = d.name; }
+    if (aptName)    aptName.textContent = d.name;
+    if (aptStatus)  {
+      var sold = unit.status === 'sold';
+      aptStatus.textContent = sold ? 'Sold' : 'Available';
+      aptStatus.className = 'apt-status apt-status--' + (sold ? 'sold' : 'available');
+    }
+    if (aptTypo)    aptTypo.textContent    = d.typology || '-';
+    if (aptArea)    aptArea.textContent    = d.area     || '-';
+    if (aptBalcony) aptBalcony.textContent = d.balcony  || '-';
+    if (aptTerrace) aptTerrace.textContent = d.terrace  || '-';
+    if (aptStorage) aptStorage.textContent = d.storage  || '-';
+    if (aptGarden)  aptGarden.textContent  = d.garden   || '-';
+    if (aptPanel)   {
+      aptPanel.style.animation = 'none';
+      void aptPanel.offsetWidth;
+      aptPanel.style.animation = '';
+    }
+    lucide.createIcons();
+  }
+
+  if (typeof CONTENT !== 'undefined' && CONTENT.units.length) {
+    activeUnitId = CONTENT.units[0].id;
+    buildTabs();
+    renderUnit(activeUnitId);
+  }
+
+  // GALLERY
+  var track = document.getElementById('galleryTrack');
+  var prev  = document.getElementById('galleryPrev');
+  var next  = document.getElementById('galleryNext');
+  if (track) {
+    function step() { return (track.querySelector('.gallery__item') ? track.querySelector('.gallery__item').offsetWidth : 320) + 16; }
+    if (prev) prev.addEventListener('click', function() { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function() { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+    var dragging = false, startX = 0, startScroll = 0;
+    track.addEventListener('mousedown', function(e) { dragging = false; startX = e.pageX; startScroll = track.scrollLeft; track.style.scrollSnapType = 'none'; });
+    track.addEventListener('mousemove', function(e) { if (!(e.buttons & 1)) return; var d = e.pageX - startX; if (Math.abs(d) > 4) { dragging = true; track.scrollLeft = startScroll - d; } });
+    track.addEventListener('mouseup', function() { track.style.scrollSnapType = ''; });
+    track.addEventListener('click', function(e) { if (dragging) e.stopPropagation(); dragging = false; });
+    var tx = 0, ts = 0;
+    track.addEventListener('touchstart', function(e) { tx = e.touches[0].pageX; ts = track.scrollLeft; }, { passive: true });
+    track.addEventListener('touchmove',  function(e) { track.scrollLeft = ts - (e.touches[0].pageX - tx); }, { passive: true });
+  }
+
+  // SCROLL REVEAL
+  var revealEls = document.querySelectorAll('.section-header, .about__text, .about__image-wrap, .apt-panel, .location__map, .location__highlights, .contact__info, .contact__form-wrap');
+  revealEls.forEach(function(el) { el.classList.add('reveal'); });
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+  // FORM
+  var form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(function() {
+        btn.textContent = 'Sent!';
+        setTimeout(function() { btn.innerHTML = orig; btn.disabled = false; form.reset(); lucide.createIcons(); }, 3000);
+      }, 1400);
     });
   }
-
-  // Footer nav
-  const footerNav = document.getElementById('footer-nav');
-  if (footerNav) {
-    footerNav.innerHTML = links
-      .map(([href, label]) => `<a href="${href}">${label}</a>`)
-      .join('');
-  }
-}
-
-// ── HERO ─────────────────────────────────────────────────────
-function renderHero(hero) {
-  setText('hero-headline', hero.headline);
-  setText('hero-subtitle', hero.subtitle);
-  setText('hero-cta-primary', hero.cta_primary);
-  setText('hero-cta-secondary', hero.cta_secondary);
-}
-
-// ── ABOUT ────────────────────────────────────────────────────
-function renderAbout(about, lang) {
-  const projectType = lang === 'en' ? CONFIG.PROJECT_TYPE_EN : CONFIG.PROJECT_TYPE_PT;
-
-  setText('about-section-label', about.section_label);
-  setText('about-title', about.title);
-  setText('about-description', about.description);
-  setText('stat-label-type', about.stats_label_type);
-  setText('stat-label-units', about.stats_label_units);
-  setText('stat-label-floors', about.stats_label_floors);
-  setText('stat-label-mix', about.stats_label_mix);
-  setText('stat-label-delivery', about.stats_label_delivery);
-  setText('stat-value-type', projectType);
-  setText('stat-value-units', CONFIG.NUMBER_OF_UNITS);
-  setText('stat-value-floors', CONFIG.FLOORS);
-  setText('stat-value-mix', CONFIG.APARTMENT_MIX);
-  setText('stat-value-delivery', CONFIG.DELIVERY_DATE);
-
-  const featureGrid = document.getElementById('feature-cards');
-  if (featureGrid) {
-    featureGrid.innerHTML = about.features
-      .map(f => `
-        <div class="feature-card">
-          <span class="icon">${f.icon}</span>
-          <h4>${f.title}</h4>
-        </div>
-      `).join('');
-  }
-}
-
-// ── LOCATION ─────────────────────────────────────────────────
-function renderLocation(location) {
-  setText('location-section-label', location.section_label);
-  setText('location-title', location.title);
-  setText('location-description', location.description);
-  setText('location-address-text', CONFIG.ADDRESS);
-
-  const hList = document.getElementById('location-highlights');
-  if (hList) {
-    hList.innerHTML = location.highlights
-      .map(h => `
-        <div class="highlight-item">
-          <span class="hi-icon">${h.icon}</span>
-          <span>${h.text}</span>
-        </div>
-      `).join('');
-  }
-
-  // Google Maps embed
-  const mapEl = document.getElementById('map-container');
-  if (mapEl) {
-    const url = CONFIG.GOOGLE_MAPS_EMBED_URL;
-    // Show placeholder if URL contains 0x0 (default placeholder)
-    if (url && !url.includes('0x0%3A0x0')) {
-      mapEl.innerHTML = `<iframe src="${url}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="DIAS 350 location map"></iframe>`;
-    } else {
-      mapEl.innerHTML = `
-        <div class="map-placeholder">
-          <div class="map-icon">🗺</div>
-          <strong>${CONFIG.ADDRESS}</strong>
-          <small>Replace GOOGLE_MAPS_EMBED_URL in js/content.js to show the live map</small>
-        </div>
-      `;
-    }
-  }
-}
-
-// ── GALLERY ──────────────────────────────────────────────────
-function renderGallery(gallery, lang) {
-  setText('gallery-section-label', gallery.section_label);
-  setText('gallery-title', gallery.title);
-  setText('gallery-subtitle', gallery.subtitle);
-
-  const grid = document.getElementById('gallery-grid');
-  if (!grid) return;
-
-  // Exclude images used in the hero slider
-  const sliderFiles = ['assets/images/hero.jpg', 'assets/images/existing-building-1.jpg', 'assets/images/neighborhood.jpg'];
-  const galleryImages = CONFIG.GALLERY_IMAGES.filter(img => !sliderFiles.includes(img.file));
-
-  grid.innerHTML = galleryImages.map((img) => {
-    const caption = lang === 'en' ? img.caption_en : img.caption_pt;
-    const filename = img.file.split('/').pop();
-    return `
-      <div class="gallery-item">
-        <img
-          src="${img.file}"
-          alt="${caption}"
-          loading="lazy"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        />
-        <div class="gallery-placeholder" style="display:none;">
-          <div class="ph-icon">🏛</div>
-          <div class="ph-name">${filename}</div>
-        </div>
-        <div class="gallery-caption">${caption}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-// ── HIGHLIGHTS ───────────────────────────────────────────────
-function renderHighlights(highlights) {
-  setText('highlights-section-label', highlights.section_label);
-  setText('highlights-title', highlights.title);
-
-  const grid = document.getElementById('highlights-grid');
-  if (!grid) return;
-
-  grid.innerHTML = highlights.cards.map(card => `
-    <div class="highlight-card">
-      <span class="hc-icon">${card.icon}</span>
-      <h3 class="hc-title">${card.title}</h3>
-      <p class="hc-text">${card.text}</p>
-    </div>
-  `).join('');
-}
-
-// ── TEAM ─────────────────────────────────────────────────────
-function renderTeam(team, lang) {
-  setText('team-section-label', team.section_label);
-  setText('team-title', team.title);
-
-  const grid = document.getElementById('team-grid');
-  if (!grid) return;
-
-  grid.innerHTML = CONFIG.TEAM_MEMBERS.map(member => {
-    const role = lang === 'en' ? member.role_en : member.role_pt;
-    const bio  = lang === 'en' ? member.bio_en  : member.bio_pt;
-    return `
-      <div class="team-card">
-        <div class="team-photo">
-          <img
-            src="${member.photo}"
-            alt="${member.name}"
-            loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
-          <div class="team-photo-placeholder" style="display:none;">👤</div>
-        </div>
-        <h3 class="team-name">${member.name}</h3>
-        <div class="team-role">${role}</div>
-        <p class="team-bio">${bio}</p>
-      </div>
-    `;
-  }).join('');
-}
-
-// ── CONTACT ──────────────────────────────────────────────────
-function renderContact(contact) {
-  setText('contact-section-label', contact.section_label);
-  setText('contact-title', contact.title);
-  setText('contact-description', contact.description);
-  setText('contact-disclaimer', contact.disclaimer);
-
-  // Labels
-  setText('label-name', contact.form.name);
-  setText('label-email', contact.form.email);
-  setText('label-phone', contact.form.phone);
-  setText('label-message', contact.form.message);
-
-  const submitBtn = document.getElementById('form-submit');
-  if (submitBtn) submitBtn.textContent = contact.form.submit;
-
-  // Store messages for form use
-  const form = document.getElementById('contact-form');
-  if (form) {
-    form.dataset.msgSuccess = contact.form.success;
-    form.dataset.msgError = contact.form.error;
-  }
-
-  // Contact details
-  setText('contact-email', CONFIG.CONTACT_EMAIL);
-  const emailLink = document.getElementById('contact-email');
-  if (emailLink) emailLink.href = `mailto:${CONFIG.CONTACT_EMAIL}`;
-
-  setText('contact-phone', CONFIG.CONTACT_PHONE);
-  const phoneLink = document.getElementById('contact-phone');
-  if (phoneLink) phoneLink.href = `tel:${CONFIG.CONTACT_PHONE.replace(/\s/g,'')}`;
-
-  setText('contact-whatsapp', CONFIG.CONTACT_PHONE);
-  const waLink = document.getElementById('contact-whatsapp');
-  if (waLink) waLink.href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}`;
-}
-
-// ── FOOTER ───────────────────────────────────────────────────
-function renderFooter(footer, nav) {
-  setText('footer-tagline', footer.tagline);
-  setText('footer-disclaimer', footer.disclaimer);
-  setText('footer-copyright', footer.copyright);
-}
-
-// ── CONTACT FORM ─────────────────────────────────────────────
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const msgEl = document.getElementById('form-message');
-
-    const name    = form.querySelector('[name="name"]').value.trim();
-    const email   = form.querySelector('[name="email"]').value.trim();
-    const message = form.querySelector('[name="message"]').value.trim();
-
-    if (!name || !email || !message) {
-      msgEl.className = 'form-message error';
-      msgEl.textContent = form.dataset.msgError || 'Please fill in all required fields.';
-      return;
-    }
-
-    // ── HOW TO CONNECT TO FORMSPREE ───────────────────────────
-    // 1. Go to https://formspree.io and create a free account
-    // 2. Create a new form and get your form endpoint URL
-    // 3. Replace the mock below with a real fetch:
-    //
-    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    //   body: JSON.stringify({ name, email, phone, message })
-    // })
-    // .then(res => res.ok ? showSuccess() : showError())
-    // .catch(() => showError());
-    // ──────────────────────────────────────────────────────────
-
-    // Mock success for now
-    msgEl.className = 'form-message success';
-    msgEl.textContent = form.dataset.msgSuccess || 'Thank you. We will be in touch shortly.';
-    form.reset();
-  });
-}
-
-// ── HEADER SCROLL ────────────────────────────────────────────
-function initHeader() {
-  const header = document.getElementById('site-header');
-  if (!header) return;
-
-  const onScroll = () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-}
-
-// ── MOBILE NAV ───────────────────────────────────────────────
-function initMobileNav() {
-  const toggle = document.getElementById('menu-toggle');
-  const overlay = document.getElementById('mobile-nav');
-  const closeBtn = document.getElementById('mobile-nav-close');
-
-  if (toggle) toggle.addEventListener('click', () => {
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeMobileNav);
-}
-
-function closeMobileNav() {
-  const overlay = document.getElementById('mobile-nav');
-  if (overlay) overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ── UTIL ─────────────────────────────────────────────────────
-function setText(id, text) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = text;
-}
+});

@@ -1,63 +1,38 @@
 const CONTENT = {
-  brand: { name: "350DIAS", tagline: "A new residential vision in Porto", location: "Porto, Portugal" },
+  brand: { name: "350DIAS", location: "Porto, Portugal" },
   stats: [
-    { value: "3",      label: { en: "Floors",      pt: "Pisos" } },
-    { value: "6",      label: { en: "Apartments",  pt: "Apartamentos" } },
-    { value: "T1-T3",  label: { en: "Typologies",  pt: "Tipologias" } },
-    { value: "03.2027",label: { en: "Completion",  pt: "Conclusão" } },
+    { value: "3",       label: { en: "Floors",     pt: "Pisos" } },
+    { value: "6",       label: { en: "Apartments", pt: "Apartamentos" } },
+    { value: "T1-T3",   label: { en: "Typologies", pt: "Tipologias" } },
+    { value: "03.2027", label: { en: "Completion", pt: "Conclusao" } }
   ],
-  about: {
-    image: "images/gallery-1.jpg",
-    heading: { en: "Living in harmony with the beauty of details", pt: "Viver em harmonia com a beleza dos detalhes" },
-    body: { en: "350DIAS is the new residential landmark at R. Carlos Malheiro Dias 350, Porto.", pt: "O 350DIAS é o novo marco residencial na R. Carlos Malheiro Dias 350, Porto." },
-  },
-  apartments: [
-    { id: "unit-a", label: { en: "Unit A", pt: "Unidade A" }, floorPlan: "images/floorplan-unit-a.jpg",
-      details: { en: { name: "Unit A", typology: "T1", area: "50.0 m²", balcony: "—", terrace: "—", storage: "—", garden: "—" },
-                 pt: { name: "Unidade A", typology: "T1", area: "50.0 m²", balcony: "—", terrace: "—", storage: "—", garden: "—" } } },
-    { id: "unit-b", label: { en: "Unit B", pt: "Unidade B" }, floorPlan: "images/floorplan-unit-b.jpg",
-      details: { en: { name: "Unit B", typology: "T2", area: "105.0 m²", balcony: "13.8 m²", terrace: "—", storage: "76.0 m²", garden: "—" },
-                 pt: { name: "Unidade B", typology: "T2", area: "105.0 m²", balcony: "13.8 m²", terrace: "—", storage: "76.0 m²", garden: "—" } } },
-    { id: "unit-c", label: { en: "Unit C", pt: "Unidade C" }, floorPlan: "images/floorplan-unit-c.jpg",
-      details: { en: { name: "Unit C", typology: "T1", area: "43.0 m²", balcony: "—", terrace: "—", storage: "1.3 m²", garden: "—" },
-                 pt: { name: "Unidade C", typology: "T1", area: "43.0 m²", balcony: "—", terrace: "—", storage: "1.3 m²", garden: "—" } } },
-    { id: "unit-d", label: { en: "Unit D", pt: "Unidade D" }, floorPlan: "images/floorplan-unit-d.jpg",
-      details: { en: { name: "Unit D", typology: "T2", area: "60.0 m²", balcony: "—", terrace: "—", storage: "3.0 m²", garden: "—" },
-                 pt: { name: "Unidade D", typology: "T2", area: "60.0 m²", balcony: "—", terrace: "—", storage: "3.0 m²", garden: "—" } } },
-    { id: "unit-e", label: { en: "Unit E", pt: "Unidade E" }, floorPlan: "images/floorplan-unit-e.jpg",
-      details: { en: { name: "Unit E", typology: "T2 Duplex", area: "96.0 m²", balcony: "9.6 m²", terrace: "—", storage: "—", garden: "—" },
-                 pt: { name: "Unidade E", typology: "T2 Duplex", area: "96.0 m²", balcony: "9.6 m²", terrace: "—", storage: "—", garden: "—" } } },
-    { id: "unit-f", label: { en: "Unit F", pt: "Unidade F" }, floorPlan: "images/floorplan-unit-f.jpg",
-      details: { en: { name: "Unit F", typology: "T3", area: "121.5 m²", balcony: "77.5 m²", terrace: "10.0 m²", storage: "7.4 m²", garden: "—" },
-                 pt: { name: "Unidade F", typology: "T3", area: "121.5 m²", balcony: "77.5 m²", terrace: "10.0 m²", storage: "7.4 m²", garden: "—" } } },
+  units: [
+    { id: "unit-a", label: { en: "Unit A", pt: "Unidade A" }, image: "images/unit-a.jpg", status: "available",
+      details: { en: { name: "Unit A", typology: "T1", area: "50.0 m2", balcony: "-", terrace: "-", storage: "-", garden: "-" },
+                 pt: { name: "Unidade A", typology: "T1", area: "50.0 m2", balcony: "-", terrace: "-", storage: "-", garden: "-" } } },
+    { id: "unit-b", label: { en: "Unit B", pt: "Unidade B" }, image: "images/unit-b.jpg", status: "available",
+      details: { en: { name: "Unit B", typology: "T2", area: "105.0 m2", balcony: "13.8 m2", terrace: "-", storage: "76.0 m2", garden: "-" },
+                 pt: { name: "Unidade B", typology: "T2", area: "105.0 m2", balcony: "13.8 m2", terrace: "-", storage: "76.0 m2", garden: "-" } } },
+    { id: "unit-c", label: { en: "Unit C", pt: "Unidade C" }, image: "images/unit-c.jpg", status: "available",
+      details: { en: { name: "Unit C", typology: "T1", area: "43.0 m2", balcony: "-", terrace: "-", storage: "1.3 m2", garden: "-" },
+                 pt: { name: "Unidade C", typology: "T1", area: "43.0 m2", balcony: "-", terrace: "-", storage: "1.3 m2", garden: "-" } } },
+    { id: "unit-d", label: { en: "Unit D", pt: "Unidade D" }, image: "images/unit-d.jpg", status: "available",
+      details: { en: { name: "Unit D", typology: "T2", area: "60.0 m2", balcony: "-", terrace: "-", storage: "3.0 m2", garden: "-" },
+                 pt: { name: "Unidade D", typology: "T2", area: "60.0 m2", balcony: "-", terrace: "-", storage: "3.0 m2", garden: "-" } } },
+    { id: "unit-e", label: { en: "Unit E", pt: "Unidade E" }, image: "images/unit-e.jpg", status: "available",
+      details: { en: { name: "Unit E", typology: "T2 Duplex", area: "96.0 m2", balcony: "9.6 m2", terrace: "-", storage: "-", garden: "-" },
+                 pt: { name: "Unidade E", typology: "T2 Duplex", area: "96.0 m2", balcony: "9.6 m2", terrace: "-", storage: "-", garden: "-" } } },
+    { id: "unit-f", label: { en: "Unit F", pt: "Unidade F" }, image: "images/unit-f.jpg", status: "available",
+      details: { en: { name: "Unit F", typology: "T3", area: "121.5 m2", balcony: "77.5 m2", terrace: "10.0 m2", storage: "7.4 m2", garden: "-" },
+                 pt: { name: "Unidade F", typology: "T3", area: "121.5 m2", balcony: "77.5 m2", terrace: "10.0 m2", storage: "7.4 m2", garden: "-" } } }
   ],
   gallery: {
-    heading: { en: "The perfect balance between comfort and privacy", pt: "O equilíbrio perfeito entre conforto e privacidade" },
     images: [
       { src: "images/gallery-1.jpg", alt: "Facade" },
       { src: "images/gallery-2.jpg", alt: "Entrance" },
       { src: "images/gallery-3.jpg", alt: "Building" },
       { src: "images/gallery-4.jpg", alt: "Building 2" },
-      { src: "images/gallery-5.jpg", alt: "Neighborhood" },
-    ],
-  },
-  location: {
-    address: { en: "R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal", pt: "R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal" },
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5!2d-8.6163!3d41.1621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464a09f6c40f1%3A0x1!2sR.+Carlos+Malheiro+Dias+350%2C+4200-154+Porto!5e0!3m2!1spt!2spt!4v1",
-    highlights: [
-      { icon: "building-2",  label: { en: "City centre 5 min",    pt: "Centro 5 min" } },
-      { icon: "tree-pine",   label: { en: "Parks nearby",          pt: "Parques próximos" } },
-      { icon: "train-front", label: { en: "Metro access",          pt: "Acesso ao Metro" } },
-      { icon: "utensils",    label: { en: "Restaurants & culture", pt: "Restaurantes & cultura" } },
-    ],
-  },
-  contact: {
-    heading:    { en: "Request more information", pt: "Solicitar mais informações" },
-    subheading: { en: "Our team will get back to you shortly.", pt: "A nossa equipa entrará em contacto brevemente." },
-    email: "info@350dias.pt", phone: "+351 22 000 0000", whatsapp: "+351 91 000 0000",
-  },
-  footer: {
-    copy: "© 2025 350DIAS. All rights reserved.",
-    privacy: { en: "Privacy Policy", pt: "Política de Privacidade" },
-  },
+      { src: "images/gallery-5.jpg", alt: "Neighborhood" }
+    ]
+  }
 };
