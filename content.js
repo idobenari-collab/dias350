@@ -87,11 +87,11 @@ const CONTENT = {
   apartments: [
     {
       id: "apt-1",
-      label: { en: "Type T2", pt: "Fração T2" },
-      floorPlan: "images/floorplan-t2.jpg",   // Replace with real floor plan image
+      label: { en: "Unit A", pt: "Fração A" },
+      floorPlan: "images/floorplan-unit-a.jpg",   // Replace with real floor plan image
       details: {
         en: {
-          name: "T2 Apartment",
+          name: "Unit A", typology: "T2",
           area: "95 m²",
           bedrooms: "2 bedrooms",
           bathrooms: "2 bathrooms",
@@ -100,7 +100,7 @@ const CONTENT = {
           price: "From €420,000",
         },
         pt: {
-          name: "Apartamento T2",
+          name: "Fração A", typology: "T2",
           area: "95 m²",
           bedrooms: "2 quartos",
           bathrooms: "2 casas de banho",
@@ -112,11 +112,11 @@ const CONTENT = {
     },
     {
       id: "apt-2",
-      label: { en: "Type T3", pt: "Fração T3" },
-      floorPlan: "images/floorplan-t3.jpg",
+      label: { en: "Unit B", pt: "Fração B" },
+      floorPlan: "images/floorplan-unit-b.jpg",
       details: {
         en: {
-          name: "T3 Apartment",
+          name: "Unit B", typology: "T3",
           area: "130 m²",
           bedrooms: "3 bedrooms",
           bathrooms: "2 bathrooms",
@@ -125,7 +125,7 @@ const CONTENT = {
           price: "From €620,000",
         },
         pt: {
-          name: "Apartamento T3",
+          name: "Fração B", typology: "T3",
           area: "130 m²",
           bedrooms: "3 quartos",
           bathrooms: "2 casas de banho",
@@ -137,11 +137,11 @@ const CONTENT = {
     },
     {
       id: "apt-3",
-      label: { en: "Type T4", pt: "Fração T4" },
-      floorPlan: "images/floorplan-t4.jpg",
+      label: { en: "Unit C", pt: "Fração C" },
+      floorPlan: "images/floorplan-unit-c.jpg",
       details: {
         en: {
-          name: "T4 Penthouse",
+          name: "Unit C", typology: "T4",
           area: "185 m²",
           bedrooms: "4 bedrooms",
           bathrooms: "3 bathrooms",
@@ -150,7 +150,7 @@ const CONTENT = {
           price: "From €950,000",
         },
         pt: {
-          name: "Penthouse T4",
+          name: "Fração C", typology: "T4",
           area: "185 m²",
           bedrooms: "4 quartos",
           bathrooms: "3 casas de banho",
