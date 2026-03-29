@@ -202,7 +202,7 @@ const CONTENT = {
       { src: "images/gallery-3.jpg", alt: "Master bedroom" },
       { src: "images/gallery-4.jpg", alt: "Bathroom" },
       { src: "images/gallery-5.jpg", alt: "Balcony view" },
-      { src: "images/gemini_garden.png", alt: "Building facade" },
+      { src: "images/gemini_garden.jpg", alt: "Building facade" },
       { src: "images/10000.jpg", alt: "Common area" },
       { src: "images/20000.jpg", alt: "Rooftop terrace" },
       { src: "images/60000.jpg", alt: "Garden view" },
