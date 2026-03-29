@@ -116,7 +116,7 @@ const CONTENT = {
       floorPlan: "images/floorplan-unit-b.jpg",
       details: {
         en: {
-          name: "Unit B", typology: "T2",
+          name: "Unit B", typology: "T2", terrace: "13.80 m²", garden: "76.00 m²",
           area: "105.00 m²",
           bedrooms: "3 bedrooms",
           bathrooms: "2 bathrooms",
@@ -125,7 +125,7 @@ const CONTENT = {
           price: "From €620,000",
         },
         pt: {
-          name: "Fração B", typology: "T2",
+          name: "Fração B", typology: "T2", terrace: "13.80 m²", garden: "76.00 m²",
           area: "105.00 m²",
           bedrooms: "3 quartos",
           bathrooms: "2 casas de banho",
