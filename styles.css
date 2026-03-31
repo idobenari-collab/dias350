@@ -313,6 +313,7 @@ ul { list-style: none; }
   background-size: cover;
   background-position: center;
   will-change: transform;
+  min-height: 100%;
 }
 
 /* Gradient overlay */
@@ -463,6 +464,7 @@ ul { list-style: none; }
   background-size: cover;
   background-position: center;
   will-change: transform;
+  min-height: 100%;
 }
 
 .about__text { max-width: 48ch; }
