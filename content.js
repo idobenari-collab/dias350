@@ -84,7 +84,7 @@ const CONTENT = {
 
   /* ─── APARTMENTS (tabs section) ────────────────────────────── */
   /* To add an apartment: copy one object and paste below the last one. */
-  apartments: [
+  units: [
     {
       id: "apt-1",
       label: { en: "Unit A", pt: "Fração A" },
