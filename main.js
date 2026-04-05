@@ -193,9 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const d = apt.details[lang] || apt.details['en'];
 
-    if (aptFloorPlan && apt.floorPlan) {
+    if (aptFloorPlan && apt.image) {
       aptFloorPlan.onload = () => lucide.createIcons();
-      aptFloorPlan.src    = apt.floorPlan;
+      aptFloorPlan.src    = apt.image;
       aptFloorPlan.alt    = d.name;
     }
 
