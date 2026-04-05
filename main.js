@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof CONTENT === 'undefined') return;
 
     aptTabs.forEach(tab => {
-      const apt = CONTENT.apartments.find(a => a.id === tab.dataset.apt);
+      const apt = CONTENT.units.find(a => a.id === tab.dataset.apt);
       if (apt) tab.textContent = apt.label[lang] || apt.label['en'];
     });
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderApartment(aptId, lang) {
     if (typeof CONTENT === 'undefined') return;
-    const apt = CONTENT.apartments.find(a => a.id === aptId);
+    const apt = CONTENT.units.find(a => a.id === aptId);
     if (!apt) return;
 
     const d = apt.details[lang] || apt.details['en'];
