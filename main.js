@@ -1,317 +1,193 @@
 /**
  * main.js — 350DIAS
- *
- * Handles:
- *  1. Navigation — scroll state + mobile drawer
- *  2. Language toggle (EN / PT)
- *  3. Parallax scroll effect on hero & about image
- *  4. Apartments tabs section (6 units)
- *  5. Gallery horizontal scroll — arrows + drag/touch
- *  6. Scroll reveal animations
- *  7. Contact form (client-side only)
- *  8. Lucide icon hydration
+ * Reads all data from CONTENT (content.js).
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── Lucide icons ────────────────────────────────────────── */
+  /* ── Icons ───────────────────────────────── */
   if (typeof lucide !== 'undefined') lucide.createIcons();
 
   let currentLang = 'en';
 
-  /* ═══════════════════════════════════════════════
-     1. NAVIGATION
-  ═══════════════════════════════════════════════ */
   const nav      = document.getElementById('nav');
   const burger   = document.getElementById('navBurger');
   const drawer   = document.getElementById('navDrawer');
-  let drawerOpen = false;
+  let   menuOpen = false;
 
-  function onNavScroll() {
+  window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
-  }
-  window.addEventListener('scroll', onNavScroll, { passive: true });
-  onNavScroll();
+  }, { passive: true });
+  nav.classList.toggle('scrolled', window.scrollY > 60);
 
   burger.addEventListener('click', () => {
-    drawerOpen = !drawerOpen;
-    drawer.classList.toggle('open', drawerOpen);
-    burger.setAttribute('aria-expanded', drawerOpen);
-    drawer.setAttribute('aria-hidden', !drawerOpen);
-    burger.querySelector('svg')?.remove();
-    const icon = document.createElement('i');
-    icon.setAttribute('data-lucide', drawerOpen ? 'x' : 'menu');
-    burger.appendChild(icon);
+    menuOpen = !menuOpen;
+    drawer.classList.toggle('open', menuOpen);
+    burger.setAttribute('aria-expanded', menuOpen);
+    burger.innerHTML = menuOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
     lucide.createIcons();
   });
 
-  drawer.querySelectorAll('.drawer-link').forEach(link => {
-    link.addEventListener('click', () => {
-      drawerOpen = false;
+  drawer.querySelectorAll('.drawer-link').forEach(l => {
+    l.addEventListener('click', () => {
+      menuOpen = false;
       drawer.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-      drawer.setAttribute('aria-hidden', 'true');
+      burger.innerHTML = '<i data-lucide="menu"></i>';
+      lucide.createIcons();
     });
   });
 
-  /* ═══════════════════════════════════════════════
-     2. LANGUAGE TOGGLE
-  ═══════════════════════════════════════════════ */
-  const langBtns = document.querySelectorAll('.lang-btn');
-
-  const I18N_MAP = {
-    'nav.about':         { en: 'About',            pt: 'Sobre' },
-    'nav.apartments':    { en: 'Apartments',        pt: 'Frações' },
-    'nav.gallery':       { en: 'Gallery',           pt: 'Galeria' },
-    'nav.location':      { en: 'Location',          pt: 'Localização' },
-    'nav.contact':       { en: 'Contact',           pt: 'Contacto' },
-    'hero.heading':      { en: 'A new residential\nvision in Porto',
-                           pt: 'Uma nova visão\nresidencial no Porto' },
-    'hero.subheading':   { en: 'Where architecture meets the rhythm of the city.',
-                           pt: 'Onde a arquitetura encontra o ritmo da cidade.' },
-    'hero.cta.primary':  { en: 'Request Details',   pt: 'Solicitar Informações' },
-    'hero.cta.secondary':{ en: 'View Location',     pt: 'Ver Localização' },
-    'about.heading':     { en: 'Living in harmony with the beauty of details',
-                           pt: 'Viver em harmonia com a beleza dos detalhes' },
-    'apartments.heading':{ en: 'Find your ideal apartment', pt: 'Encontre o seu apartamento ideal' },
-    'gallery.label':     { en: 'Gallery',           pt: 'Galeria' },
-    'gallery.heading':   { en: 'The perfect balance between comfort and privacy',
-                           pt: 'O equilíbrio perfeito entre conforto e privacidade' },
-    'gallery.drag':      { en: 'Drag to explore',   pt: 'Arraste para explorar' },
-    'location.heading':  { en: 'At the heart of Porto', pt: 'No coração do Porto' },
-    'location.address':  { en: 'R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal',
-                           pt: 'R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal' },
-    'location.highlight1': { en: 'City centre 5 min',    pt: 'Centro 5 min' },
-    'location.highlight2': { en: 'Parks nearby',          pt: 'Parques próximos' },
-    'location.highlight3': { en: 'Metro access',          pt: 'Acesso ao Metro' },
-    'location.highlight4': { en: 'Restaurants & culture', pt: 'Restaurantes & cultura' },
-    'contact.heading':   { en: 'Request more information', pt: 'Solicitar mais informações' },
-    'contact.subheading':{ en: 'Our team will get back to you shortly.',
-                           pt: 'A nossa equipa entrará em contacto brevemente.' },
-    'cta.moreInfo':      { en: 'More information',  pt: 'Mais informações' },
-    'cta.requestInfo':   { en: 'Request information', pt: 'Solicitar informações' },
-    'form.name':         { en: 'Full name',         pt: 'Nome completo' },
-    'form.email':        { en: 'Email',             pt: 'Email' },
-    'form.phone':        { en: 'Phone',             pt: 'Telefone' },
-    'form.message':      { en: 'Message',           pt: 'Mensagem' },
-    'form.submit':       { en: 'Send message',      pt: 'Enviar mensagem' },
-    'form.privacy':      { en: 'By submitting you agree to our privacy policy.',
-                           pt: 'Ao enviar concorda com a nossa política de privacidade.' },
-    'footer.copy':       { en: '© 2025 350DIAS. All rights reserved.',
-                           pt: '© 2025 350DIAS. Todos os direitos reservados.' },
-    'footer.privacy':    { en: 'Privacy Policy',    pt: 'Política de Privacidade' },
-    'stats.floors':      { en: 'Floors',            pt: 'Pisos' },
-    'stats.apartments':  { en: 'Apartments',        pt: 'Apartamentos' },
-    'stats.typologies':  { en: 'Typologies',        pt: 'Tipologias' },
-    'stats.completion':  { en: 'Completion',        pt: 'Conclusão' },
-  };
-
-  function applyLanguage(lang) {
-    currentLang = lang;
-
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key  = el.getAttribute('data-i18n');
-      const map  = I18N_MAP[key];
-      if (!map) return;
-      const text = map[lang] || map['en'];
-
-      if (el.querySelector('i, svg')) {
-        const nodes = [...el.childNodes].filter(n => n.nodeType === 3);
-        if (nodes.length) nodes[nodes.length - 1].textContent = text;
-        else el.appendChild(document.createTextNode(text));
-      } else {
-        el.textContent = text;
-      }
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLang = btn.dataset.lang;
+      document.querySelectorAll('.lang-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.lang === currentLang)
+      );
+      buildUnitTabs();
+      renderUnit(activeUnitId);
     });
+  });
 
-    updateApartmentTabs(lang);
-    document.documentElement.lang = lang;
-    langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  const slides     = document.querySelectorAll('.hero__slide');
+  let   slideIndex = 0;
+
+  function nextSlide() {
+    slides[slideIndex].classList.remove('active');
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].classList.add('active');
   }
 
-  langBtns.forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
+  if (slides.length > 1) setInterval(nextSlide, 5000);
 
-  /* ═══════════════════════════════════════════════
-     3. PARALLAX
-  ═══════════════════════════════════════════════ */
   const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  let   rafPending     = false;
 
   function updateParallax() {
-    const scrollY = window.scrollY;
+    const sy = window.scrollY;
     parallaxLayers.forEach(layer => {
-      const speed   = parseFloat(layer.dataset.parallaxSpeed ?? 0.4);
-      const parent  = layer.closest('.parallax-section, .hero');
-      const rect    = (parent ?? layer).getBoundingClientRect();
-      const vh      = window.innerHeight;
-      if (rect.bottom < 0 || rect.top > vh) return;
-      const sectionTop   = rect.top + scrollY;
-      const scrollOffset = scrollY - sectionTop;
-      layer.style.transform = `translateY(${scrollOffset * speed}px)`;
+      const speed  = parseFloat(layer.dataset.parallaxSpeed || 0.25);
+      const parent = layer.closest('.parallax-section');
+      if (!parent) return;
+      const rect = parent.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      layer.style.transform = `translateY(${(sy - (rect.top + sy)) * speed}px)`;
     });
+    rafPending = false;
   }
 
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => { updateParallax(); ticking = false; });
-      ticking = true;
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', () => {
+      if (!rafPending) { rafPending = true; requestAnimationFrame(updateParallax); }
+    }, { passive: true });
+    updateParallax();
+  }
+
+  const aptTabsEl  = document.getElementById('aptTabs');
+  const aptImage   = document.getElementById('aptImage');
+  const aptName    = document.getElementById('aptName');
+  const aptStatus  = document.getElementById('aptStatus');
+  const aptTypo    = document.getElementById('aptTypology');
+  const aptArea    = document.getElementById('aptArea');
+  const aptBalcony = document.getElementById('aptBalcony');
+  const aptTerrace = document.getElementById('aptTerrace');
+  const aptStorage = document.getElementById('aptStorage');
+  const aptGarden  = document.getElementById('aptGarden');
+  const aptPanel   = document.getElementById('aptPanel');
+
+  let activeUnitId = null;
+
+  function buildUnitTabs() {
+    if (!aptTabsEl || typeof CONTENT === 'undefined') return;
+    aptTabsEl.innerHTML = '';
+    CONTENT.units.forEach(unit => {
+      const btn = document.createElement('button');
+      btn.className  = 'apt-tab' + (unit.id === activeUnitId ? ' active' : '');
+      btn.dataset.id = unit.id;
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', unit.id === activeUnitId);
+      btn.textContent = unit.label[currentLang] || unit.label['en'];
+      btn.addEventListener('click', () => {
+        activeUnitId = unit.id;
+        document.querySelectorAll('.apt-tab').forEach(t => {
+          t.classList.toggle('active', t.dataset.id === activeUnitId);
+          t.setAttribute('aria-selected', t.dataset.id === activeUnitId);
+        });
+        renderUnit(activeUnitId);
+      });
+      aptTabsEl.appendChild(btn);
+    });
+    lucide.createIcons();
+  }
+
+  function renderUnit(unitId) {
+    if (typeof CONTENT === 'undefined' || !unitId) return;
+    const unit = CONTENT.units.find(u => u.id === unitId);
+    if (!unit) return;
+    const d = unit.details[currentLang] || unit.details['en'];
+    if (aptImage) { aptImage.src = unit.image; aptImage.alt = d.name; }
+    if (aptName)   aptName.textContent = d.name;
+    if (aptStatus) {
+      const sold = unit.status === 'sold';
+      aptStatus.textContent = sold ? 'Sold' : 'Available';
+      aptStatus.className   = 'apt-status apt-status--' + (sold ? 'sold' : 'available');
     }
-  }, { passive: true });
-
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) updateParallax();
-
-  /* ═══════════════════════════════════════════════
-     4. APARTMENT TABS
-  ═══════════════════════════════════════════════ */
-  const aptTabs      = document.querySelectorAll('.apt-tab');
-  const aptFloorPlan = document.getElementById('aptFloorPlan');
-  const aptName      = document.getElementById('aptName');
-  const aptTypology  = document.getElementById('aptTypology');
-  const aptArea      = document.getElementById('aptArea');
-  const aptBalcony   = document.getElementById('aptBalcony');
-  const aptTerrace   = document.getElementById('aptTerrace');
-  const aptStorage   = document.getElementById('aptStorage');
-  const aptGarden    = document.getElementById('aptGarden');
-  const aptPanel     = document.getElementById('aptPanel');
-
-  function updateApartmentTabs(lang) {
-    if (typeof CONTENT === 'undefined') return;
-
-    aptTabs.forEach(tab => {
-      const apt = CONTENT.units.find(a => a.id === tab.dataset.apt);
-      if (apt) tab.textContent = apt.label[lang] || apt.label['en'];
-    });
-
-    const activeTab = document.querySelector('.apt-tab.active');
-    if (activeTab) renderApartment(activeTab.dataset.apt, lang);
+    if (aptTypo)    aptTypo.textContent    = d.typology  || '—';
+    if (aptArea)    aptArea.textContent    = d.area      || '—';
+    if (aptBalcony) aptBalcony.textContent = d.balcony   || '—';
+    if (aptTerrace) aptTerrace.textContent = d.terrace   || '—';
+    if (aptStorage) aptStorage.textContent = d.storage   || '—';
+    if (aptGarden)  aptGarden.textContent  = d.garden    || '—';
+    if (aptPanel) { aptPanel.style.animation = 'none'; void aptPanel.offsetWidth; aptPanel.style.animation = ''; }
+    lucide.createIcons();
   }
 
-  function renderApartment(aptId, lang) {
-    if (typeof CONTENT === 'undefined') return;
-    const apt = CONTENT.units.find(a => a.id === aptId);
-    if (!apt) return;
-
-    const d = apt.details[lang] || apt.details['en'];
-
-    if (aptFloorPlan && apt.image) {
-      aptFloorPlan.onload = () => lucide.createIcons();
-      aptFloorPlan.src    = apt.image;
-      aptFloorPlan.alt    = d.name;
-    }
-
-    if (aptName)     aptName.textContent     = d.name      || '';
-    if (aptTypology) aptTypology.textContent = d.typology  || '';
-    if (aptArea)     aptArea.textContent     = d.area      || '';
-    if (aptBalcony)  aptBalcony.textContent  = d.balcony   || '—';
-    if (aptTerrace)  aptTerrace.textContent  = d.terrace   || '—';
-    if (aptStorage)  aptStorage.textContent  = d.storage   || '—';
-    if (aptGarden)   aptGarden.textContent   = d.garden    || '—';
-
-    // Re-trigger panel animation
-    aptPanel.style.animation = 'none';
-    void aptPanel.offsetWidth;
-    aptPanel.style.animation = '';
+  if (typeof CONTENT !== 'undefined' && CONTENT.units.length) {
+    activeUnitId = CONTENT.units[0].id;
+    buildUnitTabs();
+    renderUnit(activeUnitId);
   }
 
-  aptTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      aptTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      renderApartment(tab.dataset.apt, currentLang);
-    });
+  const track = document.getElementById('galleryTrack');
+  const prev  = document.getElementById('galleryPrev');
+  const next  = document.getElementById('galleryNext');
+
+  if (track) {
+    const step = () => (track.querySelector('.gallery__item')?.offsetWidth || 320) + 16;
+    prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next?.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+    let dragging = false, startX = 0, startScroll = 0;
+    track.addEventListener('mousedown', e => { dragging = false; startX = e.pageX; startScroll = track.scrollLeft; track.style.scrollSnapType = 'none'; });
+    track.addEventListener('mousemove', e => { if (!(e.buttons & 1)) return; const d = e.pageX - startX; if (Math.abs(d) > 4) { dragging = true; track.scrollLeft = startScroll - d; } });
+    track.addEventListener('mouseup',  () => { track.style.scrollSnapType = ''; });
+    track.addEventListener('click',    e  => { if (dragging) e.stopPropagation(); dragging = false; });
+    let tx = 0, ts = 0;
+    track.addEventListener('touchstart', e => { tx = e.touches[0].pageX; ts = track.scrollLeft; }, { passive: true });
+    track.addEventListener('touchmove',  e => { track.scrollLeft = ts - (e.touches[0].pageX - tx); }, { passive: true });
+  }
+
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section-header, .about__text, .about__image-wrap, .apt-panel, .location__map, .location__highlights, .contact__info, .contact__form-wrap').forEach(el => {
+    el.classList.add('reveal');
+    revealObs.observe(el);
   });
 
-  updateApartmentTabs(currentLang);
-
-  /* ═══════════════════════════════════════════════
-     5. GALLERY — horizontal scroll + drag + arrows
-  ═══════════════════════════════════════════════ */
-  const galleryTrack = document.getElementById('galleryTrack');
-  const galleryPrev  = document.getElementById('galleryPrev');
-  const galleryNext  = document.getElementById('galleryNext');
-
-  if (galleryTrack) {
-    const scrollAmount = () =>
-      (galleryTrack.querySelector('.gallery__item')?.offsetWidth || 320) + 20;
-
-    galleryNext?.addEventListener('click', () => galleryTrack.scrollBy({ left:  scrollAmount(), behavior: 'smooth' }));
-    galleryPrev?.addEventListener('click', () => galleryTrack.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
-
-    /* Drag-to-scroll */
-    let isDragging = false, startX = 0, scrollLeft = 0;
-
-    galleryTrack.addEventListener('mousedown', e => {
-      isDragging = false;
-      startX     = e.pageX - galleryTrack.offsetLeft;
-      scrollLeft = galleryTrack.scrollLeft;
-      galleryTrack.style.scrollSnapType = 'none';
-    });
-
-    galleryTrack.addEventListener('mousemove', e => {
-      if (!(e.buttons & 1)) return;
-      const walk = (e.pageX - galleryTrack.offsetLeft) - startX;
-      if (Math.abs(walk) > 5) {
-        isDragging = true;
-        galleryTrack.scrollLeft = scrollLeft - walk;
-        e.preventDefault();
-      }
-    });
-
-    galleryTrack.addEventListener('mouseup',    () => { galleryTrack.style.scrollSnapType = ''; });
-    galleryTrack.addEventListener('click',      e  => { if (isDragging) e.stopPropagation(); isDragging = false; });
-
-    /* Touch */
-    let touchStartX = 0, touchScrollLeft = 0;
-    galleryTrack.addEventListener('touchstart', e => { touchStartX = e.touches[0].pageX; touchScrollLeft = galleryTrack.scrollLeft; }, { passive: true });
-    galleryTrack.addEventListener('touchmove',  e => { galleryTrack.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX); }, { passive: true });
-  }
-
-  /* ═══════════════════════════════════════════════
-     6. SCROLL REVEAL
-  ═══════════════════════════════════════════════ */
-  const revealSelectors = [
-    '.stats__grid .stat', '.about__text', '.about__image-wrap',
-    '.section-header', '.apt-tabs', '.apt-panel',
-    '.location__map', '.location__highlights',
-    '.contact__info', '.contact__form-wrap',
-  ];
-
-  revealSelectors.forEach(sel => {
-    document.querySelectorAll(sel).forEach((el, i) => {
-      el.classList.add('reveal');
-      if (i === 1) el.classList.add('reveal-delay-1');
-      if (i === 2) el.classList.add('reveal-delay-2');
-    });
-  });
-
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  /* ═══════════════════════════════════════════════
-     7. CONTACT FORM
-  ═══════════════════════════════════════════════ */
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      const btn  = contactForm.querySelector('[type="submit"]');
+      const btn  = form.querySelector('[type="submit"]');
       const orig = btn.innerHTML;
-      btn.innerHTML = currentLang === 'pt' ? 'A enviar… <i data-lucide="loader"></i>' : 'Sending… <i data-lucide="loader"></i>';
       btn.disabled  = true;
+      btn.innerHTML = 'Sending… <i data-lucide="loader"></i>';
       lucide.createIcons();
       setTimeout(() => {
-        btn.innerHTML = currentLang === 'pt' ? 'Enviado! <i data-lucide="check"></i>' : 'Sent! <i data-lucide="check"></i>';
+        btn.innerHTML = 'Sent! <i data-lucide="check"></i>';
         lucide.createIcons();
-        setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; contactForm.reset(); lucide.createIcons(); }, 3000);
+        setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; form.reset(); lucide.createIcons(); }, 3000);
       }, 1400);
     });
   }
-
-  /* ── Initial render ──────────────────────────────────────── */
-  applyLanguage('en');
 
 });
