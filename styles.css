@@ -477,11 +477,6 @@ a:hover { opacity: 0.65; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--color-gold, #b8975a);
-  color: #fff;
   margin-top: 0.1rem;
 }
 
