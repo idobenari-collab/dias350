@@ -64,6 +64,13 @@ a:hover { opacity: 0.65; }
   line-height: 1.2;
   max-width: 36ch;
 }
+.section-sub {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: var(--color-muted);
+  max-width: 46ch;
+  margin-top: 0.85rem;
+  line-height: 1.6;
+}
 
 /* ── BUTTONS ─────────────────────────────── */
 .btn {
