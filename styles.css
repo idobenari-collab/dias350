@@ -341,7 +341,9 @@ a:hover { opacity: 0.65; }
   padding: clamp(0.75rem, 2.5vw, 1.5rem);
   display: flex; flex-direction: column;
   justify-content: center; gap: clamp(1rem, 3vw, 1.75rem);
-  max-width: 780px; margin-inline: auto; width: 100%;
+  max-width: 780px; /* base width for the largest unit; JS scales smaller units down */
+  margin-inline: auto; width: 100%;
+  transition: max-width 0.3s ease;
 }
 .apt-floor { width: 100%; }
 .apt-floor img {

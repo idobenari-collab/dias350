@@ -158,6 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
       aptImageWrap.innerHTML = '';
       const plans = unit.images || [];
       aptImageWrap.classList.toggle('apt-image-wrap--split', plans.length > 1);
+
+      /* Scale the plan's display width by real floor area, so units are
+         shown in proportion to one another (relative to the largest unit). */
+      const BASE_WIDTH = 780; // matches --plan-base-width in styles.css
+      const MIN_SCALE = 0.55;
+      if (unit.areaM2) {
+        const maxArea = Math.max(...CONTENT.units.map(u => u.areaM2 || 0));
+        const scale = Math.max(MIN_SCALE, Math.sqrt(unit.areaM2 / maxArea));
+        aptImageWrap.style.maxWidth = Math.round(BASE_WIDTH * scale) + 'px';
+      } else {
+        aptImageWrap.style.maxWidth = '';
+      }
+
       plans.forEach(plan => {
         const floor = document.createElement('div');
         floor.className = 'apt-floor';
