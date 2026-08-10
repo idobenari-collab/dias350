@@ -88,7 +88,7 @@ const CONTENT = {
     {
       id: "apt-1",
       label: { en: "Unit A", pt: "Fração A" },
-      image: "images/unit-a.jpg",   // Replace with real floor plan image
+      images: [{ src: "images/unit-a.jpg" }],
       details: {
         en: {
           name: "Unit A", typology: "T1",
@@ -113,7 +113,7 @@ const CONTENT = {
     {
       id: "apt-2",
       label: { en: "Unit B", pt: "Fração B" },
-      image: "images/unit-b.jpg",
+      images: [{ src: "images/unit-b.jpg" }],
       details: {
         en: {
           name: "Unit B", typology: "T2", terrace: "13.80 m²", garden: "76.00 m²",
@@ -138,7 +138,7 @@ const CONTENT = {
     {
       id: "apt-3",
       label: { en: "Unit C", pt: "Fração C" },
-      image: "images/unit-c.jpg",
+      images: [{ src: "images/unit-c.jpg" }],
       details: {
         en: {
           name: "Unit C", typology: "T1",
@@ -163,7 +163,7 @@ const CONTENT = {
   {
       id: "apt-4",
       label: { en: "Unit D", pt: "Fração D" },
-      image: "images/unit-d.jpg",
+      images: [{ src: "images/unit-d.jpg" }],
       details: {
         en: { name: "Unit D", typology: "T2", area: "60.00 m²", balcony: "3.00 m²", terrace: "—", storage: "—", garden: "—" },
         pt: { name: "Fração D", typology: "T2", area: "60.00 m²", balcony: "3.00 m²", terrace: "—", storage: "—", garden: "—" },
@@ -172,7 +172,10 @@ const CONTENT = {
     {
       id: "apt-5",
       label: { en: "Unit E", pt: "Fração E" },
-      image: "images/unit-e.jpg",
+      images: [
+        { src: "images/unit-e-floor3.jpg", label: { en: "Floor 3", pt: "Piso 3" } },
+        { src: "images/unit-e-floor4.jpg", label: { en: "Floor 4", pt: "Piso 4" } },
+      ],
       details: {
         en: { name: "Unit E", typology: "T2 Duplex", area: "96.00 m²", balcony: "9.60 m²", terrace: "—", storage: "—", garden: "—" },
         pt: { name: "Fração E", typology: "T2 Duplex", area: "96.00 m²", balcony: "9.60 m²", terrace: "—", storage: "—", garden: "—" },
@@ -181,7 +184,7 @@ const CONTENT = {
     {
       id: "apt-6",
       label: { en: "Unit F", pt: "Fração F" },
-      image: "images/unit-f.jpg",
+      images: [{ src: "images/unit-f.jpg" }],
       details: {
         en: { name: "Unit F", typology: "T3", area: "77.50 m²", balcony: "7.40 m²", terrace: "—", storage: "10.00 m²", garden: "121.50 m²" },
         pt: { name: "Fração F", typology: "T3", area: "77.50 m²", balcony: "7.40 m²", terrace: "—", storage: "10.00 m²", garden: "121.50 m²" },

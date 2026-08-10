@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
      5. UNIT TABS — built from CONTENT.units
   ══════════════════════════════════════════ */
   const aptTabsEl  = document.getElementById('aptTabs');
-  const aptImage   = document.getElementById('aptImage');
+  const aptImageWrap = document.querySelector('.apt-image-wrap');
   const aptName    = document.getElementById('aptName');
   const aptStatus  = document.getElementById('aptStatus');
   const aptTypo    = document.getElementById('aptTypology');
@@ -153,10 +153,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const d = unit.details[currentLang] || unit.details['en'];
 
-    /* Image */
-    if (aptImage) {
-      aptImage.src = unit.image;
-      aptImage.alt = d.name;
+    /* Floor plan image(s) — one image, or two stacked floors for duplex units */
+    if (aptImageWrap) {
+      aptImageWrap.innerHTML = '';
+      const plans = unit.images || [];
+      aptImageWrap.classList.toggle('apt-image-wrap--split', plans.length > 1);
+      plans.forEach(plan => {
+        const floor = document.createElement('div');
+        floor.className = 'apt-floor';
+        if (plan.label) {
+          const label = document.createElement('span');
+          label.className = 'apt-floor__label';
+          label.textContent = plan.label[currentLang] || plan.label.en;
+          floor.appendChild(label);
+        }
+        const img = document.createElement('img');
+        img.src = plan.src;
+        img.alt = plan.label ? `${d.name} — ${plan.label[currentLang] || plan.label.en}` : d.name;
+        img.loading = 'lazy';
+        floor.appendChild(img);
+        aptImageWrap.appendChild(floor);
+      });
     }
 
     /* Name + status badge */
