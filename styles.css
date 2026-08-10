@@ -15,6 +15,10 @@
   --color-sold:     #c0392b;
   --color-avail:    #5a7a5a;
 
+  /* Brochure navy — matched to the staircase line-art illustration */
+  --color-navy:     #1f2c5d;
+  --color-navy-dk:  #141d3f;
+
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
 
@@ -76,7 +80,7 @@ a:hover { opacity: 0.65; }
   transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
 }
 .btn--full { width: 100%; justify-content: center; }
-.btn--primary { background: var(--color-text); color: var(--color-white); border-color: var(--color-text); }
+.btn--primary { background: var(--color-navy); color: var(--color-white); border-color: var(--color-navy); }
 .btn--primary:hover { background: var(--color-accent-dk); border-color: var(--color-accent-dk); opacity: 1; }
 .btn--ghost   { background: transparent; color: var(--color-white); border-color: rgba(255,255,255,0.5); }
 .btn--ghost:hover { background: rgba(255,255,255,0.12); opacity: 1; }
@@ -112,8 +116,11 @@ a:hover { opacity: 0.65; }
 .nav__links a {
   font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(255,255,255,0.85);
+  transition: color var(--t-fast);
 }
+.nav__links a:hover { color: var(--color-white); opacity: 1; }
 .nav.scrolled .nav__links a { color: var(--color-text); }
+.nav.scrolled .nav__links a:hover { color: var(--color-navy); opacity: 1; }
 
 .nav__controls { display: flex; align-items: center; gap: 1.25rem; }
 
@@ -176,7 +183,7 @@ a:hover { opacity: 0.65; }
 
 .hero__overlay {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to top, rgba(20,18,14,0.75) 0%, rgba(20,18,14,0.2) 60%, rgba(20,18,14,0.1) 100%);
+  background: linear-gradient(to top, rgba(19,25,48,0.78) 0%, rgba(19,25,48,0.22) 60%, rgba(19,25,48,0.1) 100%);
 }
 .hero__content {
   position: relative; z-index: 2;
@@ -207,7 +214,7 @@ a:hover { opacity: 0.65; }
 @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
 /* ── STATS ───────────────────────────────── */
-.stats { background: var(--color-text); padding-block: clamp(2rem, 5vw, 3rem); }
+.stats { background: var(--color-navy); padding-block: clamp(2rem, 5vw, 3rem); }
 .stats__grid {
   display: grid; grid-template-columns: repeat(2, 1fr);
 }
@@ -249,6 +256,59 @@ a:hover { opacity: 0.65; }
 .about__body { display: flex; flex-direction: column; gap: 1.25rem; margin-block: 1.75rem 2.25rem; }
 .about__body p { font-size: clamp(0.95rem, 1.5vw, 1.05rem); line-height: 1.8; color: var(--color-muted); }
 
+/* ── HERITAGE (navy brand moment) ─────────── */
+.heritage {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.heritage__grid {
+  display: grid; grid-template-columns: 1fr;
+}
+@media (min-width: 800px) { .heritage__grid { grid-template-columns: 1fr 1fr; } }
+
+.heritage__image-wrap {
+  position: relative;
+  min-height: 340px;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+.heritage__image-wrap img {
+  width: 100%; max-width: 460px; height: auto;
+  object-fit: contain;
+}
+
+.heritage__panel {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 5vw, 4rem);
+}
+.heritage__bars {
+  display: flex; gap: 5px; margin-bottom: 1.75rem;
+}
+.heritage__bars span {
+  display: block; width: 3px; height: 22px;
+  background: var(--color-white); opacity: 0.85;
+}
+.heritage__label {
+  display: block;
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  margin-bottom: 0.75rem;
+}
+.heritage__heading {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2;
+  max-width: 14ch; margin-bottom: 1.5rem;
+}
+.heritage__body {
+  display: flex; align-items: flex-start; gap: 1.25rem;
+  max-width: 42ch;
+}
+.heritage__plus {
+  font-family: var(--font-body); font-size: 1.5rem; font-weight: 300;
+  color: rgba(255,255,255,0.55); line-height: 1; margin-top: 0.1rem;
+}
+.heritage__body p { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); }
+
 /* ── APARTMENTS ──────────────────────────── */
 .apt-tabs {
   display: flex; flex-wrap: wrap; gap: 0;
@@ -268,8 +328,8 @@ a:hover { opacity: 0.65; }
   margin-bottom: -1px;
   transition: color var(--t-fast), border-color var(--t-fast);
 }
-.apt-tab:hover  { color: var(--color-text); }
-.apt-tab.active { color: var(--color-text); border-bottom-color: var(--color-text); }
+.apt-tab:hover  { color: var(--color-navy); }
+.apt-tab.active { color: var(--color-navy); border-bottom-color: var(--color-navy); }
 
 .apt-panel {
   display: grid; grid-template-columns: 1fr;
@@ -362,7 +422,7 @@ a:hover { opacity: 0.65; }
   box-shadow: 0 2px 12px rgba(0,0,0,0.08); color: var(--color-text);
   transition: background var(--t-fast), color var(--t-fast);
 }
-.gallery__arrow:hover { background: var(--color-text); color: var(--color-white); }
+.gallery__arrow:hover { background: var(--color-navy); color: var(--color-white); }
 .gallery__arrow svg   { width: 20px; height: 20px; }
 @media (min-width: 768px) { .gallery__arrow { display: flex; } }
 .gallery__arrow--prev { left:  max(0.5rem, calc(50vw - var(--container)/2 - 24px)); }
@@ -436,13 +496,13 @@ a:hover { opacity: 0.65; }
 }
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--color-accent-dk);
-  box-shadow: 0 0 0 3px rgba(143,127,99,0.12);
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgba(31,44,93,0.12);
 }
 .form__note { margin-top: 0.75rem; font-size: 0.72rem; color: var(--color-muted); text-align: center; }
 
 /* ── FOOTER ──────────────────────────────── */
-.footer { background: var(--color-text); padding-block: 2.5rem; }
+.footer { background: var(--color-navy-dk); padding-block: 2.5rem; }
 .footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
 .footer__logo  { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-white); letter-spacing: 0.08em; }
 .footer__copy  { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
