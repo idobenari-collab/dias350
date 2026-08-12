@@ -554,7 +554,9 @@ a:hover { opacity: 0.65; }
   align-items: center;
   justify-content: center;
   margin-top: 0.1rem;
+  color: var(--color-accent-dk);
 }
+.location__icon svg { width: 18px; height: 18px; stroke-width: 1.5; }
 
 .location__item-text {
   display: flex;
@@ -563,16 +565,16 @@ a:hover { opacity: 0.65; }
 }
 
 .location__item-text strong {
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-dark, #1a1a1a);
+  color: var(--color-text);
   letter-spacing: 0.01em;
 }
 
 .location__item-text span {
   font-size: 0.82rem;
-  color: var(--color-muted, #777);
+  color: var(--color-muted);
   line-height: 1.4;
 }
 
