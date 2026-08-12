@@ -115,6 +115,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const aptGarden  = document.getElementById('aptGarden');
   const aptPanel   = document.getElementById('aptPanel');
 
+  /* Floor plan lightbox */
+  const lightbox     = document.getElementById('lightbox');
+  const lightboxImg  = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, alt) {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
   let activeUnitId = null;
 
   function buildUnitTabs() {
@@ -184,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         img.src = plan.src;
         img.alt = plan.label ? `${d.name} — ${plan.label[currentLang] || plan.label.en}` : d.name;
         img.loading = 'lazy';
+        img.addEventListener('click', () => openLightbox(plan.src, img.alt));
         floor.appendChild(img);
         aptImageWrap.appendChild(floor);
       });
