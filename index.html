@@ -413,10 +413,17 @@
     </div>
   </footer>
 
-  <!-- ── FLOOR PLAN LIGHTBOX ─────────────────── -->
+  <!-- ── FLOOR PLAN / GALLERY LIGHTBOX ───────── -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
     <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <span class="lightbox__counter" id="lightboxCounter"></span>
   </div>
 
   <script src="content.js"></script>

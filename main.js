@@ -115,15 +115,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const aptGarden  = document.getElementById('aptGarden');
   const aptPanel   = document.getElementById('aptPanel');
 
-  /* Floor plan lightbox */
-  const lightbox     = document.getElementById('lightbox');
-  const lightboxImg  = document.getElementById('lightboxImg');
-  const lightboxClose = document.getElementById('lightboxClose');
+  /* Lightbox — used by floor plans (single image) and the gallery (looping list) */
+  const lightbox        = document.getElementById('lightbox');
+  const lightboxImg     = document.getElementById('lightboxImg');
+  const lightboxClose   = document.getElementById('lightboxClose');
+  const lightboxPrev    = document.getElementById('lightboxPrev');
+  const lightboxNext    = document.getElementById('lightboxNext');
+  const lightboxCounter = document.getElementById('lightboxCounter');
 
-  function openLightbox(src, alt) {
+  let lightboxList  = [];   // [{ src, alt }, ...] — empty for single-image mode
+  let lightboxIndex = 0;
+
+  function showLightboxItem(i) {
+    const item = lightboxList[i];
+    if (!item || !lightboxImg) return;
+    lightboxIndex = i;
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt || '';
+    if (lightboxCounter) {
+      lightboxCounter.textContent = lightboxList.length > 1
+        ? `${i + 1} / ${lightboxList.length}` : '';
+    }
+  }
+
+  /* src/alt for a single image, or (list, startIndex) to enable prev/next + looping */
+  function openLightbox(src, alt, list, startIndex) {
     if (!lightbox || !lightboxImg) return;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || '';
+    lightboxList = list && list.length ? list : [{ src, alt }];
+    const hasNav = lightboxList.length > 1;
+    if (lightboxPrev) lightboxPrev.hidden = !hasNav;
+    if (lightboxNext) lightboxNext.hidden = !hasNav;
+    showLightboxItem(startIndex || 0);
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -134,14 +156,25 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
+  function lightboxStep(dir) {
+    if (lightboxList.length < 2) return;
+    const next = (lightboxIndex + dir + lightboxList.length) % lightboxList.length;
+    showLightboxItem(next);
+  }
+
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev)  lightboxPrev.addEventListener('click', () => lightboxStep(-1));
+  if (lightboxNext)  lightboxNext.addEventListener('click', () => lightboxStep(1));
   if (lightbox) {
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
   }
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
+    if (!lightbox || !lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  lightboxStep(-1);
+    if (e.key === 'ArrowRight') lightboxStep(1);
   });
 
   let activeUnitId = null;
@@ -286,6 +319,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let tx = 0, ts = 0;
     track.addEventListener('touchstart', e => { tx = e.touches[0].pageX; ts = track.scrollLeft; }, { passive: true });
     track.addEventListener('touchmove',  e => { track.scrollLeft = ts - (e.touches[0].pageX - tx); }, { passive: true });
+
+    /* Click-to-zoom — build the loopable list once from the DOM */
+    const galleryItems = Array.from(track.querySelectorAll('.gallery__item img'));
+    const galleryList  = galleryItems.map(img => ({ src: img.currentSrc || img.src, alt: img.alt }));
+    galleryItems.forEach((img, i) => {
+      img.closest('.gallery__item').addEventListener('click', () => {
+        if (dragging) return;
+        openLightbox(null, null, galleryList, i);
+      });
+    });
   }
 
   /* ══════════════════════════════════════════
