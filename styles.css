@@ -456,7 +456,7 @@ a:hover { opacity: 0.65; }
 /* ── LOCATION ────────────────────────────── */
 .location__grid {
   display: grid; grid-template-columns: 1fr;
-  gap: clamp(2rem, 5vw, 4rem); align-items: start;
+  gap: clamp(2rem, 5vw, 4rem); align-items: stretch;
 }
 @media (min-width: 768px) { .location__grid { grid-template-columns: 0.85fr 1.15fr; } }
 
@@ -484,11 +484,11 @@ a:hover { opacity: 0.65; }
 
 .location__photo {
   position: relative;
-  aspect-ratio: 4 / 3;
+  min-height: 320px;
   border-radius: 4px; overflow: hidden;
   cursor: zoom-in;
 }
-.location__photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
+.location__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; transition: transform 0.5s var(--ease); }
 .location__photo:hover img { transform: scale(1.03); }
 .location__photo-caption {
   position: absolute; left: 1.25rem; bottom: 1.25rem;
