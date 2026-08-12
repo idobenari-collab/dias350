@@ -286,6 +286,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ══════════════════════════════════════════
+     5b. LOCATION PHOTO — click-to-zoom
+  ══════════════════════════════════════════ */
+  const locationPhoto = document.querySelector('.location__photo');
+  if (locationPhoto) {
+    const img = locationPhoto.querySelector('img');
+    if (img) {
+      locationPhoto.addEventListener('click', () => openLightbox(img.src, img.alt));
+    }
+  }
+
+  /* ══════════════════════════════════════════
      6. GALLERY — drag + arrows
   ══════════════════════════════════════════ */
   const track = document.getElementById('galleryTrack');
