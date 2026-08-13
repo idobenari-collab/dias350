@@ -656,3 +656,13 @@ a:hover { opacity: 0.65; }
 /* ── DEVELOPERS ──────────────────────────── */
 .developers__inner { max-width: 760px; }
 .developers__body p { max-width: 68ch; }
+
+.about__by {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-top: -0.35rem;
+  margin-bottom: 1.1rem;
+}
