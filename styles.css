@@ -652,3 +652,7 @@ a:hover { opacity: 0.65; }
   font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.75);
 }
 .lightbox__counter:empty { display: none; }
+
+/* ── DEVELOPERS ──────────────────────────── */
+.developers__inner { max-width: 760px; }
+.developers__body p { max-width: 68ch; }
