@@ -299,14 +299,9 @@ a:hover { opacity: 0.65; }
   max-width: 14ch; margin-bottom: 1.5rem;
 }
 .heritage__body {
-  display: flex; align-items: flex-start; gap: 1.25rem;
   max-width: 42ch;
 }
-.heritage__plus {
-  font-family: var(--font-body); font-size: 1.5rem; font-weight: 300;
-  color: rgba(255,255,255,0.55); line-height: 1; margin-top: 0.1rem;
-}
-.heritage__body p { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); }
+.heritage__body p { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); text-align: left; }
 
 /* ── APARTMENTS ──────────────────────────── */
 .apt-tabs {
