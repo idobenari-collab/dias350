@@ -203,7 +203,6 @@ const CONTENT = {
       pt: "O equilíbrio perfeito entre conforto e privacidade",
     },
     images: [
-      { src: "images/gallery-1.jpg", alt: "Living area" },
       { src: "images/gallery-2.jpg", alt: "Kitchen" },
       { src: "images/gallery-3.jpg", alt: "Master bedroom" },
       { src: "images/gallery-4.jpg", alt: "Bathroom" },
