@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ══════════════════════════════════════════
      3. HERO SLIDESHOW
-     Images: images/hero-1.jpg, hero-2.jpg ...
+     Images: images/gallery-2.jpg (slide 1), hero-2.jpg, hero-3.jpg ...
      Interval: 5 seconds
   ══════════════════════════════════════════ */
   const slides     = document.querySelectorAll('.hero__slide');
