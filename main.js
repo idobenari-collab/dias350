@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       /* Scale the plan's display width by real floor area, so units are
          shown in proportion to one another (relative to the largest unit). */
-      const BASE_WIDTH = 780; // matches --plan-base-width in styles.css
+      const BASE_WIDTH = 1100; // matches .apt-image-wrap max-width in styles.css (largest unit fills the container)
       const MIN_SCALE = 0.55;
       if (unit.areaM2) {
         const maxArea = Math.max(...CONTENT.units.map(u => u.areaM2 || 0));

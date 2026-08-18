@@ -176,7 +176,10 @@ const CONTENT = {
     {
       id: "apt-5",
       label: { en: "Unit E", pt: "Fração E" },
-      images: [{ src: "images/unit-e.jpg" }],
+      images: [
+        { src: "images/unit-e-floor3.jpg", label: { en: "Floor 3", pt: "Piso 3" } },
+        { src: "images/unit-e-floor4.jpg", label: { en: "Floor 4", pt: "Piso 4" } },
+      ],
       areaM2: 96,
       details: {
         en: { name: "Unit E", typology: "T2 Duplex", area: "96.00 m²", balcony: "9.60 m²", terrace: "—", storage: "—", garden: "—" },
@@ -208,10 +211,10 @@ const CONTENT = {
       { src: "images/gallery-3.jpg", alt: "Master bedroom" },
       { src: "images/gallery-4.jpg", alt: "Bathroom" },
       { src: "images/gallery-5.jpg", alt: "Balcony view" },
-      { src: "images/gallery-6.jpg", alt: "Building facade" },
-      { src: "images/gallery-7.jpg", alt: "Common area" },
-      { src: "images/gallery-8.jpg", alt: "Rooftop terrace" },
-      { src: "images/gallery-9.jpg", alt: "Garden view" },
+      { src: "images/gemini_garden.jpg", alt: "Building facade" },
+      { src: "images/10000.jpg", alt: "Common area" },
+      { src: "images/20000.jpg", alt: "Rooftop terrace" },
+      { src: "images/60000.jpg", alt: "Garden view" },
     ],
   },
 
