@@ -384,6 +384,21 @@ a:hover { opacity: 0.65; }
     border-right: none;
     border-bottom: 1px solid rgba(31,44,93,0.15);
   }
+  /* Wide/elongated plans (e.g. larger units) become unreadably short if
+     squeezed to the full screen width. Fix the height instead and let
+     the plan scroll horizontally so it stays legible. */
+  .apt-image-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .apt-floor { width: max-content; max-width: none; }
+  .apt-floor img { width: auto; height: 260px; max-width: none; }
+  .apt-floor__hint {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    margin-top: 0.85rem;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-muted);
+  }
+}
+@media (min-width: 640px) {
+  .apt-floor__hint { display: none; }
 }
 
 /* Unit details */
