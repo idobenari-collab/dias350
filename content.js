@@ -88,7 +88,7 @@ const CONTENT = {
     {
       id: "apt-1",
       label: { en: "Unit A", pt: "Fração A" },
-      images: [{ src: "images/unit-a.jpg" }],
+      images: [{ src: "images/unit-a.png" }],
       areaM2: 50,
       details: {
         en: {
@@ -114,7 +114,7 @@ const CONTENT = {
     {
       id: "apt-2",
       label: { en: "Unit B", pt: "Fração B" },
-      images: [{ src: "images/unit-b.jpg" }],
+      images: [{ src: "images/unit-b.png" }],
       areaM2: 105,
       details: {
         en: {
@@ -140,7 +140,7 @@ const CONTENT = {
     {
       id: "apt-3",
       label: { en: "Unit C", pt: "Fração C" },
-      images: [{ src: "images/unit-c.jpg" }],
+      images: [{ src: "images/unit-c.png" }],
       areaM2: 43,
       details: {
         en: {
@@ -166,7 +166,7 @@ const CONTENT = {
   {
       id: "apt-4",
       label: { en: "Unit D", pt: "Fração D" },
-      images: [{ src: "images/unit-d.jpg" }],
+      images: [{ src: "images/unit-d.png" }],
       areaM2: 60,
       details: {
         en: { name: "Unit D", typology: "T2", area: "60.00 m²", balcony: "3.00 m²", terrace: "—", storage: "—", garden: "—" },
@@ -176,7 +176,7 @@ const CONTENT = {
     {
       id: "apt-5",
       label: { en: "Unit E", pt: "Fração E" },
-      images: [{ src: "images/unit-e.jpg" }],
+      images: [{ src: "images/unit-e.png" }],
       areaM2: 96,
       details: {
         en: { name: "Unit E", typology: "T2 Duplex", area: "96.00 m²", balcony: "9.60 m²", terrace: "—", storage: "—", garden: "—" },
@@ -186,7 +186,7 @@ const CONTENT = {
     {
       id: "apt-6",
       label: { en: "Unit F", pt: "Fração F" },
-      images: [{ src: "images/unit-f.jpg" }],
+      images: [{ src: "images/unit-f.png" }],
       areaM2: 77.5,
       details: {
         en: { name: "Unit F", typology: "T3", area: "77.50 m²", balcony: "7.40 m²", terrace: "—", storage: "10.00 m²", garden: "121.50 m²" },
