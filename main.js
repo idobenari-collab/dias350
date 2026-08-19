@@ -51,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.lang-btn').forEach(b =>
         b.classList.toggle('active', b.dataset.lang === currentLang)
       );
+      const privacyLink = document.querySelector('.footer__privacy');
+      if (privacyLink) {
+        privacyLink.href = currentLang === 'pt' ? 'privacy-policy-pt.html' : 'privacy-policy.html';
+        privacyLink.textContent = currentLang === 'pt' ? 'Política de Privacidade' : 'Privacy Policy';
+      }
       buildUnitTabs();
       renderUnit(activeUnitId);
     });
