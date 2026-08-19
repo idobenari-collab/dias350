@@ -240,7 +240,10 @@ const CONTENT = {
       en: "Our team will get back to you shortly.",
       pt: "A nossa equipa entrará em contacto brevemente.",
     },
-    email: "info@350dias.pt",
+    // Phone/WhatsApp NOT YET LIVE — placeholders only, not currently rendered.
+    // Update once real numbers exist, and add them back into the
+    // contact__channels list in index.html to display them.
+    email: "hello@350dias.com",
     phone: "+351 22 000 0000",
     whatsapp: "+351 91 000 0000",
   },
