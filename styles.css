@@ -569,6 +569,9 @@ a:hover { opacity: 0.65; }
   box-shadow: 0 0 0 3px rgba(31,44,93,0.12);
 }
 .form__note { margin-top: 0.75rem; font-size: 0.72rem; color: var(--color-muted); text-align: center; }
+.form__status { margin-top: 0.6rem; font-size: 0.8rem; text-align: center; min-height: 1em; }
+.form__status--success { color: var(--color-avail); }
+.form__status--error   { color: var(--color-sold); }
 
 /* ── FOOTER ──────────────────────────────── */
 .footer { background: var(--color-navy-dk); padding-block: 2.5rem; }

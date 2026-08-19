@@ -370,18 +370,42 @@ document.addEventListener('DOMContentLoaded', () => {
   ══════════════════════════════════════════ */
   const form = document.getElementById('contactForm');
   if (form) {
-    form.addEventListener('submit', e => {
+    const FORMINIT_FORM_ID = 'uqyqqq7hqzy'; // 350DIAS contact form
+    const forminit = (typeof Forminit !== 'undefined') ? new Forminit() : null;
+    const status = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const btn  = form.querySelector('[type="submit"]');
       const orig = btn.innerHTML;
       btn.disabled  = true;
       btn.innerHTML = 'Sending… <i data-lucide="loader"></i>';
+      if (status) { status.textContent = ''; status.className = 'form__status'; }
       lucide.createIcons();
-      setTimeout(() => {
-        btn.innerHTML = 'Sent! <i data-lucide="check"></i>';
+
+      if (!forminit) {
+        btn.innerHTML = 'Error <i data-lucide="x"></i>';
+        if (status) { status.textContent = 'Something went wrong loading the form. Please try again later.'; status.className = 'form__status form__status--error'; }
         lucide.createIcons();
-        setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; form.reset(); lucide.createIcons(); }, 3000);
-      }, 1400);
+        setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; lucide.createIcons(); }, 3000);
+        return;
+      }
+
+      const formData = new FormData(form);
+      const { error } = await forminit.submit(FORMINIT_FORM_ID, formData);
+
+      if (error) {
+        btn.innerHTML = orig;
+        btn.disabled = false;
+        if (status) { status.textContent = error.message || 'Something went wrong. Please try again.'; status.className = 'form__status form__status--error'; }
+        lucide.createIcons();
+        return;
+      }
+
+      btn.innerHTML = 'Sent! <i data-lucide="check"></i>';
+      if (status) { status.textContent = 'Thanks — we\'ll be in touch shortly.'; status.className = 'form__status form__status--success'; }
+      lucide.createIcons();
+      setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; form.reset(); if (status) status.textContent = ''; lucide.createIcons(); }, 3000);
     });
   }
 

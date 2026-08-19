@@ -392,25 +392,26 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="fieldName">Full name</label>
-                <input type="text" id="fieldName" name="name" placeholder="Your name" required />
+                <input type="text" id="fieldName" name="fi-text-fullName" placeholder="Your name" required />
               </div>
               <div class="form-group">
                 <label for="fieldEmail">Email</label>
-                <input type="email" id="fieldEmail" name="email" placeholder="your@email.com" required />
+                <input type="email" id="fieldEmail" name="fi-sender-email" placeholder="your@email.com" required />
               </div>
             </div>
             <div class="form-group">
               <label for="fieldPhone">Phone</label>
-              <input type="tel" id="fieldPhone" name="phone" placeholder="+351 900 000 000" />
+              <input type="tel" id="fieldPhone" name="fi-sender-phone" placeholder="+351 900 000 000" />
             </div>
             <div class="form-group">
               <label for="fieldMessage">Message</label>
-              <textarea id="fieldMessage" name="message" rows="4" placeholder="Tell us how we can help…"></textarea>
+              <textarea id="fieldMessage" name="fi-text-message" rows="4" placeholder="Tell us how we can help…"></textarea>
             </div>
             <button type="submit" class="btn btn--primary btn--full">
               Send message <i data-lucide="send"></i>
             </button>
             <p class="form__note">By submitting you agree to our privacy policy.</p>
+            <p class="form__status" id="formStatus" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -440,6 +441,7 @@
     <span class="lightbox__counter" id="lightboxCounter"></span>
   </div>
 
+  <script src="https://forminit.com/sdk/v1/forminit.js"></script>
   <script src="content.js"></script>
   <script src="main.js"></script>
 </body>
