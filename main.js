@@ -48,9 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       currentLang = btn.dataset.lang;
-      document.querySelectorAll('.lang-btn').forEach(b =>
-        b.classList.toggle('active', b.dataset.lang === currentLang)
-      );
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        const isActive = b.dataset.lang === currentLang;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive);
+      });
       const privacyLink = document.querySelector('.footer__privacy');
       if (privacyLink) {
         privacyLink.href = currentLang === 'pt' ? 'privacy-policy-pt.html' : 'privacy-policy.html';

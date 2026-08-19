@@ -23,6 +23,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#home">Skip to content</a>
+
   <!-- ── NAV ───────────────────────────────── -->
   <header class="nav" id="nav">
     <div class="nav__inner">
@@ -38,9 +40,9 @@
 
       <div class="nav__controls">
         <div class="lang-toggle" id="langToggle">
-          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
           <span class="lang-sep">/</span>
-          <button class="lang-btn" data-lang="pt">PT</button>
+          <button class="lang-btn" data-lang="pt" aria-pressed="false">PT</button>
         </div>
         <button class="nav__burger" id="navBurger" aria-label="Menu">
           <i data-lucide="menu"></i>
@@ -57,7 +59,7 @@
     </div>
   </header>
 
-  <main id="home">
+  <main id="home" tabindex="-1">
 
     <!-- ── HERO ──────────────────────────────
          ADD SLIDESHOW IMAGES:
@@ -370,6 +372,9 @@
             Together, they focus on creating thoughtful urban projects that respect their
             surroundings and are designed for the way people live today.
           </p>
+          <p class="developers__legal-note" style="font-size:0.78rem;color:var(--color-muted);margin-top:1rem;">
+            ALBA URBANA is the trading name of ALBA TOP BONFIM, LDA.
+          </p>
         </div>
       </div>
     </section>
@@ -380,12 +385,7 @@
         <div class="contact__info">
           <span class="section-label">Contact</span>
           <h2 class="section-heading">Request more information</h2>
-          <p class="contact__sub">Our team will get back to you shortly.</p>
-          <ul class="contact__channels">
-            <li><a href="mailto:info@350dias.pt"><i data-lucide="mail"></i> info@350dias.pt</a></li>
-            <li><a href="tel:+351220000000"><i data-lucide="phone"></i> +351 22 000 0000</a></li>
-            <li><a href="https://wa.me/351910000000" target="_blank" rel="noopener"><i data-lucide="message-circle"></i> WhatsApp</a></li>
-          </ul>
+          <p class="contact__sub">Fill in the form and our team will get back to you shortly.</p>
         </div>
         <div class="contact__form-wrap">
           <form class="contact__form" id="contactForm" novalidate>
@@ -425,6 +425,7 @@
       <span class="footer__logo">350DIAS</span>
       <p class="footer__copy">© 2025 350DIAS. All rights reserved. A development by ALBA URBANA.</p>
       <a href="privacy-policy.html" class="footer__privacy">Privacy Policy</a>
+      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener" class="footer__privacy">Livro de Reclamações Eletrónico</a>
     </div>
   </footer>
 
