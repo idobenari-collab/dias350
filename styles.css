@@ -242,6 +242,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .stat:nth-child(2) { border-right: none; }
   .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
 }
+.stats__disclaimer {
+  text-align: center;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 1.25rem;
+}
 .stat__value {
   font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 300; color: var(--color-white); line-height: 1; margin-bottom: 0.4rem;
