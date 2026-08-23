@@ -125,9 +125,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   max-width: var(--container); margin-inline: auto;
 }
 .nav__logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem; font-weight: 400; letter-spacing: 0.08em;
-  color: var(--color-white);
+  display: flex; align-items: center;
+}
+.nav__logo img {
+  display: block; height: 20px; width: auto;
 }
 
 .nav__links { display: none; gap: 2.5rem; }
