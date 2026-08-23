@@ -210,10 +210,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .hero__location svg { width: 13px; height: 13px; }
 .hero__heading {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.08;
-  letter-spacing: 0.04em;
-  color: var(--color-white); margin-bottom: 1.25rem; max-width: 16ch;
+  margin-bottom: 1.25rem;
+}
+.hero__heading img {
+  display: block; width: clamp(260px, 34vw, 540px); height: auto;
 }
 .hero__sub {
   font-size: clamp(0.9rem, 2vw, 1.1rem); font-weight: 300;
@@ -609,7 +609,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* ── FOOTER ──────────────────────────────── */
 .footer { background: var(--color-navy-dk); padding-block: 2.5rem; }
 .footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
-.footer__logo  { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-white); letter-spacing: 0.08em; }
+.footer__logo  { display: inline-flex; align-items: center; }
+.footer__logo img { display: block; height: 16px; width: auto; }
 .footer__copy  { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
 .footer__privacy { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 .footer__privacy:hover { color: rgba(255,255,255,0.7); opacity: 1; }
