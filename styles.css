@@ -212,13 +212,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero__heading {
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.08;
+  letter-spacing: 0.04em;
   color: var(--color-white); margin-bottom: 1.25rem; max-width: 16ch;
 }
 .hero__sub {
   font-size: clamp(0.9rem, 2vw, 1.1rem); font-weight: 300;
+  color: rgba(255,255,255,0.75); margin-bottom: 0.35rem; max-width: 44ch;
+}
+.hero__by {
+  font-size: clamp(0.85rem, 1.8vw, 1rem); font-weight: 300;
   color: rgba(255,255,255,0.75); margin-bottom: 2.5rem; max-width: 44ch;
 }
+.hero__by strong {
+  font-weight: 600; letter-spacing: 0.1em;
+}
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 1rem; }
+.hero__ctas .btn { min-width: 190px; justify-content: center; }
+@media (max-width: 480px) {
+  .hero__ctas { flex-direction: column; }
+  .hero__ctas .btn { width: 100%; min-width: 0; }
+}
 .hero__scroll {
   position: absolute; bottom: 2rem; right: clamp(1.25rem, 5vw, 3rem); z-index: 2;
   color: rgba(255,255,255,0.5); animation: bounce 2s infinite;
