@@ -19,8 +19,8 @@
   --color-navy:     #1f2c5d;
   --color-navy-dk:  #141d3f;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-display: 'Bodoni Moda 18pt', Georgia, serif;
+  --font-body:    'Urbanist', system-ui, sans-serif;
 
   --container: 1200px;
   --nav-h:     72px;
@@ -72,8 +72,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .section-heading {
-  font-family: var(--font-display);
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: clamp(1.8rem, 4vw, 3rem);
   line-height: 1.2;
   max-width: 36ch;
@@ -92,7 +92,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding: 0.875rem 2rem;
   font-family: var(--font-body);
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid transparent;
@@ -210,7 +210,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .hero__location svg { width: 13px; height: 13px; }
 .hero__heading {
-  font-family: var(--font-display); font-weight: 300;
+  font-family: var(--font-display); font-weight: 400;
   font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.08;
   color: var(--color-white); margin-bottom: 1.25rem; max-width: 16ch;
 }
@@ -249,8 +249,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin-top: 1.25rem;
 }
 .stat__value {
-  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 300; color: var(--color-white); line-height: 1; margin-bottom: 0.4rem;
+  font-family: var(--font-body); font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600; color: var(--color-white); line-height: 1; margin-bottom: 0.4rem;
 }
 .stat__label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
 
@@ -314,7 +314,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin-bottom: 0.75rem;
 }
 .heritage__heading {
-  font-family: var(--font-display); font-weight: 300;
+  font-family: var(--font-body); font-weight: 600;
   font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2;
   max-width: 14ch; margin-bottom: 1.5rem;
 }
@@ -337,7 +337,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-bottom: 2px solid transparent;
   padding: 0.85rem 1.5rem;
   font-family: var(--font-body); font-size: 0.78rem;
-  font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--color-muted); cursor: pointer; white-space: nowrap;
   margin-bottom: -1px;
   transition: color var(--t-fast), border-color var(--t-fast);
@@ -428,8 +428,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin-bottom: 1.75rem;
 }
 .apt-details__name {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 300;
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600;
 }
 
 /* Status badge */
@@ -641,9 +641,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .location__item-text strong {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text);
   letter-spacing: 0.01em;
 }
