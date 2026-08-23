@@ -712,6 +712,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* ── DEVELOPERS ──────────────────────────── */
 .developers__inner { max-width: 760px; }
+.developers__logo { display: block; width: 340px; max-width: 100%; height: auto; margin-bottom: 1.75rem; }
 .developers__body p { max-width: 68ch; }
 
 .about__by {
