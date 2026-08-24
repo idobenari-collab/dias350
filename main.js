@@ -8,6 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Icons ───────────────────────────────── */
   if (typeof lucide !== 'undefined') lucide.createIcons();
 
+  /* ── Click-to-load map (no Google connection until user opts in) ── */
+  const mapContainer = document.getElementById('location-map');
+  const mapBtn = document.getElementById('location-map-btn');
+  if (mapContainer && mapBtn) {
+    mapBtn.addEventListener('click', () => {
+      const src = mapContainer.getAttribute('data-map-src');
+      const iframe = document.createElement('iframe');
+      iframe.title = '350DIAS map';
+      iframe.src = src;
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.style.border = '0';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      const placeholder = document.getElementById('location-map-placeholder');
+      if (placeholder) placeholder.remove();
+      mapContainer.appendChild(iframe);
+    });
+  }
+
   let currentLang = 'en';
 
   /* ══════════════════════════════════════════
