@@ -475,6 +475,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* ── GALLERY ─────────────────────────────── */
 .gallery .section-header { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.gallery__heading { max-width: none; font-size: clamp(1.5rem, 3vw, 2.6rem); white-space: nowrap; }
+@media (max-width: 640px) { .gallery__heading { white-space: normal; font-size: clamp(1.5rem, 5vw, 2rem); } }
 .gallery__wrapper { position: relative; width: 100%; }
 .gallery__track {
   display: flex; gap: clamp(0.75rem, 2vw, 1.25rem);
