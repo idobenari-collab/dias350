@@ -294,14 +294,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ══════════════════════════════════════════
-     5b. LOCATION PHOTO — click-to-zoom
+     5b. LOCATION GALLERY — click-to-zoom with navigation
   ══════════════════════════════════════════ */
-  const locationPhoto = document.querySelector('.location__photo');
-  if (locationPhoto) {
-    const img = locationPhoto.querySelector('img');
-    if (img) {
-      locationPhoto.addEventListener('click', () => openLightbox(img.src, img.alt));
-    }
+  const locationPhotos = Array.from(document.querySelectorAll('.location__photo'));
+  if (locationPhotos.length) {
+    const locationList = locationPhotos.map(el => {
+      const img = el.querySelector('img');
+      return { src: img.src, alt: img.alt };
+    });
+    locationPhotos.forEach((el, i) => {
+      el.addEventListener('click', () => openLightbox(null, null, locationList, i));
+    });
   }
 
   /* ══════════════════════════════════════════
