@@ -264,7 +264,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .stat__value {
   font-family: var(--font-body); font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 600; color: var(--color-white); line-height: 1; margin-bottom: 0.4rem;
+  font-weight: 600; color: var(--color-white); line-height: 1.1; margin-bottom: 0.4rem;
+  min-height: clamp(3.4rem, 7.5vw, 5.6rem);
+  display: flex; align-items: flex-end; justify-content: center;
 }
 .stat__value--text { font-size: clamp(1.15rem, 2.6vw, 1.7rem); line-height: 1.2; }
 .stat__label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
