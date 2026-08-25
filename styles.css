@@ -381,9 +381,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin-inline: 0; width: 100%;
   transition: max-width 0.3s ease;
 }
-.apt-floor { width: 100%; }
+.apt-floor {
+  width: 100%;
+  height: clamp(220px, 28vw, 420px);
+  display: flex; align-items: center; justify-content: center;
+}
 .apt-floor img {
-  display: block; width: 100%; height: auto;
+  display: block; width: auto; height: 100%; max-width: 100%;
+  object-fit: contain;
   background: #fff;
   transition: opacity 0.3s ease;
 }
@@ -422,8 +427,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
      squeezed to the full screen width. Fix the height instead and let
      the plan scroll horizontally so it stays legible. */
   .apt-image-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .apt-floor { width: max-content; max-width: none; }
-  .apt-floor img { width: auto; height: 260px; max-width: none; }
+  .apt-floor { width: max-content; max-width: none; height: 260px; }
+  .apt-floor img { width: auto; height: 100%; max-width: none; }
   .apt-floor__hint {
     display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     margin-top: 0.85rem;
