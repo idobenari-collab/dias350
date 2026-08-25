@@ -266,6 +266,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-family: var(--font-body); font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 600; color: var(--color-white); line-height: 1; margin-bottom: 0.4rem;
 }
+.stat__value--text { font-size: clamp(1.15rem, 2.6vw, 1.7rem); line-height: 1.2; }
 .stat__label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
 
 /* ── ABOUT ───────────────────────────────── */
