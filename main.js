@@ -229,17 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const plans = unit.images || [];
       aptImageWrap.classList.toggle('apt-image-wrap--split', plans.length > 1);
 
-      /* Scale the plan's display width by real floor area, so units are
-         shown in proportion to one another (relative to the largest unit). */
-      const BASE_WIDTH = 1100; // matches .apt-image-wrap max-width in styles.css (largest unit fills the container)
-      const MIN_SCALE = 0.55;
-      if (unit.areaM2) {
-        const maxArea = Math.max(...CONTENT.units.map(u => u.areaM2 || 0));
-        const scale = Math.max(MIN_SCALE, Math.sqrt(unit.areaM2 / maxArea));
-        aptImageWrap.style.maxWidth = Math.round(BASE_WIDTH * scale) + 'px';
-      } else {
-        aptImageWrap.style.maxWidth = '';
-      }
+      /* Two-tier display scale: Units B and F (the largest apartments) show
+         at full width; all other units share one standard, smaller width.
+         Keeps the plans easy to compare while still reflecting real size. */
+      const BASE_WIDTH = 1100; // matches .apt-image-wrap max-width in styles.css
+      const LARGE_SCALE = 1;
+      const STANDARD_SCALE = 0.7;
+      const LARGE_UNIT_IDS = ['apt-2', 'apt-6']; // Unit B, Unit F
+      const scale = LARGE_UNIT_IDS.includes(unit.id) ? LARGE_SCALE : STANDARD_SCALE;
+      aptImageWrap.style.maxWidth = Math.round(BASE_WIDTH * scale) + 'px';
 
       plans.forEach(plan => {
         const floor = document.createElement('div');
