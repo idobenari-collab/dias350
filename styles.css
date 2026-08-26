@@ -374,9 +374,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Unit image */
 .apt-image-wrap {
-  border-radius: 4px; overflow: hidden;
-  background: #e8e8e6;
-  padding: clamp(0.75rem, 2.5vw, 1.5rem);
   display: flex; flex-direction: column;
   justify-content: center; gap: clamp(1rem, 3vw, 1.75rem);
   max-width: 1100px; /* base width for the largest unit (fills the container); JS scales smaller units down proportionally */
