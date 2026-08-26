@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>350DIAS — Uma Nova Visão Residencial no Porto</title>
+  <meta name="description" content="350DIAS é um empreendimento residencial exclusivo no Porto. Apartamentos premium pensados para o conforto, a elegância e a alma da cidade." />
+  <meta name="keywords" content="350DIAS, imobiliário Porto, apartamentos de luxo, residencial Porto" />
+  <meta property="og:title" content="350DIAS — Uma Nova Visão Residencial no Porto" />
+  <meta property="og:description" content="Empreendimento residencial exclusivo no Porto." />
+  <meta property="og:image" content="images/gallery-2.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: self-hosted (no external CDN — avoids sending visitor IPs to Google before consent) -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#home">Saltar para o conteúdo</a>
+
+  <!-- ── NAV ───────────────────────────────── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#home"><img src="images/350dias-logo-white.png" alt="350 DIAS" /></a>
+
+      <nav class="nav__links">
+        <a href="#about">Projeto</a>
+        <a href="#apartments">Apartamentos</a>
+        <a href="#gallery">Galeria</a>
+        <a href="#location">Localização</a>
+        <a href="#developers">Promotor</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+
+      <div class="nav__controls">
+        <div class="lang-toggle" id="langToggle">
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn active" data-lang="pt" aria-pressed="true">PT</button>
+        </div>
+        <button class="nav__burger" id="navBurger" aria-label="Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__drawer" id="navDrawer">
+      <a href="#about"      class="drawer-link">Projeto</a>
+      <a href="#apartments" class="drawer-link">Apartamentos</a>
+      <a href="#gallery"    class="drawer-link">Galeria</a>
+      <a href="#location"   class="drawer-link">Localização</a>
+      <a href="#developers" class="drawer-link">Promotor</a>
+      <a href="#contact"    class="drawer-link">Contacto</a>
+    </div>
+  </header>
+
+  <main id="home" tabindex="-1">
+
+    <!-- ── HERO ──────────────────────────────
+         ADD SLIDESHOW IMAGES:
+         Slide 1 uses gallery-2.jpg; slides 2–4 use hero-2.jpg, hero-3.jpg, gallery-4.jpg
+         in the /images/ folder.
+         To add another image: copy one .hero__slide
+         div below and change the filename.
+    ─────────────────────────────────────────── -->
+    <section class="hero" id="hero">
+      <div class="hero__slideshow" id="heroSlideshow" aria-hidden="true">
+        <div class="hero__slide active" style="background-image:url('images/gallery-2.jpg')"></div>
+        <div class="hero__slide"        style="background-image:url('images/hero-2.jpg')"></div>
+        <div class="hero__slide"        style="background-image:url('images/hero-3.jpg')"></div>
+        <div class="hero__slide"        style="background-image:url('images/gallery-4.jpg')"></div>
+      </div>
+      <div class="hero__overlay"></div>
+
+      <div class="hero__content">
+        <span class="hero__location">
+          <i data-lucide="map-pin"></i>
+          Porto, Portugal
+        </span>
+        <h1 class="hero__heading">
+          <img src="images/350dias-logo-white.png" alt="350 DIAS" />
+        </h1>
+        <p class="hero__sub">
+          6 apartamentos exclusivos
+        </p>
+        <p class="hero__by">
+          Um projeto de <strong>ALBA URBANA</strong>
+        </p>
+        <div class="hero__ctas">
+          <a href="#contact" class="btn btn--primary">Fale Connosco</a>
+          <a href="#location" class="btn btn--ghost">Ver Localização</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <i data-lucide="chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- ── STATS ─────────────────────────────── -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat"><span class="stat__value">T1–T3</span><span class="stat__label">Tipologias</span></div>
+          <div class="stat"><span class="stat__value">6</span><span class="stat__label">Apartamentos</span></div>
+          <div class="stat"><span class="stat__value">4</span><span class="stat__label">Pisos</span></div>
+          <div class="stat"><span class="stat__value">Em Curso</span><span class="stat__label">Estado</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ─────────────────────────────── -->
+    <section class="about section" id="about">
+      <div class="container about__grid">
+        <div class="about__image-wrap">
+          <div class="about__image"
+               style="background-image:url('images/gallery-1.jpg')"></div>
+        </div>
+        <div class="about__text">
+          <span class="about__by">O Projeto</span>
+          <h2 class="section-heading">
+            Um novo capítulo<br>do Bonfim
+          </h2>
+          <div class="about__body">
+            <p>
+              O 350 DIAS é um empreendimento residencial boutique de seis apartamentos únicos,
+              pensado para o viver urbano contemporâneo, a poucos minutos do centro do Porto.
+              Instalado num edifício tradicional portuense, o projeto combina o carácter da
+              arquitetura original com uma transformação completa dos seus interiores.
+              Cada apartamento foi desenhado individualmente, com a sua própria disposição,
+              proporções, luz natural, áreas exteriores e carácter arquitetónico próprios,
+              oferecendo um sentido de individualidade raramente encontrado em novos empreendimentos.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--outline">Fale Connosco</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HERITAGE ──────────────────────────── -->
+    <section class="heritage" id="heritage">
+      <div class="heritage__grid">
+        <div class="heritage__image-wrap">
+          <img src="images/staircase-line-art.png" alt="Desenho técnico da escadaria" loading="lazy" />
+        </div>
+        <div class="heritage__panel">
+          <span class="heritage__label">Materiais &amp; Detalhes</span>
+          <h2 class="heritage__heading">Um viver contemporâneo</h2>
+          <div class="heritage__body">
+            <p>
+              Cada fração foi pensada para um dia a dia confortável, com materiais e
+              acabamentos cuidadosamente selecionados em todos os espaços. Cozinhas de
+              desenho exclusivo, pavimento em madeira e bancadas em mármore são complementados
+              por equipamentos de qualidade, janelas com vidro duplo térmico e isolamento de
+              alto desempenho.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── APARTMENTS ─────────────────────────
+         UNIT IMAGES: place unit-a.png ... unit-f.png
+         in /images/ folder.
+         STATUS: edit status in content.js
+         ("available" or "sold")
+    ─────────────────────────────────────────── -->
+    <section class="apartments section section--alt" id="apartments">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Tipologias</span>
+          <h2 class="section-heading">Nenhum apartamento é igual ao outro</h2>
+          <p class="section-sub">Cada apartamento foi cuidadosamente desenhado em torno das suas próprias proporções, disposição, espaço exterior e relação com a luz natural, resultando numa coleção de habitações distintas, com carácter e identidade próprios.</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="apt-tabs" id="aptTabs" role="tablist">
+          <!-- Built by main.js from CONTENT.units -->
+        </div>
+
+        <!-- Panel -->
+        <div class="apt-panel" id="aptPanel">
+          <!-- Top: details -->
+          <div class="apt-details">
+            <div class="apt-details__header">
+              <h3 id="aptName" class="apt-details__name"></h3>
+              <span id="aptStatus" class="apt-status"></span>
+            </div>
+            <dl class="apt-details__list">
+              <div class="apt-detail">
+                <dt><i data-lucide="layout-grid"></i> Tipologia</dt>
+                <dd id="aptTypology"></dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="maximize-2"></i> Área</dt>
+                <dd id="aptArea"></dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="sun"></i> Varanda</dt>
+                <dd id="aptBalcony"></dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="square"></i> Terraço</dt>
+                <dd id="aptTerrace"></dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="archive"></i> Arrumos</dt>
+                <dd id="aptStorage"></dd>
+              </div>
+              <div class="apt-detail">
+                <dt><i data-lucide="trees"></i> Jardim</dt>
+                <dd id="aptGarden"></dd>
+              </div>
+            </dl>
+            <a href="#contact" class="btn btn--primary">Fale Connosco</a>
+          </div>
+
+          <!-- Bottom: floor plan(s) -->
+          <div class="apt-image-wrap"><!-- filled by JS: one or two floor plans --></div>
+          <div class="apt-floor__hint" aria-hidden="true">
+            <i data-lucide="move-horizontal"></i>
+            <span>Arraste para explorar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GALLERY ────────────────────────────
+         Add images named gallery-1.jpg, gallery-2.jpg ...
+         Place them in /images/ folder.
+         To add: copy a .gallery__item div below.
+    ─────────────────────────────────────────── -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Galeria</span>
+          <h2 class="section-heading gallery__heading">Onde a luz, o espaço e os bons materiais se encontram</h2>
+        </div>
+      </div>
+
+      <div class="gallery__wrapper">
+        <button class="gallery__arrow gallery__arrow--prev" id="galleryPrev" aria-label="Anterior">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <div class="gallery__track" id="galleryTrack">
+          <div class="gallery__item"><img src="images/gallery-2.jpg" alt="Entrada"     loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-3.jpg" alt="Edifício"     loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-4.jpg" alt="Edifício 2"   loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-5.jpg" alt="Vizinhança" loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-6.jpg" alt="Fachada do edifício" loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-7.jpg" alt="Área comum"     loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-8.jpg" alt="Terraço na cobertura" loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/gallery-9.jpg" alt="Vista do jardim"     loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/hero-2.jpg" alt="Fachada principal do edifício" loading="lazy" /></div>
+          <div class="gallery__item"><img src="images/hero-3.jpg" alt="Fachada traseira e jardim" loading="lazy" /></div>
+        </div>
+        <button class="gallery__arrow gallery__arrow--next" id="galleryNext" aria-label="Seguinte">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+      <div class="gallery__hint" aria-hidden="true">
+        <i data-lucide="move-horizontal"></i>
+        <span>Arraste para explorar</span>
+      </div>
+    </section>
+
+        <!-- ── LOCATION ──────────────────────────── -->
+    <section class="location section section--alt" id="location">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Localização</span>
+          <h2 class="section-heading">No coração do Porto</h2>
+        </div>
+      </div>
+      <div class="location__grid container">
+        <div class="location__info">
+          <div class="location__map">
+            <iframe
+              title="Mapa 350DIAS"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5!2d-8.6163!3d41.1621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464a09f6c40f1%3A0x1!2sR.+Carlos+Malheiro+Dias+350%2C+4200-154+Porto!5e0!3m2!1spt!2spt!4v1"
+              width="100%" height="100%" style="border:0" allowfullscreen loading="lazy">
+            </iframe>
+          </div>
+          <div class="location__highlights">
+          <p class="location__address">
+            <i data-lucide="map-pin"></i>
+            R. Carlos Malheiro Dias 350, 4200-154 Porto, Portugal
+          </p>
+          <ul class="location__list location__list--rich">
+
+            <li class="location__item">
+              <span class="location__icon">
+                <i data-lucide="landmark"></i>
+              </span>
+              <span class="location__item-text">
+                <strong>Estádio do Dragão – 5 min</strong>
+                <span>Casa do FC Porto e um dos estádios selecionados para o Mundial de 2030</span>
+              </span>
+            </li>
+
+            <li class="location__item">
+              <span class="location__icon">
+                <i data-lucide="shopping-bag"></i>
+              </span>
+              <span class="location__item-text">
+                <strong>Alameda Shopping – 6 min</strong>
+                <span>Comércio, restaurantes e cinema a poucos passos</span>
+              </span>
+            </li>
+
+            <li class="location__item">
+              <span class="location__icon">
+                <i data-lucide="train-front"></i>
+              </span>
+              <span class="location__item-text">
+                <strong>Estação de Metro Marquês – 5 min</strong>
+                <span>Acesso direto de metro ao centro da cidade e ao aeroporto</span>
+              </span>
+            </li>
+
+            <li class="location__item">
+              <span class="location__icon">
+                <i data-lucide="trees"></i>
+              </span>
+              <span class="location__item-text">
+                <strong>Parque de São Roque – 3 min</strong>
+                <span>Parque verde com jardins, percursos pedonais e miradouros</span>
+              </span>
+            </li>
+
+            <li class="location__item">
+              <span class="location__icon">
+                <i data-lucide="hospital"></i>
+              </span>
+              <span class="location__item-text">
+                <strong>Hospital de Santa Maria – 6 min</strong>
+                <span>Hospital privado de referência, na Rua de Camões</span>
+              </span>
+            </li>
+
+          </ul>
+          <a href="#contact" class="btn btn--outline">Fale Connosco</a>
+          </div>
+        </div>
+        <div class="location__gallery">
+          <div class="location__photo">
+            <img src="images/location-park.jpg" alt="Ruas do Bonfim" loading="lazy" />
+            <span class="location__photo-caption">Ruas do Bonfim</span>
+          </div>
+          <div class="location__photo">
+            <img src="images/location-sao-roque-2.jpg" alt="São Roque" loading="lazy" />
+            <span class="location__photo-caption">São Roque</span>
+          </div>
+          <div class="location__photo">
+            <img src="images/location-fontainhas.jpg" alt="Fontainhas" loading="lazy" />
+            <span class="location__photo-caption">Fontainhas</span>
+          </div>
+          <div class="location__photo">
+            <img src="images/location-marques.jpg" alt="Praça do Marquês" loading="lazy" />
+            <span class="location__photo-caption">Praça do Marquês</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DEVELOPERS ────────────────────────── -->
+    <section class="developers section" id="developers">
+      <div class="container developers__inner">
+        <span class="section-label">O Promotor</span>
+        <img src="images/alba-urbana-logo.png" alt="ALBA URBANA" class="developers__logo" />
+        <div class="about__body developers__body">
+          <p>
+            A ALBA URBANA é uma empresa de promoção imobiliária fundada por Ido Ben Ari e
+            Gil Aldor, que reúne experiência complementar em investimento, promoção,
+            planeamento e construção.
+          </p>
+          <p>
+            A localização está no centro de todos os projetos que assumimos. Focamo-nos em
+            áreas urbanas com carácter, fortes ligações à cidade e potencial de longo prazo.
+          </p>
+          <p>
+            Em cada projeto, damos atenção aos detalhes que moldam o dia a dia — espaços bem
+            pensados, materiais e acabamentos de qualidade, infraestruturas fiáveis e uma
+            abordagem de design contemporânea, mas sempre ligada à sua envolvente.
+          </p>
+          <p class="developers__legal-note" style="font-size:0.78rem;color:var(--color-muted);margin-top:1rem;">
+            ALBA URBANA é a denominação comercial de ALBA TOP BONFIM, LDA.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ───────────────────────────── -->
+    <section class="contact section" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__info">
+          <span class="section-label">Contacto</span>
+          <h2 class="section-heading">Peça mais informações</h2>
+          <p class="contact__sub">Preencha o formulário e a nossa equipa entrará em contacto brevemente.</p>
+          <ul class="contact__channels">
+            <li><a href="mailto:hello@350dias.com"><i data-lucide="mail"></i> hello@350dias.com</a></li>
+          </ul>
+        </div>
+        <div class="contact__form-wrap">
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fieldName">Nome completo</label>
+                <input type="text" id="fieldName" name="fi-text-fullName" placeholder="O seu nome" required />
+              </div>
+              <div class="form-group">
+                <label for="fieldEmail">Email</label>
+                <input type="email" id="fieldEmail" name="fi-sender-email" placeholder="oseu@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fieldPhone">Telefone</label>
+              <input type="tel" id="fieldPhone" name="fi-sender-phone" placeholder="+351 900 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="fieldMessage">Mensagem</label>
+              <textarea id="fieldMessage" name="fi-text-message" rows="4" placeholder="Diga-nos como podemos ajudar…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">
+              Enviar mensagem <i data-lucide="send"></i>
+            </button>
+            <p class="form__note">Ao submeter, concorda com a nossa política de privacidade.</p>
+            <p class="form__status" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ───────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__logo"><img src="images/350dias-logo-white.png" alt="350 DIAS" /></span>
+      <p class="footer__copy">© 2025 350DIAS. Todos os direitos reservados. Um empreendimento da ALBA URBANA.</p>
+      <a href="privacy-policy-pt.html" class="footer__privacy">Política de Privacidade</a>
+      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener" class="footer__privacy">Livro de Reclamações Eletrónico</a>
+    </div>
+  </footer>
+
+  <!-- ── FLOOR PLAN / GALLERY LIGHTBOX ───────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Fechar">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Seguinte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <span class="lightbox__counter" id="lightboxCounter"></span>
+  </div>
+
+  <script src="https://forminit.com/sdk/v1/forminit.js"></script>
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

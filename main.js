@@ -8,7 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Icons ───────────────────────────────── */
   if (typeof lucide !== 'undefined') lucide.createIcons();
 
-  let currentLang = 'en';
+  let currentLang = document.documentElement.lang === 'pt' ? 'pt' : 'en';
+
+  const UI_STRINGS = {
+    en: {
+      sold: 'Sold', available: 'Available',
+      sending: 'Sending…', error: 'Error', sent: 'Sent!',
+      formLoadError: 'Something went wrong loading the form. Please try again later.',
+      formGenericError: 'Something went wrong. Please try again.',
+      formSuccess: "Thanks — we'll be in touch shortly.",
+    },
+    pt: {
+      sold: 'Vendido', available: 'Disponível',
+      sending: 'A enviar…', error: 'Erro', sent: 'Enviado!',
+      formLoadError: 'Ocorreu um erro ao carregar o formulário. Tente novamente mais tarde.',
+      formGenericError: 'Ocorreu um erro. Tente novamente.',
+      formSuccess: 'Obrigado — entraremos em contacto brevemente.',
+    },
+  };
+  const t = UI_STRINGS[currentLang];
 
   /* ══════════════════════════════════════════
      1. NAVIGATION
@@ -47,20 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ══════════════════════════════════════════ */
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      currentLang = btn.dataset.lang;
-      document.documentElement.lang = currentLang;
-      document.querySelectorAll('.lang-btn').forEach(b => {
-        const isActive = b.dataset.lang === currentLang;
-        b.classList.toggle('active', isActive);
-        b.setAttribute('aria-pressed', isActive);
-      });
-      const privacyLink = document.querySelector('.footer__privacy');
-      if (privacyLink) {
-        privacyLink.href = currentLang === 'pt' ? 'privacy-policy-pt.html' : 'privacy-policy.html';
-        privacyLink.textContent = currentLang === 'pt' ? 'Política de Privacidade' : 'Privacy Policy';
-      }
-      buildUnitTabs();
-      renderUnit(activeUnitId);
+      const targetLang = btn.dataset.lang;
+      if (targetLang === currentLang) return;
+      const targetPage = targetLang === 'pt' ? 'index-pt.html' : 'index.html';
+      window.location.href = targetPage + window.location.hash;
     });
   });
 
@@ -262,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (aptName)   aptName.textContent = d.name;
     if (aptStatus) {
       const sold = unit.status === 'sold';
-      aptStatus.textContent  = sold ? 'Sold' : 'Available';
+      aptStatus.textContent  = sold ? t.sold : t.available;
       aptStatus.className    = 'apt-status apt-status--' + (sold ? 'sold' : 'available');
     }
 
@@ -388,13 +396,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn  = form.querySelector('[type="submit"]');
       const orig = btn.innerHTML;
       btn.disabled  = true;
-      btn.innerHTML = 'Sending… <i data-lucide="loader"></i>';
+      btn.innerHTML = `${t.sending} <i data-lucide="loader"></i>`;
       if (status) { status.textContent = ''; status.className = 'form__status'; }
       lucide.createIcons();
 
       if (!forminit) {
-        btn.innerHTML = 'Error <i data-lucide="x"></i>';
-        if (status) { status.textContent = 'Something went wrong loading the form. Please try again later.'; status.className = 'form__status form__status--error'; }
+        btn.innerHTML = `${t.error} <i data-lucide="x"></i>`;
+        if (status) { status.textContent = t.formLoadError; status.className = 'form__status form__status--error'; }
         lucide.createIcons();
         setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; lucide.createIcons(); }, 3000);
         return;
@@ -406,13 +414,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (error) {
         btn.innerHTML = orig;
         btn.disabled = false;
-        if (status) { status.textContent = error.message || 'Something went wrong. Please try again.'; status.className = 'form__status form__status--error'; }
+        if (status) { status.textContent = error.message || t.formGenericError; status.className = 'form__status form__status--error'; }
         lucide.createIcons();
         return;
       }
 
-      btn.innerHTML = 'Sent! <i data-lucide="check"></i>';
-      if (status) { status.textContent = 'Thanks — we\'ll be in touch shortly.'; status.className = 'form__status form__status--success'; }
+      btn.innerHTML = `${t.sent} <i data-lucide="check"></i>`;
+      if (status) { status.textContent = t.formSuccess; status.className = 'form__status form__status--success'; }
       lucide.createIcons();
       setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; form.reset(); if (status) status.textContent = ''; lucide.createIcons(); }, 3000);
     });
