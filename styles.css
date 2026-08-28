@@ -388,7 +388,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .apt-floor img {
   display: block; width: auto; height: 100%; max-width: 100%;
   object-fit: contain;
-  background: #fff;
+  background: var(--color-surface);
   transition: opacity 0.3s ease;
 }
 .apt-floor__label {
